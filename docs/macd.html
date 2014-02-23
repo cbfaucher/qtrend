@@ -1,0 +1,22 @@
+<html><head><title>MACD Formula</title></head>
+<body>
+<font color="#009900" size=""><b><u>Moving Average Convergence Divergence	(.MACD)</u></b></font><br><br>
+EMA1t = EMA1t-1 + SF1(Pt - EMA1t-1)<br>
+EMA2t = EMA2t-1 + SF2(Pt - EMA2t-1)<br>
+<br>
+MACD = EMA1 - EMA2t-1<br>
+SL = MACDt-1 + SLSF(MACDt - MACDt-1)<br>
+<br>
+<font color="#6600ff" size="">where :	</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;EMA1t		= current value of 1st exponential moving average<br>
+&nbsp;&nbsp;&nbsp;&nbsp;EMA2t		= current value of 2nd exponential moving average<br>
+&nbsp;&nbsp;&nbsp;&nbsp;EMA1t-1	= previous value of 1st exponential moving average<br>
+&nbsp;&nbsp;&nbsp;&nbsp;EMA2t-1	= previous value of 2nd exponential moving average<br>
+&nbsp;&nbsp;&nbsp;&nbsp;SF1			= smoothing factor for EMA1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;SF2			= smoothing factor for EMA2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;MACDt		= current MACD value<br>
+&nbsp;&nbsp;&nbsp;&nbsp;MACDt-1	= pervious MACD value<br>
+&nbsp;&nbsp;&nbsp;&nbsp;SF				= signal line<br>
+&nbsp;&nbsp;&nbsp;&nbsp;SLSF			= singnal line smoothing factor<br>
+<font color="#ff6600" size="">reference from :</font> Appel, Gerald
+</body></html>

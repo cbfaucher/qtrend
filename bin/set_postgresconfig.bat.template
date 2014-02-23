@@ -1,0 +1,18 @@
+@echo off
+
+REM
+REM Set this to where Postgres is installed
+REM
+set POSTGRES_DIR="C:\Program Files\PostgreSQL\8.1"
+set POSTGRES_BIN=%POSTGRES_DIR%\bin
+
+
+REM
+REM Set this variable to the admin Postgres user (usually 'postgres')
+REM
+SET POSTGRES_USER=postgres
+
+REM
+REM Set this variable to the hostname where postgres is running (usually localhost)
+REM
+SET POSTGRES_HOST=localhost

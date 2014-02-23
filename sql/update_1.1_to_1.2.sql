@@ -1,0 +1,33 @@
+
+
+alter table langford add column ema56 REAL, add column ema112 REAL;
+
+DROP VIEW V_TICKERS;
+CREATE VIEW V_TICKERS
+    AS
+        SELECT  *,
+                ROUND ( CAST( (CLOSE - STEMA)/STEMA * 100 AS NUMERIC ), 2 ) AS DIFFSTEMA,
+                ROUND ( CAST( (CLOSE - LTEMA)/LTEMA * 100 AS NUMERIC ), 2 ) AS DIFFLTEMA,
+                ROUND ( CAST( (CLOSE - EMA56)/EMA56 * 100 AS NUMERIC ), 2 ) AS DIFFEMA56,
+                ROUND ( CAST( (CLOSE - EMA112)/EMA112 * 100 AS NUMERIC ), 2 ) AS DIFFEMA112
+        FROM
+            (   SELECT  *,
+                        ROUND( CAST(((T.CLOSE-PREVIOUSCLOSE1)/PREVIOUSCLOSE1) * 100 AS NUMERIC), 2) AS CLOSEVAR1,
+                        ROUND( CAST(((T.CLOSE-PREVIOUSCLOSE3)/PREVIOUSCLOSE3) * 100 AS NUMERIC), 2) AS CLOSEVAR3,
+                        ROUND( CAST(((T.CLOSE-PREVIOUSCLOSE7)/PREVIOUSCLOSE7) * 100 AS NUMERIC), 2) AS CLOSEVAR7
+                FROM
+                    (SELECT
+                        T.ID, T.TICKER, T.STOCKEXCHANGE, N.NAME, T.PERIODSEQUENCE, T.DATE, T.TIME, T.OPEN, T.HIGH, T.LOW, T.CLOSE, T.PRICEDIFFERENCE, T.VOLUME, T.AVERAGEVOLUME, RSI, STEMA, LTEMA, EMA56, EMA112, MACDSTEMA, MACDLTEMA, EMADIFFERENCE, MACD, VARIATION, SIGNAL, NEXTSIGNAL,
+                        GetPreviousClose(T.STOCKEXCHANGE, T.TICKER, T.PERIODSEQUENCE, 1) AS PREVIOUSCLOSE1,
+                        GetPreviousClose(T.STOCKEXCHANGE, T.TICKER, T.PERIODSEQUENCE, 3) AS PREVIOUSCLOSE3,
+                        GetPreviousClose(T.STOCKEXCHANGE, T.TICKER, T.PERIODSEQUENCE, 7) AS PREVIOUSCLOSE7
+                    FROM
+                        STOCKQUOTES AS T
+                            INNER JOIN LANGFORD
+                                ON REFID=ID
+                            LEFT OUTER JOIN NAMES AS N
+                                ON (T.TICKER = N.TICKER AND T.STOCKEXCHANGE=N.STOCKEXCHANGE)
+                    ) AS T
+            ) AS T2
+        ORDER BY T2.TICKER, T2.PERIODSEQUENCE DESC;
+GRANT ALL ON V_TICKERS TO qtrend;

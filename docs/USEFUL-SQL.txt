@@ -1,0 +1,38 @@
+-- To know the colum names
+For table stockquotes: \d stockquotes
+For table langford: \d langford
+
+-- To select ALL stocks having an OBS in the last few days, with certain price, certain volume.
+SELECT
+    stockexchange, ticker, date, close, volume, rsi, macd, signal
+FROM stockquotes
+    inner join langford on refid=id
+where
+    close > 4
+    and volume > 200000
+    and rsi <= 30
+    and signal='OBS'
+    and date > '2006/05/01'
+order by
+    stockexchange, ticker, date;
+
+
+-- To know the last import date for the exchanges
+select
+    stockexchange, max(date)
+from
+    stockquotes
+group by
+    stockexchange;
+
+
+
+-- To know the information on a given ticker
+select
+    stockexchange, date, close, volume, macd, signal
+from stockquotes
+    inner join langford on refid=id
+where
+    ticker='BOL'
+order by
+    DATE;

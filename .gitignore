@@ -1,0 +1,14 @@
+# Directories
+data/
+dist/
+oldsrc/
+success/
+errors/
+application/classes/
+TSE_Quotes/
+lib/
+
+
+# Files
+*.log
+**/*.class

@@ -1,0 +1,342 @@
+<html><head keywords="stock market analysis, ranking, screening, back testing, quantitative analysis">
+
+<meta name="description" content="i-Soft offers StockWiz - a stock market
+	screening, ranking and system testing software,
+	also low cost end-of-day stock quotes and
+	historical daily stock quotes on CD-ROM
+	stock market data
+      real-time market professional investor custom stock charting technical analysis">
+
+<meta name="KEYWORDS" content="stock quotes, ranking,
+      screening, back-testing,
+      stock chart, technical analysis, market data, investor,
+      trader, historical data">
+
+<meta name="revisit-after" content="15 days"><title>StockWiz - Stock selection software for investors using technical analysis and fundamentals - low cost data</title></head>
+
+<body alink="#ff0000" link="#0000ff" text="#000000" vlink="#800080">
+<center>
+
+<table columns="1" bgcolor="white" border="0" cellpadding="10" width="600"><tbody><tr><td>
+
+<font face="Arial" size="3">
+
+<hr>
+<center><b>StockWiz formula</b></center>
+<hr>
+
+<pre></pre>
+
+</font>
+
+<p><font face="Arial" size="2">Issues trading signals based on the MACD.
+
+Use the Moving Average Convergence Divergence [MACD] method to issue BUY and
+SELL signals for every company in the database. The MACD method
+
+works as follows:
+
+</font>
+
+</p>
+<p>
+
+<font face="Arial" size="2">
+
+Step 1. Calculate a 12 day moving average of a company's price</font></p>
+<p>
+
+<font face="Arial" size="2">
+
+Step 2. Calculate a 26 day moving average of a company's price</font></p>
+<p>
+
+<font face="Arial" size="2">
+
+Step 3: Calculate MACD by subtracting the 26 day MA from the 12 day MA</font></p>
+<p><font face="Arial" size="2">
+
+The MACD curve is above zero when the 12 day MA is higher than&nbsp;
+the 26 day MA. A MACD above zero suggests that short term (12 day) expectations are more bullish than
+ previous expectations&nbsp; (i.e.
+"represented" by the 26 day MA). We translate this into a BUY signal.
+
+</font></p>
+<p><font face="Arial" size="2">Step 4. We further refine this idea by
+calculating a 9 day moving average of the MACD curve itself and look for BUY signals
+ when the 9 day MA of MACD [also called the Signal line]
+ is below the MACD line. When the MACD and Signal lines cross it means
+ that a change in the expectations of investors [as
+ expressed by supply and demand for the stock] is taking place.
+ When the MACD is above the Signal line we issue a BUY signal.
+ When the MACD line is below the Signal line we issue a SELL signal.
+
+</font>
+
+</p>
+<p><font face="Arial" size="2">The results are displayed in the worksheet.
+
+</font>
+
+</p>
+<font size="1">
+<font face="Arial" size="3">
+<p>&nbsp;</p>
+</font>
+<p>
+<font face="Arial" size="1"># Clear all contents of the worksheet
+</font></p>
+<p>
+<font face="Arial" size="1">(CLEAR)
+</font></p>
+<p>
+<font face="Arial" size="1">(SOURCE "WORKING_GROUP")
+</font></p>
+</font>
+<p><font size="1">
+<font face="Arial"># Set number of rows in worksheet to the number of entries in the
+</font>
+<font face="Arial">Working Group.
+</font></font></p>
+<p>
+<font face="Arial" size="1">(SET I 0)
+</font></p>
+<font size="1">
+</font><p>
+<font size="1"><font face="Arial" size="1">(SET TOTAL (DBSIZE))
+</font></font></p>
+<font size="1"><font face="Arial" size="3">
+<p>&nbsp;</p>
+</font>
+</font><p>
+<font size="1"><font face="Arial" size="1"># Write labels to the output grid
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(GRIDFIELD "Ticker" "STRING" "10")
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(GRIDFIELD "Name" "STRING" "25")
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(GRIDFIELD "Signal" "STRING" "10")
+</font></font></p>
+<font size="1"><font face="Arial" size="3">
+<p>&nbsp;</p>
+</font>
+</font><p>
+<font size="1"><font face="Arial" size="1"># Prompt user for a date range
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(SET LASTDATE (LASTDATE))
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(SET FIRSTDATE (DATEBSUB LASTDATE 80))
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1"># (GOTO %EXIT (MENU FIRSTDATE LASTDATE))
+</font></font></p>
+<font size="1"><font face="Arial" size="3">
+<p>&nbsp;</p>
+</font>
+</font><p>
+<font size="1"><font face="Arial" size="1">(SET STATUS (LOADFIRST))
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(GOTO %ERROR (NE STATUS 0))
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">%NEXT: (SET CLOSE (GETVECTOR (CURRENT) "CLOSE"))
+</font></font></p>
+<font size="1"><font face="Arial" size="3">
+<p>&nbsp;</p>
+</font>
+</font><p>
+<font size="1"><font face="Arial" size="1"># Skip any companies that do not have current data
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(GOTO %UPDATE (BADDATA CLOSE LASTDATE))
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(SET VCLOSE (VEC2VEC CLOSE FIRSTDATE LASTDATE))
+</font></font></p>
+<font size="1"><font face="Arial" size="3">
+<p>&nbsp;</p>
+</font>
+</font><p>
+<font size="1"><font face="Arial" size="1"># Skip over this company if all values are NA
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(SET RANK1 (NA))
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(SET SIGNAL " ")
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(GOTO %UPDATE (ISVNA VCLOSE))
+</font></font></p>
+<font size="1"><font face="Arial" size="3">
+<p>&nbsp;</p>
+</font>
+</font><p>
+<font size="1"><font face="Arial" size="1"># Skip over this company if there are less than 30 values available
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(GOTO %UPDATE (LT (VSIZE VCLOSE) 30))
+</font></font></p>
+<font size="1"><font face="Arial" size="3">
+<p>&nbsp;</p>
+</font>
+</font><p>
+<font size="1"><font face="Arial" size="1">(SET MA26 (MOVAVG VCLOSE 26))
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(SET MA12 (MOVAVG VCLOSE 12))
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(SET MACD (VSUB MA12 MA26))
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(SET SIGNALX (MOVAVG MACD 9))
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(SET RANK1 (BREAKUP MACD SIGNALX 3))
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(GOTO %HOLD (EQ RANK1 0.0))
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(GOTO %BUY (GT RANK1 0.0))
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(GOTO %SELL (LT RANK1 0.0))
+</font></font></p>
+<font size="1"><font face="Arial" size="3">
+<p>&nbsp;</p>
+</font>
+</font><p>
+<font size="1"><font face="Arial" size="1">%BUY: (SET SIGNAL "BUY")
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(GRID (CURRENT) "Name" (GETSTRING "NAME"))
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(GRID (CURRENT) "Signal" SIGNAL)
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(GOTO %UPDATE (TRUE))
+</font></font></p>
+<font size="1"><font face="Arial" size="3">
+<p>&nbsp;</p>
+</font>
+</font><p>
+<font size="1"><font face="Arial" size="1">%SELL: (SET SIGNAL "SELL")
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(GRID (CURRENT) "Name" (GETSTRING "NAME"))
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(GRID (CURRENT) "Signal" SIGNAL)
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(GOTO %UPDATE (TRUE))
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">%HOLD: (SET SIGNAL "HOLD")
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(GRID (CURRENT) "Name" (GETSTRING "NAME"))
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(GRID (CURRENT) "Signal" SIGNAL)
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(GOTO %UPDATE (TRUE))
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">%UPDATE:
+</font></font></p>
+<font size="1"><font face="Arial" size="3">
+<p>&nbsp;</p>
+</font>
+</font><p>
+<font size="1"><font face="Arial" size="1"># Display the number of records processed in the status bar
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(STATUSBAR 2 (DOUBL2STR I "%.0lf"))
+</font></font></p>
+<p>
+<font size="1"><font face="Arial" size="1">(PROGRESS 0 TOTAL I)
+</font></font></p>
+
+<p><font size="1">
+<font face="Arial"># Uncomment the next lines if you want to store the results back
+</font>
+<font face="Arial">into the fundamentals' table.
+</font></font></p>
+<p>
+<font face="Arial" size="1"># (SET STATUS (SETDOUBLE "RANK1" RANK1))
+</font></p>
+<p>
+<font face="Arial" size="1"># (GOTO %ERROR STATUS)
+</font></p>
+<p>
+<font face="Arial" size="1"># (SET STATUS (SETSTRING "SIGNAL1" SIGNAL))
+</font></p>
+<p>
+<font face="Arial" size="1"># (GOTO %ERROR STATUS)
+</font></p>
+<font face="Arial" size="3">
+<p>&nbsp;</p>
+</font>
+<p>
+<font face="Arial" size="1">(SET I (ADD I 1))
+</font></p>
+<font face="Arial" size="3">
+<p>&nbsp;</p>
+</font>
+<p>
+<font face="Arial" size="1"># Terminate program if user clicked on the "Cancel" button
+</font></p>
+<p>
+<font face="Arial" size="1">(GOTO %EXIT (ESCAPE))
+</font></p>
+<font face="Arial" size="3">
+<p>&nbsp;</p>
+</font>
+<p>
+<font face="Arial" size="1"># Load the next company
+</font></p>
+<p>
+<font face="Arial" size="1">(SET STATUS (LOADNEXT))
+</font></p>
+<p>
+<font face="Arial" size="1">(GOTO %NEXT (EQ STATUS 0))
+</font></p>
+<p>
+<font face="Arial" size="1">(GOTO %EXIT (TRUE))
+</font></p>
+<font face="Arial" size="3">
+<p>&nbsp;</p>
+</font>
+<p>
+<font face="Arial" size="1">%ERROR: (MESSAGE "An error has occurred - Unable to continue")
+</font></p>
+<font face="Arial" size="3">
+<p>&nbsp;</p>
+</font>
+<p>
+<font face="Arial" size="1">%EXIT: (EXIT 0)
+</font></p>
+<font face="Arial" size="3"><font size="1">
+<p>&nbsp;</p>
+</font>
+<hr>
+</font><i><font face="Arial" size="1">
+Contents are © Copyright of i-Soft, Inc. 2004.
+StockWiz, SAL and i-Soft are trademarks of i-Soft, Inc.</font>
+</i>
+
+</td></tr>
+</tbody></table>
+
+</center></body></html>

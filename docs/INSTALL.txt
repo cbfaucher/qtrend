@@ -1,0 +1,67 @@
+
+INSTALLATION GUIDE
+==================
+
+
+- Unzip the content to a directory somewhere.
+- Make sure your PostgreSQL server (service) is running on port 5432 (default post)
+
+NOTE: The Steps 1 to 4 only need to be done ONCE (first install)
+
+1) Set JAVA_HOME
+----------------
+- In QTrend/bin, rename (or copy)
+        set_javahome.bat.template
+    to
+        set_javahome.bat
+- Set the JAVA_HOME to where your Java 1.5 is installed.
+
+2) Set PostgreSQL config
+------------------------
+- In QTrend/bin, rename (or copy)
+        set_postgresconfig.bat.template
+    to
+        set_postgresconfig.bat
+- Edit the file, and set the variables as appropriate
+
+3) Setup database (first install)
+---------------------------------
+
+- Make sure the PostgreSQL's postgres user is defined.
+- FIRST, you MAY take a backup of your current QTrend DB, using bin/backup.bat, which
+    will create a sql/my-backup-qtrend.sql file.
+- Execute initdb-qtrend.bat
+    You will have a bunch of "ERROR" messages at the beginning of execution, complaining
+    that "Function 'abc' already exists with same arguments."
+    IGNORE THOSE MESSAGES!
+
+    The important is the what comes next to that, that must NOT have any errors.
+
+    AND VOILA!!!
+
+4) Setup exchanges
+------------------
+
+- In QTrend/config, rename (or copy)
+        exchange-configuration-template.xml
+    to
+        exchange-configuration.xml
+- Edit the files to reflect the exchanges you want to use
+
+In the future, you may need to update this file again, as you use
+new exchanges.
+
+
+
+Running QTrend and tools
+------------------------
+
+Run qtrend.bat to run QTrend
+
+Run psql.bat to get access to SQL tool.
+    Type \h for help on commands
+    Type \h <command> (e.g. \h SELECT) to help on a specific command
+    TYpe \? for more internal commands
+    Type \q to leave
+
+See 'USEFUL-SQL.TXT' for useful SQL statements.

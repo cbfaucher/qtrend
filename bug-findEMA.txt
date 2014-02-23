@@ -1,0 +1,22 @@
+All Tickers UPDATED!
+ERROR: Could not find OBSscom.quartz.qtrend.dao.StockDAOException: org.postgresql.util.PSQLException: ERROR: more than one row returned by a subquery used as an expression
+	at com.quartz.qtrend.dao.database.DatabaseStockDAO.execute(DatabaseStockDAO.java:779)
+	at com.quartz.qtrend.dao.database.DatabaseStockDAO.execute(DatabaseStockDAO.java:757)
+	at com.quartz.qtrend.dao.database.DatabaseStockDAO.findObs(DatabaseStockDAO.java:243)
+	at com.quartz.qtrend.dom.services.StockQuoteListService.findObsSignals(StockQuoteListService.java:81)
+	at com.quartz.qtrend.actions.helpers.AbstractFindObsAction$1.runJob(AbstractFindObsAction.java:154)
+	at com.quartz.qutilities.jobrunner.AsyncJobRunner$JobRunningRunnable.runOneJob(AsyncJobRunner.java:74)
+	at com.quartz.qutilities.jobrunner.AsyncJobRunner$JobRunningRunnable.run(AsyncJobRunner.java:59)
+	at java.lang.Thread.run(Thread.java:595)
+Caused by: org.postgresql.util.PSQLException: ERROR: more than one row returned by a subquery used as an expression
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:1512)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:1297)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:188)
+	at org.postgresql.jdbc2.AbstractJdbc2Statement.execute(AbstractJdbc2Statement.java:430)
+	at org.postgresql.jdbc2.AbstractJdbc2Statement.executeWithFlags(AbstractJdbc2Statement.java:346)
+	at org.postgresql.jdbc2.AbstractJdbc2Statement.executeQuery(AbstractJdbc2Statement.java:250)
+	at org.apache.commons.dbcp.DelegatingPreparedStatement.executeQuery(DelegatingPreparedStatement.java:92)
+	at com.quartz.qtrend.dao.database.DatabaseStockDAO$2.execute(DatabaseStockDAO.java:264)
+	at com.quartz.qtrend.dao.database.DatabaseStockDAO$2.execute(DatabaseStockDAO.java:244)
+	at com.quartz.qtrend.dao.database.DatabaseStockDAO.execute(DatabaseStockDAO.java:775)
+	... 7 more

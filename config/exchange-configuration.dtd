@@ -1,0 +1,26 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+
+<!--
+	<!DOCTYPE exchange-configuration SYSTEM "http://quartz.com/dtd/exchange-configuration.dtd">
+-->
+
+<!ELEMENT exchange-configuration (exchange*)>
+
+<!ELEMENT exchange (includes?, excludes?)>
+<!ATTLIST exchange name             CDATA #REQUIRED>
+<!ATTLIST exchange extension        CDATA #IMPLIED>
+<!ATTLIST exchange minimum-volume   CDATA #IMPLIED>
+<!ATTLIST exchange minimum-price    CDATA #IMPLIED>
+<!ATTLIST exchange maximum-price    CDATA #IMPLIED>
+
+<!ELEMENT includes ((ticker+, price-volume-ratio?)|all)>
+<!ELEMENT excludes (ticker+|all)>
+
+<!ELEMENT ticker EMPTY>
+<!ATTLIST ticker ticker CDATA #REQUIRED>
+
+<!ELEMENT price-volume-ratio    EMPTY>
+<!ATTLIST price-volume-ratio    average-capital-invested    CDATA #REQUIRED>
+<!ATTLIST price-volume-ratio    threshold                   CDATA #REQUIRED>
+
+<!ELEMENT all EMPTY>

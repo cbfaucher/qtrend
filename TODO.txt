@@ -1,0 +1,172 @@
+BUGS
+====
+Pourquoi en udate on peut pas updater le jour meme "Ticker already up to date".
+Use date for "Show Graphics", and add option for the epoch
+TODOs (priority,alert).
+Use Tables to display stuff.
+Get news on Yahoo for a ticker (latest or on specific days)
+Get better error for database not started.
+Actually, it should start by itself...   
+In OBB, range for OHLC is not well measure (needs prob. cents in scale, not $)
+Add a support to change range view in Show Graphics.
+Send t Google Graphics
+
+TODO
+====
+
+select 	date, periodsequence, signal, 
+	(select max(date), signal 
+	from stockquotes inner join langford on refid=id 
+	where 
+		ticker=T.ticker and signal != '' and date<T.date
+	group by signal) AS LASTSIGNALDATE
+from 	(stockquotes inner join langford on refid=id) AS T
+where ticker='MSFT'
+order by date desc;
+	
+
+-- Last signal for a stock
+select date, periodsequence, signal
+from	(select * from stockquotes inner join langford on refid=id where ticker='MSFT' and signal!='') AS T
+GROUP BY date, periodsequence,signal
+having 
+	date=(select max(date) from stockquotes inner join langford on refid=id where ticker='MSFT' and signal!='');
+
+select max(date), ticker from v_tickers where stockexchange='TSE' and signal='OBS' group by ticker order by ticker;
+
+
+select DATE, ticker, close, volume, rsi, signal 
+from 	(stockquotes inner join langford on refid=id) AS T
+WHERE DATE = (	select max(date) 
+		from (stockquotes
+			inner join langford
+			on id=refid) AS V 
+		where V.ticker=T.Ticker and signal='OBS') and stockexchange='TSE';
+
+
+
+select date, ticker, close, low, high, volume, averagevolume, (2000/close)/averagevolume as ratio, (high-low)/low as range from stockquotes where stockexchange='OBB' and date='2007-02-02';
+
+select * from (select ticker, close, low, high, volume, averagevolume, (2000/close)/averagevolume as ratio, (high-low)/low as range from stockquotes where stockexchange='OBB' and date='2007-02-02') AS DOH where ratio < 0.05 and close < 0.10 order by range desc, ratio;
+
+select date, S.ticker, low, MINLOW, AVGLOW, high, MAXHIGH, AVGHIGH, close, volume, averagevolume, ratio, range 
+from 	stockquotes AS S, 
+	(SELECT T.*, 
+		(2000/close)/averagevolume as ratio,
+		(AVGHIGH-AVGLOW)/AVGLOW AS range
+	from 	(select date, ticker, close, averagevolume, periodsequence 
+		from stockquotes
+		where stockexchange='OBB' and date='2007-03-19') AS Z,
+		(select ticker, 
+			min(low) AS MINLOW, avg(low) AS AVGLOW, 
+			max(high) AS MAXHIGH, avg(high) AS AVGHIGH 
+		from stockquotes 
+		where 	stockexchange='OBB' 
+			and date >= '2007-03-12' 
+		group by ticker) AS T
+	WHERE Z.TICKER=T.TICKER and averagevolume>0
+	) AS U
+where 	S.Ticker=U.TIcker 
+	and stockexchange='OBB' 
+	and ratio < 0.05
+	and averagevolume>100000
+	and date='2007-03-19'
+	and periodsequence>20
+order by
+	range desc, ratio;
+
+o A config menu
+	- JDBC info
+	- Proxy
+	- OBB config
+	- browser
+	- SOmething in a 2 column tables!
+
+o Menu contextuel: associe a la selection
+    - Ajouter option "New WIndow" aux options presentes...
+o Scratchpad.
+o Find tickers which last date is NOT exchange's last date...
+o Find latest on quotes for exchange:
+	select date, ticker, close, rsi 
+	from v_tickers where date=(
+		select max(date) 
+		from v_tickers where stockexchange='NASDAQ'
+	) and stockexchange='NASDAQ';
+
+o Hibernate
+o One table per method.
+o One VO per method, with its own parameters & Config
+
+
+SELECT *,
+	SELECT *
+	FROM (	SELECT MAX(DATE) AS LASTSIGNALDATE FROM STOCKQUOTES INNER JOIN LANGFORD ON REFID=ID 
+		WHERE TICKER='REV' AND SIGNAL!='' AND S.DATE > T.DATE), 
+	STOCKQUOTES INNER JOIN LANGFORD ON REFID=ID
+WHERE TICKER='REV'
+ORDER BY DATE DESC;
+
+select T.date, T.close, T.signal, Q.lastlsignaldate, Q.lastsignal
+FROM 	(select * 
+	from 	(stockquotes 
+		inner join langford 
+		on refid=id) AS T) AS P,
+	 (select max(date) as lastsignaldate, signal as lastsignal
+	from (stockquotes 
+	inner join langford 
+	on refid=id) AS S 
+	where S.ticker=T.TICKER and signal!='' and S.Date<t.date
+	group by signal) AS Q
+where ticker='REV' order by date desc;
+
+
+select signal as lastsignal 
+from (	stockquotes 
+	inner join langford 
+	on refid=id) AS S 
+where S.ticker='REV' and signal!='' 
+group by signal 
+having max(s.date) < '2007-05-01';
+
+DONE:
+o Separer menus: 
+	FIle
+		New Window
+		---
+		EOD
+			Import day data
+			---
+			Import Ticker names
+		Yahoo
+			Import historcal price
+		---
+		Close
+		Exit
+	Edit
+		...
+	View
+		Show History
+		Show Summary on Yahoo!
+		---
+		Show Graphics
+		Show Graphics on StockCharts
+	Search
+		MACD
+			Find OBS
+			Find OSS
+			---
+			Find incoming OBS
+			Find incoming OSS
+			---
+			Estimate profits or loss
+		EMA
+			Find OBS (by EMA)
+			Find OSS (by EMA)
+			---
+			Find incoming OBS
+			FInd incoming OSS
+		RSI	
+			Find Oversold (low RSI)
+			Find Overbought (high RSI)
+o Find latest info on tickers for an exchange
+o Ajouter average volume
