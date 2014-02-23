@@ -33,7 +33,8 @@ public class Bootstrap
     {
         XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(applicationContext);
 
-        reader.setValidationMode(XmlValidationModeDetector.VALIDATION_XSD);
+        //  todo: how do we do validation in Java7 ?!
+        //reader.setValidationMode(XmlValidationModeDetector.VALIDATION_XSD);
         reader.loadBeanDefinitions(pMode.getBeansResources());
 
         //  QTrend properties

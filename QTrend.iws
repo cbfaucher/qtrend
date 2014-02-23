@@ -29,7 +29,296 @@
     <option name="USER" value="" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="ed89516c-6d5b-49d2-b004-831983dd5f30" name="Default" comment="" />
+    <list default="true" readonly="true" id="ed89516c-6d5b-49d2-b004-831983dd5f30" name="Default" comment="">
+      <change type="DELETED" beforePath="C:\Users\Christian\Development\qtrend\application\src\com\quartz\qtrend\gwt\playground\LoginHandler.gwt.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Christian\Development\qtrend\application\src\com\quartz\qtrend\gwt\playground\client\LoginEntryPoint.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Christian\Development\qtrend\application\src\com\quartz\qtrend\gwt\playground\client\LoginFailedException.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Christian\Development\qtrend\application\src\com\quartz\qtrend\gwt\playground\client\LoginHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Christian\Development\qtrend\application\src\com\quartz\qtrend\gwt\playground\client\LoginHandlerAsync.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Christian\Development\qtrend\application\src\com\quartz\qtrend\gwt\playground\public\Login.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Christian\Development\qtrend\application\src\com\quartz\qtrend\gwt\playground\public\Login.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Christian\Development\qtrend\application\src\com\quartz\qtrend\gwt\playground\server\LoginHandlerImpl.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/EMA Theorie.pdf" afterPath="$PROJECT_DIR$/docs/EMA Theorie.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/MACD 1-1.xls" afterPath="$PROJECT_DIR$/docs/MACD 1-1.xls" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/MACD 1.xls" afterPath="$PROJECT_DIR$/docs/MACD 1.xls" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/MACD formula-1.pdf" afterPath="$PROJECT_DIR$/docs/MACD formula-1.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/qtrend.jpg" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/qtrend.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/about/AboutAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/about/AboutAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/about/AboutDialog.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/about/AboutDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/helpers/AbstractEstimateProfitAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/helpers/AbstractEstimateProfitAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/helpers/AbstractFindObsAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/helpers/AbstractFindObsAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/helpers/AbstractFindOssAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/helpers/AbstractFindOssAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/AbstractStockQuote.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/AbstractStockQuote.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/AbstractStockQuoteImpl.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/AbstractStockQuoteImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/helpers/ActionHelper.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/helpers/ActionHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/watchlists/AddWatchListAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/watchlists/AddWatchListAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/Alert.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/Alert.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/AlertConstant.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/AlertConstant.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/AlertName.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/AlertName.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/AlertParameter.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/AlertParameter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/AlertParameters.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/AlertParameters.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/configuration/AlertsPanel.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/configuration/AlertsPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/aroon/Aroon.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/aroon/Aroon.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/aroon/services/AroonService.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/aroon/services/AroonService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/readers/AverageVolumeReader.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/readers/AverageVolumeReader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/charts/BarChartDemo1.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/charts/BarChartDemo1.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/BasicStockInfo.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/BasicStockInfo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/BasicStockInfoRowMapper.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/BasicStockInfoRowMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/Bootstrap.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/Bootstrap.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/exchanges/ButtonPanel.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/exchanges/ButtonPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/watchlists/ButtonsPanel.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/watchlists/ButtonsPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/graphs/ui/CloseAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/graphs/ui/CloseAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/readers/CloseReader.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/readers/CloseReader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/CloseWindowAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/CloseWindowAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/configuration/ConfigurationDialog.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/configuration/ConfigurationDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/CopyAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/CopyAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/DEPRECATED-qtrend-progress-dialog.xml" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/DEPRECATED-qtrend-progress-dialog.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/readers/DateReader.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/readers/DateReader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/DefaultExchangeRule.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/DefaultExchangeRule.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/DeleteTickerAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/DeleteTickerAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/watchlists/DeleteWatchListsAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/watchlists/DeleteWatchListsAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/configuration/DisplayAlertsDialog.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/configuration/DisplayAlertsDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/DisplayStartupAlertsAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/DisplayStartupAlertsAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/watchlists/DuplicateWatchlistNameException.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/watchlists/DuplicateWatchlistNameException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/helpers/EMA.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/helpers/EMA.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/watchlists/EditWatchListAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/watchlists/EditWatchListAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/watchlists/EditWatchListDialog.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/watchlists/EditWatchListDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/watchlists/EditWatchListPanel.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/watchlists/EditWatchListPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/ema/EmaEstimateProfitAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/ema/EmaEstimateProfitAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/langford/EmaRetriever.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/langford/EmaRetriever.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/imports/EnoughVolumeRule.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/imports/EnoughVolumeRule.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/unit-tests/src/com/quartz/qtrend/rules/imports/EnoughVolumeRuleTest.java" afterPath="$PROJECT_DIR$/unit-tests/src/com/quartz/qtrend/rules/imports/EnoughVolumeRuleTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/ExchangeConfigurationSaxHandler.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/ExchangeConfigurationSaxHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/readers/ExchangeReader.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/readers/ExchangeReader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/ExchangeRules.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/ExchangeRules.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/exchanges/services/ExchangesService.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/exchanges/services/ExchangesService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/imports/ExcludeTickersRule.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/imports/ExcludeTickersRule.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/ExitAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/ExitAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/ema/FindEmaObsAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/ema/FindEmaObsAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/ema/FindEmaOssAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/ema/FindEmaOssAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/exchanges/services/FindExchangesImportDatesRowMapper.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/exchanges/services/FindExchangesImportDatesRowMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/macd/FindIncomingObsAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/macd/FindIncomingObsAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/macd/FindIncomingOssAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/macd/FindIncomingOssAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/helpers/FindIncomingSignalAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/helpers/FindIncomingSignalAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/FindLastImportDatesAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/FindLastImportDatesAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/helpers/FindLastSignalAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/helpers/FindLastSignalAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/macd/FindMacdObsAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/macd/FindMacdObsAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/macd/FindMacdOssAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/macd/FindMacdOssAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/FindObsAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/FindObsAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/FindOssAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/FindOssAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/rsi/FindOverboughtAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/rsi/FindOverboughtAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/rsi/FindOversoldAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/rsi/FindOversoldAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/FindPriceDropsAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/FindPriceDropsAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/FindTickerByNameAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/FindTickerByNameAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/FromAlertConverter.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/FromAlertConverter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/FullTickerName.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/FullTickerName.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/FullTickerNameRowMapper.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/FullTickerNameRowMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/GetUpdateInformation.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/GetUpdateInformation.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/graphs/GraphicFactory.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/graphs/GraphicFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/graphs/GraphicFactoryException.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/graphs/GraphicFactoryException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/graphs/ui/GraphicFrame2.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/graphs/ui/GraphicFrame2.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/readers/HighReader.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/readers/HighReader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/HighRsiAlertAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/HighRsiAlertAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/HtmlOutput.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/HtmlOutput.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/IAlertAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/IAlertAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/IAlertConstant.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/IAlertConstant.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/IAlertField.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/IAlertField.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/IAlertParameter.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/IAlertParameter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/aroon/IAroonParent.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/aroon/IAroonParent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/IChoiceRetriever.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/IChoiceRetriever.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/readers/IDReader.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/readers/IDReader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/IDao.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/IDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/IExchangeRule.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/IExchangeRule.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/readers/IFieldReader.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/readers/IFieldReader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/INSTALL.txt" afterPath="$PROJECT_DIR$/docs/INSTALL.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/IRule.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/IRule.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/ITickerRule.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/ITickerRule.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/watchlists/IWatchListService.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/watchlists/IWatchListService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/ImportDates.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/ImportDates.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/endofday/ImportEodDataAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/endofday/ImportEodDataAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/endofday/ImportEodDataLineParser.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/endofday/ImportEodDataLineParser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/endofday/ImportEodDataTickerNames.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/endofday/ImportEodDataTickerNames.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/yahoo/ImportTickerHistoryJob.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/yahoo/ImportTickerHistoryJob.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/yahoo/ImportYahooTickerHistoryFromWeb.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/yahoo/ImportYahooTickerHistoryFromWeb.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/util/Importer.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/util/Importer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/util/ImporterContext.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/util/ImporterContext.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/util/ImporterException.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/util/ImporterException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/imports/IncludeTickersRule.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/imports/IncludeTickersRule.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/IntegerConverter.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/IntegerConverter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/imports/IsExistingTickerRule.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/imports/IsExistingTickerRule.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/unit-tests/src/com/quartz/qtrend/rules/imports/IsExistingTickerRuleTest.java" afterPath="$PROJECT_DIR$/unit-tests/src/com/quartz/qtrend/rules/imports/IsExistingTickerRuleTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/langford/LangfordData.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/langford/LangfordData.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/langford/LangfordDataImpl.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/langford/LangfordDataImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/unit-tests/src/com/quartz/qtrend/dom/langford/LangfordDataImplTest.java" afterPath="$PROJECT_DIR$/unit-tests/src/com/quartz/qtrend/dom/langford/LangfordDataImplTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/langford/services/LangfordDataRowMapper.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/langford/services/LangfordDataRowMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/langford/services/LangfordDataService.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/langford/services/LangfordDataService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/util/LineParser.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/util/LineParser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/util/LineParserException.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/util/LineParserException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/aroon/services/LoadAroonRowMapper.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/aroon/services/LoadAroonRowMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/LoadFullQuoteRowMapper.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/LoadFullQuoteRowMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/LoadStockQuoteOnlyRowMapper.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/LoadStockQuoteOnlyRowMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/menus/LoggingPopupMenu.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/menus/LoggingPopupMenu.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/readers/LowReader.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/readers/LowReader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/LowRsiAlertAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/LowRsiAlertAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/helpers/MACD.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/helpers/MACD.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/macd/MacdEstimateProfitAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/macd/MacdEstimateProfitAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/tasks/MailOutput.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/tasks/MailOutput.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/Main.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/tasks/updates/Main.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/tasks/updates/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/menus/MenuFactory.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/menus/MenuFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/util/MultiThreadImporter.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/util/MultiThreadImporter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/NewWindowAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/NewWindowAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/readers/OpenReader.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/readers/OpenReader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/aroon/services/PeriodPrice.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/aroon/services/PeriodPrice.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/readers/PeriodSequenceReader.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/readers/PeriodSequenceReader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/PositiveNumberValidator.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/PositiveNumberValidator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/helpers/Price.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/helpers/Price.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/readers/PriceDifferenceReader.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/readers/PriceDifferenceReader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/imports/PriceHighEnoughRule.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/imports/PriceHighEnoughRule.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/unit-tests/src/com/quartz/qtrend/rules/imports/PriceHighEnoughRuleTest.java" afterPath="$PROJECT_DIR$/unit-tests/src/com/quartz/qtrend/rules/imports/PriceHighEnoughRuleTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/imports/PriceLowEnoughRule.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/imports/PriceLowEnoughRule.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/imports/PriceVsVolumeRatioRule.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/imports/PriceVsVolumeRatioRule.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/ProfitEstimate.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/ProfitEstimate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/util/Progress.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/util/Progress.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/ProgressDialog.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/ProgressDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/QFiles.properties" afterPath="$PROJECT_DIR$/QFiles.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/QFiles.script" afterPath="$PROJECT_DIR$/QFiles.script" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/menus/QTrend-menuBar2.xml" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/menus/QTrend-menuBar2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/QTrend.iml" afterPath="$PROJECT_DIR$/QTrend.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/QTrend.ipr" afterPath="$PROJECT_DIR$/QTrend.ipr" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/QTrend.iws" afterPath="$PROJECT_DIR$/QTrend.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/QTrendBeanNames.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/QTrendBeanNames.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/QTrendConfiguration.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/QTrendConfiguration.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/QTrendConstants.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/QTrendConstants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/QTrendEvents.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/QTrendEvents.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/QTrendFileDialog.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/QTrendFileDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/QTrendFrame.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/QTrendFrame.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/QTrendMessageHandler.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/QTrendMessageHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/QTrendMode.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/QTrendMode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/QTrendWindowListener.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/QTrendWindowListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/helpers/RSI.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/helpers/RSI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/RecalculateExchangeAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/RecalculateExchangeAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/RecalculateTickerAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/RecalculateTickerAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/RegularProfitEstimate.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/RegularProfitEstimate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/RsiValidator.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/RsiValidator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/RuleManager.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/RuleManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/RuleManagerFactory.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/rules/RuleManagerFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/RunGCAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/RunGCAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/SelectAllAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/SelectAllAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/exchanges/SelectExchangesDialog.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/exchanges/SelectExchangesDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/watchlists/SelectSingleWatchListDialog.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/watchlists/SelectSingleWatchListDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/exchanges/SelectTickersPanel.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/exchanges/SelectTickersPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/watchlists/SelectWatchListsDialog.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/watchlists/SelectWatchListsDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/SellShortProfitEstimate.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/SellShortProfitEstimate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/ServicesHelper.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/ServicesHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/graphs/ui/ShowAroonGraphicAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/graphs/ui/ShowAroonGraphicAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/configuration/ShowConfigurationAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/configuration/ShowConfigurationAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/ShowGraphicAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/ShowGraphicAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/ShowHistoryAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/ShowHistoryAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/summary/ShowLatestSignalsAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/summary/ShowLatestSignalsAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/stockcharts/ShowStockchartGraphicsAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/stockcharts/ShowStockchartGraphicsAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/summary/ShowSummaryAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/summary/ShowSummaryAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/yahoo/ShowYahooSummaryAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/yahoo/ShowYahooSummaryAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/Signal.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/Signal.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/unit-tests/src/com/quartz/qtrend/SimpleStockDAO.java" afterPath="$PROJECT_DIR$/unit-tests/src/com/quartz/qtrend/SimpleStockDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/SplitTickerAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/SplitTickerAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/StockException.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/StockException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/StockQuote.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/StockQuote.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/dao/StockQuoteDAO.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/dao/StockQuoteDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/unit-tests/src/com/quartz/qtrend/dom/dao/StockQuoteDAOTest.java" afterPath="$PROJECT_DIR$/unit-tests/src/com/quartz/qtrend/dom/dao/StockQuoteDAOTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/StockQuoteImpl.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/StockQuoteImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/StockQuoteList.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/StockQuoteList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/StockQuoteListService.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/StockQuoteListService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/dao/StockQuoteLoadContext.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/dao/StockQuoteLoadContext.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/StockQuoteNavigator.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/StockQuoteNavigator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/StockQuoteService.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/StockQuoteService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/unit-tests/src/com/quartz/qtrend/dom/services/StockQuoteServiceTest.java" afterPath="$PROJECT_DIR$/unit-tests/src/com/quartz/qtrend/dom/services/StockQuoteServiceTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/exchanges/StockQuoteVariation.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/exchanges/StockQuoteVariation.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/exchanges/StockQuoteVariationImpl.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/exchanges/StockQuoteVariationImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/exchanges/StockQuoteVariationList.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/exchanges/StockQuoteVariationList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/StockQuoteVariationRowMapper.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/StockQuoteVariationRowMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/util/StockRecalculator.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/util/StockRecalculator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/StockRuntimeException.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/StockRuntimeException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/watchlists/StringRowMapper.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/watchlists/StringRowMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/graphs/ui/SubFrameDialog.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/graphs/ui/SubFrameDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TODO.txt" afterPath="$PROJECT_DIR$/TODO.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/tasks/TaskOutput.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/tasks/TaskOutput.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/TextAreaOutput.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/TextAreaOutput.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/helpers/Ticker.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/helpers/Ticker.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/TickerOnlyRowMapper.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/TickerOnlyRowMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/readers/TickerReader.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/readers/TickerReader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/ToAlertConverter.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/ToAlertConverter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/unit-tests/src/com/quartz/qtrend/TrendTestCase.java" afterPath="$PROJECT_DIR$/unit-tests/src/com/quartz/qtrend/TrendTestCase.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/USEFUL-SQL.txt" afterPath="$PROJECT_DIR$/docs/USEFUL-SQL.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/UnknownExchangeException.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/UnknownExchangeException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/yahoo/UpdateInformation.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/yahoo/UpdateInformation.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/yahoo/UpdateTickersAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/yahoo/UpdateTickersAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/ValidateQuotesAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/ValidateQuotesAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/ValidationMessage.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/ValidationMessage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/about/VersionInformationNotFoundException.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/about/VersionInformationNotFoundException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/watchlists/ViewWatchListsAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/watchlists/ViewWatchListsAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/readers/VolumeReader.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/readers/VolumeReader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/watchlists/WatchList.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/watchlists/WatchList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/WatchListAlertAction.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/WatchListAlertAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/watchlists/WatchListDoesNotExistException.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/watchlists/WatchListDoesNotExistException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/watchlists/WatchListImpl.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/watchlists/WatchListImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/menus/WatchListMenuCreator.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/menus/WatchListMenuCreator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/WatchListNamesRetriever.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/alerts/WatchListNamesRetriever.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/watchlists/WatchListService.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/watchlists/WatchListService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/unit-tests/src/com/quartz/qtrend/dom/watchlists/WatchListServiceTest.java" afterPath="$PROJECT_DIR$/unit-tests/src/com/quartz/qtrend/dom/watchlists/WatchListServiceTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/watchlists/WatchListTickersModel.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/watchlists/WatchListTickersModel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/util/YahooHistoryLineParser.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/util/YahooHistoryLineParser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/yahoo/YahooService.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/yahoo/YahooService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/helpers/YahooTickerQuoteReader.java" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/helpers/YahooTickerQuoteReader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/auto-update-task.bat" afterPath="$PROJECT_DIR$/bin/auto-update-task.bat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/backupdb-qtrend.bat" afterPath="$PROJECT_DIR$/bin/backupdb-qtrend.bat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bug-findEMA.txt" afterPath="$PROJECT_DIR$/bug-findEMA.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ant/build.xml" afterPath="$PROJECT_DIR$/ant/build.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/exchange-configuration-template.xml" afterPath="$PROJECT_DIR$/config/exchange-configuration-template.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/exchange-configuration.dtd" afterPath="$PROJECT_DIR$/config/exchange-configuration.dtd" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/exchange-configuration.xml" afterPath="$PROJECT_DIR$/config/exchange-configuration.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/fest.txt" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/fest.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/formula3.html" afterPath="$PROJECT_DIR$/docs/formula3.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/graphs/ui/graphicsframe-menubar.xml" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/graphs/ui/graphicsframe-menubar.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sql/init-qtrend-db.sql" afterPath="$PROJECT_DIR$/sql/init-qtrend-db.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/initdb-qtrend-DEV.bat" afterPath="$PROJECT_DIR$/bin/initdb-qtrend-DEV.bat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/initdb-qtrend.bat" afterPath="$PROJECT_DIR$/bin/initdb-qtrend.bat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sql/langford-views.sql" afterPath="$PROJECT_DIR$/sql/langford-views.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/log4j.xml" afterPath="$PROJECT_DIR$/application/src/log4j.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/macd.html" afterPath="$PROJECT_DIR$/docs/macd.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/psql-DEV.bat" afterPath="$PROJECT_DIR$/bin/psql-DEV.bat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/psql.bat" afterPath="$PROJECT_DIR$/bin/psql.bat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/qtrend-common.xml" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/qtrend-common.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/qtrend-config.properties" afterPath="$PROJECT_DIR$/config/qtrend-config.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/configuration/qtrend-configuration-ui-beans.xml" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/configuration/qtrend-configuration-ui-beans.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/qtrend-dao.xml" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/qtrend-dao.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/qtrend-database.xml" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/qtrend-database.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/qtrend-dev.properties" afterPath="$PROJECT_DIR$/config/qtrend-dev.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/qtrend-events.xml" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/qtrend-events.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/exchanges/qtrend-exchange-dialog.xml" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/exchanges/qtrend-exchange-dialog.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/qtrend-main-frame.xml" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/qtrend-main-frame.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/qtrend-operations.xml" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/qtrend-operations.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/qtrend-prod.properties" afterPath="$PROJECT_DIR$/config/qtrend-prod.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/qtrend-service.xml" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/qtrend-service.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/qtrend-version.properties" afterPath="$PROJECT_DIR$/application/src/qtrend-version.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sql/qtrend-views.sql" afterPath="$PROJECT_DIR$/sql/qtrend-views.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/qtrend-wasThere.properties" afterPath="$PROJECT_DIR$/config/qtrend-wasThere.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/watchlists/qtrend-watchlists.xml" afterPath="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/watchlists/qtrend-watchlists.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/qtrend.bat" afterPath="$PROJECT_DIR$/bin/qtrend.bat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/qtrend.properties" afterPath="$PROJECT_DIR$/config/qtrend.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/set_javahome.bat.template" afterPath="$PROJECT_DIR$/bin/set_javahome.bat.template" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/set_postgresconfig.bat.template" afterPath="$PROJECT_DIR$/bin/set_postgresconfig.bat.template" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/setenv-postgres.bat" afterPath="$PROJECT_DIR$/bin/setenv-postgres.bat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/update_1.0_to_1.1.bat" afterPath="$PROJECT_DIR$/bin/update_1.0_to_1.1.bat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sql/update_1.0_to_1.1.sql" afterPath="$PROJECT_DIR$/sql/update_1.0_to_1.1.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/update_1.1_to_1.2.bat" afterPath="$PROJECT_DIR$/bin/update_1.1_to_1.2.bat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sql/update_1.1_to_1.2.sql" afterPath="$PROJECT_DIR$/sql/update_1.1_to_1.2.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/update_1.2_to_1.3.bat" afterPath="$PROJECT_DIR$/bin/update_1.2_to_1.3.bat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sql/update_1.2_to_1.3.sql" afterPath="$PROJECT_DIR$/sql/update_1.2_to_1.3.sql" />
+    </list>
+    <file path="/Dummy.txt" changelist="ed89516c-6d5b-49d2-b004-831983dd5f30" time="1393185838365" ignored="false" />
+    <file path="/QTrendFrame.java" changelist="ed89516c-6d5b-49d2-b004-831983dd5f30" time="1393186070198" ignored="false" />
+    <file path="/Bootstrap.java" changelist="ed89516c-6d5b-49d2-b004-831983dd5f30" time="1393186008340" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,46 +463,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="StockRecalculator.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/src/com/quartz/qtrend/util/StockRecalculator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="74" column="26" selection-start="2196" selection-end="2196" vertical-scroll-proportion="-0.68">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TextAreaOutput.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/TextAreaOutput.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="13" selection-start="632" selection-end="632" vertical-scroll-proportion="41.16">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FindPriceDropsAction.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/FindPriceDropsAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="146" column="42" selection-start="6222" selection-end="6222" vertical-scroll-proportion="-12.52">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="QTrendConstants.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="QTrendConstants.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/src/com/quartz/qtrend/QTrendConstants.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="91" column="37" selection-start="6536" selection-end="6536" vertical-scroll-proportion="1.1976048">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MultipleRowsFormat.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/lib/QUtilities.jar!/com/quartz/qutilities/formatter/MultipleRowsFormat.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="67" selection-start="411" selection-end="411" vertical-scroll-proportion="-5.44">
+            <state line="91" column="37" selection-start="6536" selection-end="6536" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -222,25 +475,7 @@
       <file leaf-file-name="CellFormat.class" pinned="false" current="false" current-in-tab="false">
         <entry file="jar://$PROJECT_DIR$/lib/QUtilities.jar!/com/quartz/qutilities/formatter/CellFormat.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="22" selection-start="183" selection-end="183" vertical-scroll-proportion="-3.4">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ant/build.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="71" selection-start="356" selection-end="356" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="qtrend-main-frame.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/src/com/quartz/qtrend/qtrend-main-frame.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="44" selection-start="1299" selection-end="1299" vertical-scroll-proportion="0.0">
+            <state line="6" column="22" selection-start="183" selection-end="183" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -249,16 +484,72 @@
       <file leaf-file-name="QTrendFrame.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/QTrendFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="125" column="64" selection-start="4119" selection-end="4119" vertical-scroll-proportion="0.0">
+            <state line="200" column="14" selection-start="6720" selection-end="6720" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LangfordDataImplTest.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/unit-tests/src/com/quartz/qtrend/dom/langford/LangfordDataImplTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="22" selection-start="822" selection-end="822" vertical-scroll-proportion="0.46031746">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="QTrend-menuBar2.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/menus/QTrend-menuBar2.xml">
+      <file leaf-file-name="Bootstrap.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/src/com/quartz/qtrend/Bootstrap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="39" selection-start="535" selection-end="535" vertical-scroll-proportion="0.0">
+            <state line="36" column="10" selection-start="1180" selection-end="1180" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StockQuoteService.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/StockQuoteService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="99" selection-start="888" selection-end="888" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WatchListService.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/watchlists/WatchListService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="30" selection-start="542" selection-end="542" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BarChartDemo1.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/src/com/quartz/qtrend/charts/BarChartDemo1.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="24" column="19" selection-start="886" selection-end="886" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IWatchListService.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/watchlists/IWatchListService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="32" column="34" selection-start="943" selection-end="943" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Transactional.class" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/lib/spring-dao.jar!/org/springframework/transaction/annotation/Transactional.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="18" selection-start="444" selection-end="444" vertical-scroll-proportion="-6.12">
               <folding />
             </state>
           </provider>
@@ -271,10 +562,27 @@
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
   <component name="HierarchyBrowserManager">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="SORT_ALPHABETICALLY" value="false" />
     <option name="HIDE_CLASSES_WHERE_METHOD_NOT_IMPLEMENTED" value="false" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/watchlists/IWatchListService.java" />
+        <option value="$PROJECT_DIR$/application/src/com/quartz/qtrend/Bootstrap.java" />
+        <option value="$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/QTrendFrame.java" />
+      </list>
+    </option>
   </component>
   <component name="ModuleEditorState">
     <option name="LAST_EDITED_MODULE_NAME" />
@@ -341,7 +649,7 @@
     <option name="width" value="1382" />
     <option name="height" value="744" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkin" />
@@ -426,7 +734,7 @@
     </subPane>
   </component>
   <component name="ProjectReloadState">
-    <option name="STATE" value="0" />
+    <option name="STATE" value="2" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
@@ -437,10 +745,11 @@
       <hideEmptyPackages />
       <abbreviatePackageNames />
       <autoscrollToSource />
-      <autoscrollFromSource />
+      <autoscrollFromSource ProjectPane="true" />
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -456,7 +765,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="QTrend" />
+              <option name="myItemId" value="qtrend" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -466,7 +775,233 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="qtrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="unit-tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qtrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
               <option name="myItemId" value="QTrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qtrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="unit-tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qtrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="QTrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qtrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="unit-tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qtrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="langford" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LangfordDataImplTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ClassTreeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="QTrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qtrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="QTrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qtrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spring-dao.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="springframework" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="transaction" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="QTrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qtrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spring-dao.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="springframework" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="transaction" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="annotation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Transactional" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ClassTreeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="QTrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qtrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spring-dao.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="springframework" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="transaction" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="annotation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="QTrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qtrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spring-dao.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="springframework" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="QTrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qtrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spring-dao.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="QTrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qtrend" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -484,7 +1019,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="QTrend" />
+              <option name="myItemId" value="qtrend" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -506,7 +1041,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="QTrend" />
+              <option name="myItemId" value="qtrend" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -522,7 +1057,33 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="actions" />
+              <option name="myItemId" value="Bootstrap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ClassTreeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="QTrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qtrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qtrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -532,7 +1093,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="QTrend" />
+              <option name="myItemId" value="qtrend" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -548,34 +1109,128 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="actions" />
+              <option name="myItemId" value="ui" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="FindPriceDropsAction" />
+              <option name="myItemId" value="QTrendFrame" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ClassTreeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="QTrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qtrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qtrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="QTrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qtrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qtrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="watchlists" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="QTrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qtrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qtrend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="watchlists" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IWatchListService" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ClassTreeNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
+    <property name="options.splitter.main.proportions" value="0.3" />
     <property name="RunManagerConfig.compileBeforeRunning" value="true" />
     <property name="RunManagerConfig.showSettingsBeforeRunnig" value="false" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/QTrend.ipr" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/log4j-1.2.11.jar!/" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
+    <property name="dynamic.classpath" value="false" />
+    <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -598,7 +1253,7 @@
     <general-options save-before-copy="true" create-missing-dirs="true" simulation-mode="false" allow_concurrent_runs="false" />
     <log-options autoPopup="true" clearBeforeSynchro="false" showExcludedPaths="false" showIdenticalPaths="true" showSrcPaths="false" fontFamily="Monospaced" fontSize="12" />
   </component>
-  <component name="RunManager" selected="Application.QTrend (Disconnected)">
+  <component name="RunManager" selected="Application.QTrend (Internet)">
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
@@ -1091,23 +1746,24 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.15329513" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49466667" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32423207" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33020133" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24623115" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26818183" sideWeight="0.66346157" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49029127" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26818183" sideWeight="0.5102389" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.48976108" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TCPMON" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33021584" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="RemoteSynchronizer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1120,12 +1776,11 @@
       <window_info id="File View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Archetypes" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Maven-2 Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26648352" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32692307" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="EJB" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1246,6 +1901,7 @@
       <treeView value="true" />
       <verbose value="true" />
       <viewClosedWhenNoErrors value="false" />
+      <expanded value="true" />
     </buildFile>
   </component>
   <component name="com.intellij.ide.util.scopeChooser.ScopeChooserConfigurable" proportions="" version="1">
@@ -1259,63 +1915,9 @@
     <option name="myLastEditedConfigurable" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/StockQuoteVariationRowMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="22" selection-start="1223" selection-end="1223" vertical-scroll-proportion="0.3870293" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/ShowGraphicAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="111" column="89" selection-start="3772" selection-end="3772" vertical-scroll-proportion="0.082073435">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sql/qtrend-views.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="4" selection-start="418" selection-end="2069" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/ShowHistoryAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="100" column="70" selection-start="3125" selection-end="3125" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/StockQuoteListService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="126" selection-start="3018" selection-end="3076" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/menus/QTrend-menuBar2.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="39" selection-start="535" selection-end="535" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/QTrendWindowListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="4" selection-start="1068" selection-end="1068" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ant/build.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="71" selection-start="356" selection-end="356" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/QTrendFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="125" column="64" selection-start="4119" selection-end="4119" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1329,110 +1931,179 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/src/com/quartz/qtrend/util/StockRecalculator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="26" selection-start="2196" selection-end="2196" vertical-scroll-proportion="-0.68">
+        <state line="74" column="26" selection-start="2196" selection-end="2196" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/TextAreaOutput.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="13" selection-start="632" selection-end="632" vertical-scroll-proportion="41.16">
+        <state line="24" column="13" selection-start="632" selection-end="632" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/src/com/quartz/qtrend/actions/FindPriceDropsAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="146" column="42" selection-start="6222" selection-end="6222" vertical-scroll-proportion="-12.52">
+        <state line="146" column="42" selection-start="6222" selection-end="6222" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/QUtilities.jar!/com/quartz/qutilities/formatter/MultipleRowsFormat.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="67" selection-start="411" selection-end="411" vertical-scroll-proportion="-5.44">
+        <state line="9" column="67" selection-start="411" selection-end="411" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/QUtilities.jar!/com/quartz/qutilities/formatter/CellFormat.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="22" selection-start="183" selection-end="183" vertical-scroll-proportion="-3.4">
+        <state line="6" column="22" selection-start="183" selection-end="183" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/src/com/quartz/qtrend/QTrendConstants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="91" column="37" selection-start="6536" selection-end="6536" vertical-scroll-proportion="1.1976048">
+        <state line="91" column="37" selection-start="6536" selection-end="6536" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/services/StockQuoteService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="99" selection-start="888" selection-end="888" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/watchlists/WatchListService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="30" selection-start="542" selection-end="542" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/src/com/quartz/qtrend/charts/BarChartDemo1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="19" selection-start="886" selection-end="886" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/spring-dao.jar!/org/springframework/transaction/annotation/Transactional.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="18" selection-start="444" selection-end="444" vertical-scroll-proportion="-6.12">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/src/com/quartz/qtrend/dom/watchlists/IWatchListService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="34" selection-start="943" selection-end="943" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/src/com/quartz/qtrend/Bootstrap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="10" selection-start="1180" selection-end="1180" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/src/com/quartz/qtrend/ui/QTrendFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="200" column="14" selection-start="6720" selection-end="6720" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/unit-tests/src/com/quartz/qtrend/dom/langford/LangfordDataImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="22" selection-start="822" selection-end="822" vertical-scroll-proportion="0.46031746">
           <folding />
         </state>
       </provider>
     </entry>
   </component>
   <component name="masterDetails">
-    <option name="states">
-      <map>
-        <entry key="Copyright.UI">
-          <value>
-            <UIState>
-              <option name="proportions">
-                <SplitterProportionsDataImpl />
-              </option>
-            </UIState>
-          </value>
-        </entry>
-        <entry key="Errors.UI">
-          <value>
-            <UIState>
-              <option name="proportions">
-                <SplitterProportionsDataImpl />
-              </option>
-            </UIState>
-          </value>
-        </entry>
-        <entry key="ScopeChooserConfigurable.UI">
-          <value>
-            <UIState>
-              <option name="proportions">
-                <SplitterProportionsDataImpl />
-              </option>
-            </UIState>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="myStates">
-      <map>
-        <entry key="Copyright.UI">
-          <value>
-            <UIState>
-              <option name="proportions">
-                <SplitterProportionsDataImpl />
-              </option>
-            </UIState>
-          </value>
-        </entry>
-        <entry key="Errors.UI">
-          <value>
-            <UIState>
-              <option name="proportions">
-                <SplitterProportionsDataImpl />
-              </option>
-            </UIState>
-          </value>
-        </entry>
-        <entry key="ScopeChooserConfigurable.UI">
-          <value>
-            <UIState>
-              <option name="proportions">
-                <SplitterProportionsDataImpl />
-              </option>
-            </UIState>
-          </value>
-        </entry>
-      </map>
-    </option>
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Scala 2.10.2</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.7</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>QTrend</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
 
