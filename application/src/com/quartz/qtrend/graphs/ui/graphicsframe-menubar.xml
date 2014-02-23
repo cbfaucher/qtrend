@@ -1,0 +1,20 @@
+<!DOCTYPE menu-bar SYSTEM "http://quartz.com/dtd/xml-menu-bar.dtd">
+
+<menu-bar>
+    <menu label="File" mnemonic="F">
+        <menu-item  label="Close"
+                    mnemonic="C"
+                    accelerator="ctrl F4"
+                    command="Graphics.Close"/>
+    </menu>
+    <menu label="View" mnemonic="V">
+        <menu-item  label="View Aroon Short-Term..."
+                    mnemonic="A"
+                    accelerator="ctrl A"
+                    command="Graphics.ViewAroonShortTerm"/>
+        <menu-item  label="View Aroon Long-Term..."
+                    mnemonic="A"
+                    accelerator="shift ctrl A"
+                    command="Graphics.ViewAroonLongTerm"/>
+    </menu>
+</menu-bar>
