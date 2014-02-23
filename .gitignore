@@ -5,6 +5,7 @@ oldsrc/
 success/
 errors/
 application/classes/
+unit-tests/classes/
 ant/application
 ant/dist
 ant/unit-tests

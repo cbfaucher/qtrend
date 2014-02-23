@@ -27,13 +27,10 @@ public interface IWatchListService
     WatchList create(String pName) throws DuplicateWatchlistNameException;
 
     @Transactional(
-            timeout = -1,
             readOnly = true,
             rollbackFor = WatchListDoesNotExistException.class) WatchList load(String pName) throws WatchListDoesNotExistException;
 
-    @Transactional(
-            timeout = -1,
-            readOnly = true) boolean exists(String pWatchListName);
+    @Transactional(readOnly = true) boolean exists(String pWatchListName);
 
     void save(WatchList pWatchList);
 

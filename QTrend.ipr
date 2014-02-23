@@ -81,13 +81,6 @@
     <option name="OUTPUT_DIRECTORY" />
   </component>
   <component name="IdProvider" IDEtalkID="DCCFF55A1DC6F224684CCFC144061558" />
-  <component name="JavacSettings">
-    <option name="DEBUGGING_INFO" value="true" />
-    <option name="GENERATE_NO_WARNINGS" value="false" />
-    <option name="DEPRECATION" value="true" />
-    <option name="ADDITIONAL_OPTIONS_STRING" value="" />
-    <option name="MAXIMUM_HEAP_SIZE" value="128" />
-  </component>
   <component name="JavadocGenerationManager">
     <option name="OUTPUT_DIRECTORY" />
     <option name="OPTION_SCOPE" value="protected" />
@@ -298,7 +291,7 @@
       <module fileurl="file://C:/Documents and Settings/Christian/My Documents/9095-2458/Development/qutilities/qutilities.iml" filepath="C:/Documents and Settings/Christian/My Documents/9095-2458/Development/qutilities/qutilities.iml" />
     </modules>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_5" assert-keyword="true" jdk-15="true" project-jdk-name="1.5" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK" />
   <component name="ResourceManagerContainer">
     <option name="myResourceBundles">
       <value>
@@ -319,7 +312,7 @@
   </component>
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="" />
-    <mapping directory="C:/Documents and Settings/Christian/My Documents/9095-2458/Development/qutilities" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
   </component>
   <component name="WebServicesPlugin" addRequiredLibraries="true" />
   <component name="com.intellij.jsf.UserDefinedFacesConfigs">

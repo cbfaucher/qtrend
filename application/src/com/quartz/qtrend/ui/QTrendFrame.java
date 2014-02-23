@@ -172,7 +172,8 @@ public class QTrendFrame extends SpringFrame implements QEventFrame
 
             splitPane.setDividerLocation(userProperties.getUserPropertyAsFloat(USERPROP_DIVIDER_LOCATION, 0.80f));
 
-            log4jAppender.attach();
+            //  todo: fix this, no longer supported it seems....
+//            log4jAppender.attach();
 
             //  for alerts
             if (allFrames.size() == 1)
@@ -195,7 +196,8 @@ public class QTrendFrame extends SpringFrame implements QEventFrame
 
             userProperties.setUserProperty(USERPROP_DIVIDER_LOCATION, "" + ( ((float) splitPane.getDividerLocation()) / getSize().height));
 
-            log4jAppender.detach();
+            //  todo: no longer supported.
+//            log4jAppender.detach();
 
             super.setVisible(b);
 
