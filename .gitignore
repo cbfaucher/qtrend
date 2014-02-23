@@ -5,6 +5,9 @@ oldsrc/
 success/
 errors/
 application/classes/
+ant/application
+ant/dist
+ant/unit-tests
 TSE_Quotes/
 lib/
 
