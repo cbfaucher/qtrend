@@ -1,8 +1,0 @@
-<module>
-
-    <inherits name='com.google.gwt.user.User'/>
-
-    <entry-point class='com.quartz.qtrend.gwt.playground.client.LoginEntryPoint'/>
-
-    <servlet path="/login" class="com.quartz.qtrend.gwt.playground.server.LoginHandlerImpl"/>
-</module>
