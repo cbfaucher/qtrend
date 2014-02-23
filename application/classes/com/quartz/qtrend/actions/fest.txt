@@ -1,1 +1,0 @@
-http://ichart.finance.yahoo.com/table.csv?s=MCO&d=4&e=16&f=2006&g=d&a=9&b=4&c=2000&ignore=.csv
