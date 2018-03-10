@@ -25,11 +25,6 @@ public class StockQuoteDAOTest extends TrendTestCase
 {
     private static final String TEST_TICKER = "TEST";
 
-    public StockQuoteDAOTest(String name)
-    {
-        super(name);
-    }
-
     @org.junit.Test
     public void testUseless() {
 

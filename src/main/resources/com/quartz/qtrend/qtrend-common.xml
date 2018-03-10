@@ -36,7 +36,7 @@
     </bean>
 
     <bean   id="QTrend.ImportRuleManager"
-            class="com.quartz.com.quartz.qtrend.rules.RuleManagerFactory"
+            class="com.quartz.qtrend.rules.RuleManagerFactory"
             lazy-init="false" >
         <property name="exchangeConfigurationResource">
             <bean   class="org.springframework.core.io.ClassPathResource">
@@ -67,7 +67,7 @@
     </bean>
 
     <bean   id="QTrend.MailOutput"
-            class="com.quartz.com.quartz.qtrend.tasks.MailOutput"
+            class="com.quartz.qtrend.tasks.MailOutput"
             scope="prototype">
         <property name="mailSender" ref="QTrend.MailSender"/>
         <property name="mailTemplate" ref="QTrend.MailTemplate"/>

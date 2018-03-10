@@ -22,7 +22,7 @@
             class="com.quartz.qutilities.util.LoggerMessageHandler"
             scope="prototype"/>
 
-    <bean   class="com.quartz.com.quartz.qtrend.ui.QTrendFrame"
+    <bean   class="com.quartz.qtrend.ui.QTrendFrame"
             scope="prototype"
             name="QTrendFrame"
             init-method="init" >

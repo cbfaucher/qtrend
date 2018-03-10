@@ -7,6 +7,7 @@
 package com.quartz.qtrend;
 
 import com.quartz.qtrend.dom.*;
+import com.quartz.qtrend.dom.dao.IStockQuoteDAO;
 import com.quartz.qtrend.dom.helpers.Ticker;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ import java.util.Map;
  * @author Christian
  * @since Quartz...
  */
-public class SimpleStockDAO<R> 
+public class SimpleStockDAO<R> implements IStockQuoteDAO
 {
     ///////////////////////////////////////
     ////    STATIC ATTRIBUTES
@@ -54,6 +55,15 @@ public class SimpleStockDAO<R>
         }
 
         return null;
+    }
+
+    public StockQuote insert(StockQuote pStockQuote) {
+        try {
+            save(pStockQuote);
+            return pStockQuote;
+        } catch (StockException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**

@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_5">
+  <component name="FacetManager">
+    <facet type="Spring" name="Spring">
+      <configuration>
+        <fileset id="fileset" name="Spring Application Context" removed="false">
+          <file>file://$MODULE_DIR$/src/main/java/com/quartz/qtrend/qtrend-common.xml</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/quartz/qtrend/ui/configuration/qtrend-configuration-ui-beans.xml</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/quartz/qtrend/qtrend-dao.xml</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/quartz/qtrend/qtrend-database.xml</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/quartz/qtrend/qtrend-events.xml</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/quartz/qtrend/ui/exchanges/qtrend-exchange-dialog.xml</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/quartz/qtrend/qtrend-main-frame.xml</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/quartz/qtrend/qtrend-operations.xml</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/quartz/qtrend/qtrend-service.xml</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/quartz/qtrend/ui/watchlists/qtrend-watchlists.xml</file>
+        </fileset>
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -31,5 +49,12 @@
     <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
     <orderEntry type="library" name="Maven: org.jfree:jfreechart:1.0.19" level="project" />
     <orderEntry type="library" name="Maven: org.jfree:jcommon:1.0.23" level="project" />
+    <orderEntry type="library" name="Maven: commons-dbcp:commons-dbcp:1.4" level="project" />
+    <orderEntry type="library" name="Maven: commons-pool:commons-pool:1.5.4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.mockito:mockito-core:2.15.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: net.bytebuddy:byte-buddy:1.7.9" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: net.bytebuddy:byte-buddy-agent:1.7.9" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.objenesis:objenesis:2.6" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.projectlombok:lombok:1.16.20" level="project" />
   </component>
 </module>

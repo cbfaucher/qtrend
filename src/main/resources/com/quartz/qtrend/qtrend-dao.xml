@@ -10,7 +10,7 @@
 
     <!-- DAO for StockQuote -->
     <bean   id="QTrend.StockQuoteDAO"
-            class="com.quartz.com.quartz.qtrend.dom.dao.StockQuoteDAO"
+            class="com.quartz.qtrend.dom.dao.StockQuoteDAO"
             >
         <property name="jdbcTemplate" ref="QTrend.JdbcTemplate"/>
         <property name="transactionTemplate" ref="QTrend.TransactionTemplate"/>

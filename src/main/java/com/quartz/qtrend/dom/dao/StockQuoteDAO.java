@@ -29,7 +29,7 @@ import java.sql.SQLException;
  * @author Christian
  * @since Quartz...
  */
-public class StockQuoteDAO implements InitializingBean
+public class StockQuoteDAO implements IStockQuoteDAO, InitializingBean
 {
     static private final ILog LOG = LogManager.getLogger(StockQuoteDAO.class);
 

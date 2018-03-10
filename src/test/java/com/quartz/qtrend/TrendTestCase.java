@@ -8,6 +8,7 @@ package com.quartz.qtrend;
 
 import com.quartz.qtrend.dom.StockException;
 import com.quartz.qtrend.dom.StockQuoteImpl;
+import com.quartz.qtrend.dom.dao.IStockQuoteDAO;
 import com.quartz.qtrend.dom.dao.StockQuoteDAO;
 import com.quartz.qtrend.dom.helpers.MACD;
 import com.quartz.qtrend.dom.helpers.Price;
@@ -16,6 +17,9 @@ import com.quartz.qtrend.dom.langford.LangfordDataImpl;
 import com.quartz.qtrend.dom.langford.services.LangfordDataService;
 import com.quartz.qutilities.unittests.QTestCase;
 import com.quartz.qutilities.util.DateUtilities;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.junit.After;
 import org.junit.Assert;
 
 import java.sql.Date;
@@ -30,21 +34,12 @@ import static org.junit.Assert.assertNull;
  * @author Christian
  * @since Quartz...
  */
+@NoArgsConstructor
+@AllArgsConstructor
 public abstract class TrendTestCase extends QTestCase
 {
-    ///////////////////////////////////////
-    ////    STATIC ATTRIBUTES
-
-    ///////////////////////////////////////
-    ////    STATIC METHODS
-
-    ///////////////////////////////////////
-    ////    INSTANCE ATTRIBUTES
 
     private boolean                 needsBootstrap;
-
-    ///////////////////////////////////////
-    ////    CONSTRUCTORS
 
     protected TrendTestCase(String s)
     {
@@ -65,7 +60,8 @@ public abstract class TrendTestCase extends QTestCase
         }
     }
 
-    protected void tearDown() throws Exception
+    @After
+    public void tearDown() throws Exception
     {
         Bootstrap.destroy();
     }
@@ -101,14 +97,17 @@ public abstract class TrendTestCase extends QTestCase
         Assert.assertEquals(pExpectedRsi, langfordData.getRsi().rsi, 0.005);
     }
 
-    protected StockQuoteImpl createStock(StockQuoteDAO pStockDAO, String pTicker, int pPeriodSeq, Date pDate, float pClose)
+    protected StockQuoteImpl createStock(IStockQuoteDAO pStockDAO, String pTicker, int pPeriodSeq, Date pDate, float pClose)
     {
         StockQuoteImpl stock = new StockQuoteImpl();
         stock.setStockExchange(new Ticker("TSE"));
-        stock.setStockExchange(new Ticker(pTicker));
+        stock.setTicker(new Ticker(pTicker));
         stock.setPeriodSequence(pPeriodSeq);
         stock.setDate(DateUtilities.toLocalDate(pDate));
         stock.setClose(new Price(pClose));
+
+        pStockDAO.insert(stock);
+
         return stock;
     }
 }

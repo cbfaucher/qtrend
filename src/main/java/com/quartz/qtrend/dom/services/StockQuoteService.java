@@ -18,6 +18,9 @@ import com.quartz.qutilities.spring.transactions.QTransactionTemplate;
 import com.quartz.qutilities.util.DateUtilities;
 import com.quartz.qutilities.logging.ILog;
 import com.quartz.qutilities.logging.LogManager;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.joda.time.LocalDate;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
@@ -38,6 +41,7 @@ import java.util.Map;
  * @author Christian
  * @since Quartz...
  */
+@NoArgsConstructor
 public class StockQuoteService
 {
     static private final ILog LOG = LogManager.getLogger(StockQuoteService.class);
@@ -53,22 +57,11 @@ public class StockQuoteService
     private AroonService        aroonService;
 
     //  brand new way!
+    @Setter
     private SimpleJdbcTemplate   jdbcTemplate = null;
+
+    @Setter
     private QTransactionTemplate transactionTemplate = null;
-
-    public StockQuoteService()
-    {
-    }
-
-    public void setJdbcTemplate(SimpleJdbcTemplate pJdbcTemplate)
-    {
-        jdbcTemplate = pJdbcTemplate;
-    }
-
-    public void setTransactionTemplate(QTransactionTemplate pTransactionTemplate)
-    {
-        transactionTemplate = pTransactionTemplate;
-    }
 
     public void setStockQuoteDao(StockQuoteDAO pStockQuoteDao)
     {

@@ -20,6 +20,7 @@ import com.quartz.qtrend.dom.services.StockQuoteService;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 import org.junit.Assert;
+import org.junit.Before;
 
 import java.sql.Date;
 import java.util.Iterator;
@@ -32,16 +33,6 @@ import java.util.Iterator;
  */
 public class LangfordDataImplTest extends TrendTestCase
 {
-    ///////////////////////////////////////
-    ////    STATIC ATTRIBUTES
-
-    ///////////////////////////////////////
-    ////    STATIC METHODS
-	
-    static public final Test suite()
-    {
-        return new TestSuite(LangfordDataImplTest.class);
-    }	
 
     ///////////////////////////////////////
     ////    INSTANCE ATTRIBUTES
@@ -49,18 +40,8 @@ public class LangfordDataImplTest extends TrendTestCase
     private StockQuoteService stockQuoteService;
     private LangfordDataService langfordDataService;
 
-    ///////////////////////////////////////
-    ////    CONSTRUCTORS
-
-    public LangfordDataImplTest(String name)
-    {
-        super(name);
-    }
-
-    ///////////////////////////////////////
-    ////    INSTANCE METHODS
-
-    protected void setUp() throws Exception
+    @Before
+    public void setUp() throws Exception
     {
         super.setUp();
 
@@ -68,10 +49,11 @@ public class LangfordDataImplTest extends TrendTestCase
         langfordDataService = new LangfordDataService();
     }
 
+    @org.junit.Test
     public void test_calculateEMA() throws Exception
     {
-        final SimpleStockDAO persist = new SimpleStockDAO();
-        final StockQuoteDAO dao = new StockQuoteDAO();
+        final SimpleStockDAO<StockQuote> dao = new SimpleStockDAO<>();
+//        final StockQuoteDAO dao = new StockQuoteDAO();
         //  todo: fixme: dao.setStockDao(persist);
 
         final StockQuoteImpl s1 = createStock(dao, "ALE", 1, new Date(2006, 10, 1), 10);
@@ -81,12 +63,12 @@ public class LangfordDataImplTest extends TrendTestCase
         final StockQuoteImpl s5 = createStock(dao, "ALE", 5, new Date(2006, 10, 1), 6);
         final StockQuoteImpl s6 = createStock(dao, "ALE", 6, new Date(2006, 10, 1), 6);
 
-        persist.stocks.add(s1);
-        persist.stocks.add(s2);
-        persist.stocks.add(s3);
-        persist.stocks.add(s4);
-        persist.stocks.add(s5);
-        persist.stocks.add(s6);
+        dao.stocks.add(s1);
+        dao.stocks.add(s2);
+        dao.stocks.add(s3);
+        dao.stocks.add(s4);
+        dao.stocks.add(s5);
+        dao.stocks.add(s6);
 
         assertEMA(s1, 10.00000f);
         assertEMA(s2, 10.66666f);
@@ -110,15 +92,15 @@ public class LangfordDataImplTest extends TrendTestCase
         langfordData.setShortTermEma(new EMA(ema));
     }
 
+    @org.junit.Test
     public void test_calculateMacd() throws Exception
     {
         final SimpleStockDAO persist = new SimpleStockDAO();
-        final StockQuoteDAO  dao = new StockQuoteDAO();
-        final StockQuoteImpl stock1 = createStock(dao, "ALE", 1, new Date(2006, 10, 1), 46.25f);
-        final StockQuoteImpl stock2 = createStock(dao, "ALE", 2, new Date(2006, 10, 2), 46.25f);
-        final StockQuoteImpl stock3 = createStock(dao, "ALE", 3, new Date(2006, 10, 3), 47.06f);
-        final StockQuoteImpl stock4 = createStock(dao, "ALE", 4, new Date(2006, 10, 4), 48.25f);
-        final StockQuoteImpl stock5 = createStock(dao, "ALE", 5, new Date(2006, 10, 5), 48.50f);
+        final StockQuoteImpl stock1 = createStock(persist, "ALE", 1, new Date(2006, 10, 1), 46.25f);
+        final StockQuoteImpl stock2 = createStock(persist, "ALE", 2, new Date(2006, 10, 2), 46.25f);
+        final StockQuoteImpl stock3 = createStock(persist, "ALE", 3, new Date(2006, 10, 3), 47.06f);
+        final StockQuoteImpl stock4 = createStock(persist, "ALE", 4, new Date(2006, 10, 4), 48.25f);
+        final StockQuoteImpl stock5 = createStock(persist, "ALE", 5, new Date(2006, 10, 5), 48.50f);
 
         persist.stocks.add(stock1);
         persist.stocks.add(stock2);
@@ -146,6 +128,7 @@ public class LangfordDataImplTest extends TrendTestCase
         assertEquals(new MACD(0.11f, 0.34f, 46.95f, 46.61f), langfordData5.getMacd());
     }
 
+    @org.junit.Test
     public void test_calculateVariation() throws Exception
     {
         final SimpleStockDAO persist = new SimpleStockDAO();
@@ -216,6 +199,7 @@ public class LangfordDataImplTest extends TrendTestCase
 
     }
 
+    @org.junit.Test
     public void test_calculateRsi_moreThan14stocks() throws Exception
     {
     	final SimpleStockDAO persist = new SimpleStockDAO();
@@ -262,6 +246,7 @@ public class LangfordDataImplTest extends TrendTestCase
         assertRsi(persist, 20, 49.79);
     }
 
+    @org.junit.Test
     public void test_calculateRsi_lessThan14stocks() throws Exception
     {
     	final SimpleStockDAO persist = new SimpleStockDAO();
