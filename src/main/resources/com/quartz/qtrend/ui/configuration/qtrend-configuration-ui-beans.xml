@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+    <bean   id="QTrend.ConfigurationDialog"
+            class="com.quartz.qtrend.ui.configuration.ConfigurationDialog"
+            scope="singleton" >
+
+        <!-- Dialog properties -->
+        <property name="title" value="QTrend Configuration"/>
+        <property name="modal" value="true"/>
+        <property name="contentPane.layout">
+            <bean   class="java.awt.BorderLayout"/>
+        </property>
+
+        <!-- Alerts panel -->
+        <property name="alertsPanel">
+            <bean   class="com.quartz.qtrend.ui.configuration.AlertsPanel">
+                <property name="userProperties" ref="QTrendUserProperties"/>
+                <property name="watchListService" ref="QTrend.WatchListsService"/>
+            </bean>
+        </property>
+    </bean>
+
+    <bean   id="QTrend.DisplayAlertsDialog"
+            class="com.quartz.qtrend.ui.configuration.DisplayAlertsDialog"
+            scope="prototype">
+        <property name="userProperties"     ref="QTrendUserProperties"/>
+    </bean>
+
+
+</beans>

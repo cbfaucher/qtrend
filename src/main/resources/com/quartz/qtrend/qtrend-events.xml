@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+    <bean   id="Event.NewWindow"
+            class="com.quartz.qtrend.actions.NewWindowAction"
+            scope="prototype">
+        <property name="newFrame"   ref="QTrendFrame"/>
+    </bean>
+
+    <bean   id="Event.CLoseWindow"
+            class="com.quartz.qtrend.actions.CloseWindowAction"
+            scope="prototype"/>
+
+    <bean   id="Event.UpdateTickers"
+            class="com.quartz.qtrend.actions.yahoo.UpdateTickersAction"
+            scope="prototype">
+<!--        <property name="properties" ref="QTrendProperties"/>-->
+<!--        <property name="stockQuoteDao" ref="QTrend.StockQuoteDAO"/>-->
+<!--        <property name="stockQuoteService" ref="QTrend.StockQuoteService"/>-->
+<!--        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>-->
+        <property name="yahooService"  ref="QTrend.YahooService"/>
+        <property name="jobRunner" ref="QTrend.JobRunner"/>
+    </bean>
+
+    <bean   id="Event.ImportEodData"
+            class="com.quartz.qtrend.actions.endofday.ImportEodDataAction"
+            scope="prototype">
+<!--        <property name="userProperties" ref="QTrendUserProperties"/>-->
+        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+        <property name="stockQuoteService"  ref="QTrend.StockQuoteService"/>
+        <property name="jobRunner" ref="QTrend.JobRunner"/>
+    </bean>
+
+    <bean   id="Event.ImportTickerHistoryFromWeb"
+            class="com.quartz.qtrend.actions.yahoo.ImportYahooTickerHistoryFromWeb"
+            scope="prototype">
+        <property name="properties" ref="QTrendProperties"/>
+        <property name="userProperties" ref="QTrendUserProperties"/>
+        <property name="jobRunner" ref="QTrend.JobRunner"/>
+        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+        <property name="stockQuoteService" ref="QTrend.StockQuoteService"/>
+    </bean>
+
+    <bean   id="Event.ImportTickerNames"
+            class="com.quartz.qtrend.actions.endofday.ImportEodDataTickerNames"
+            scope="prototype">
+<!--        <property name="userProperties" ref="QTrendUserProperties"/>-->
+        <property name="stockQuoteService" ref="QTrend.StockQuoteService"/>
+        <property name="jobRunner" ref="QTrend.JobRunner"/>
+    </bean>
+
+    <bean   id="Event.CloseWindow"
+            class="com.quartz.qtrend.actions.CloseWindowAction"
+            scope="prototype"/>
+
+    <bean   id="Event.Exit"
+            class="com.quartz.qtrend.actions.ExitAction"
+            scope="prototype"/>
+
+    <bean   id="Event.Copy"
+            class="com.quartz.qtrend.actions.CopyAction"
+            scope="prototype"/>
+
+    <bean   id="Event.SelectAll"
+            class="com.quartz.qtrend.actions.SelectAllAction"
+            scope="prototype"/>
+
+    <bean   id="Event.FindByName"
+            class="com.quartz.qtrend.actions.FindTickerByNameAction"
+            scope="prototype">
+        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+   </bean>
+
+    <bean   id="Event.ShowSummary"
+            class="com.quartz.qtrend.actions.summary.ShowSummaryAction"
+            scope="prototype">
+        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+        <property name="selectExchangeDialog" ref="QTrend.Select-Exchange-Dialog"/>
+    </bean>
+
+    <bean   id="Event.FindObs"
+            class="com.quartz.qtrend.actions.macd.FindMacdObsAction"
+            scope="prototype">
+        <property name="userProperties" ref="QTrendUserProperties"/>
+        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+        <property name="selectExchangeDialog" ref="QTrend.Select-Exchange-Dialog"/>
+        <property name="jobRunner" ref="QTrend.JobRunner"/>
+    </bean>
+    <bean   id="Event.FindEmaObs"
+            class="com.quartz.qtrend.actions.ema.FindEmaObsAction"
+            scope="prototype">
+        <property name="userProperties" ref="QTrendUserProperties"/>
+        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+        <property name="selectExchangeDialog" ref="QTrend.Select-Exchange-Dialog"/>
+        <property name="jobRunner" ref="QTrend.JobRunner"/>
+    </bean>
+
+    <bean   id="Event.FindOss"
+            class="com.quartz.qtrend.actions.macd.FindMacdOssAction"
+            scope="prototype">
+        <property name="userProperties" ref="QTrendUserProperties"/>
+        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+        <property name="selectExchangeDialog" ref="QTrend.Select-Exchange-Dialog"/>
+        <property name="jobRunner" ref="QTrend.JobRunner"/>
+    </bean>
+
+    <bean   id="Event.FindEmaOss"
+            class="com.quartz.qtrend.actions.ema.FindEmaOssAction"
+            scope="prototype">
+        <property name="userProperties" ref="QTrendUserProperties"/>
+        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+        <property name="selectExchangeDialog" ref="QTrend.Select-Exchange-Dialog"/>
+        <property name="jobRunner" ref="QTrend.JobRunner"/>
+    </bean>
+
+    <bean   id="Event.LastMacdObs"
+            class="com.quartz.qtrend.actions.helpers.FindLastSignalAction"
+            scope="prototype">
+        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+        <property name="selectExchangeDialog" ref="QTrend.Select-Exchange-Dialog"/>
+        <property name="signal" value="OBS"/>
+        <property name="jobRunner" ref="QTrend.JobRunner"/>
+    </bean>
+
+    <bean   id="Event.LastMacdOss"
+            class="com.quartz.qtrend.actions.helpers.FindLastSignalAction"
+            scope="prototype">
+        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+        <property name="selectExchangeDialog" ref="QTrend.Select-Exchange-Dialog"/>
+        <property name="signal" value="OSS"/>
+        <property name="jobRunner" ref="QTrend.JobRunner"/>
+    </bean>
+
+    <bean   id="Event.LastEmaObs"
+            class="com.quartz.qtrend.actions.helpers.FindLastSignalAction"
+            scope="prototype">
+        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+        <property name="selectExchangeDialog" ref="QTrend.Select-Exchange-Dialog"/>
+        <property name="signal" value="MAB"/>
+        <property name="jobRunner" ref="QTrend.JobRunner"/>
+    </bean>
+
+    <bean   id="Event.LastEmaOss"
+            class="com.quartz.qtrend.actions.helpers.FindLastSignalAction"
+            scope="prototype">
+        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+        <property name="selectExchangeDialog" ref="QTrend.Select-Exchange-Dialog"/>
+        <property name="signal" value="MAS"/>
+        <property name="jobRunner" ref="QTrend.JobRunner"/>
+    </bean>
+
+    <bean   id="Event.FindIncomingObsSignals"
+            class="com.quartz.qtrend.actions.macd.FindIncomingObsAction"
+            scope="prototype">
+        <property name="userProperties" ref="QTrendUserProperties"/>
+        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+        <property name="jobRunner" ref="QTrend.JobRunner"/>
+    </bean>
+
+    <bean   id="Event.FindIncomingOssSignals"
+            class="com.quartz.qtrend.actions.macd.FindIncomingOssAction"
+            scope="prototype">
+        <property name="userProperties" ref="QTrendUserProperties"/>
+        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+        <property name="jobRunner" ref="QTrend.JobRunner"/>
+    </bean>
+
+    <bean   id="Event.ShowLatestSignals"
+            class="com.quartz.qtrend.actions.summary.ShowLatestSignalsAction"
+            scope="prototype">
+        <property name="selectExchangeDialog" ref="QTrend.Select-Exchange-Dialog"/>
+        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+        <property name="jobRunner" ref="QTrend.JobRunner"/>
+    </bean>
+
+    <bean   id="Event.FindPriceDrops"
+            class="com.quartz.qtrend.actions.FindPriceDropsAction"
+            scope="prototype">
+        <property name="userProperties" ref="QTrendUserProperties"/>
+        <property name="exchangesService" ref="QTrend.ExchangesService"/>
+        <property name="selectExchangeDialog" ref="QTrend.Select-Exchange-Dialog"/>
+    </bean>
+
+    <bean   id="Event.FindOversoldStocks"
+            class="com.quartz.qtrend.actions.rsi.FindOversoldAction"
+            scope="prototype">
+        <property name="userProperties" ref="QTrendUserProperties"/>
+        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+        <property name="selectExchangeDialog" ref="QTrend.Select-Exchange-Dialog"/>
+        <property name="jobRunner"          ref="QTrend.JobRunner"/>
+    </bean>
+
+    <bean   id="Event.FindOverboughtStocks"
+            class="com.quartz.qtrend.actions.rsi.FindOverboughtAction"
+            scope="prototype">
+        <property name="userProperties"     ref="QTrendUserProperties"/>
+        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+        <property name="selectExchangeDialog" ref="QTrend.Select-Exchange-Dialog"/>
+        <property name="jobRunner"          ref="QTrend.JobRunner"/>
+    </bean>
+
+    <bean   id="Event.ShowHistory"
+            class="com.quartz.qtrend.actions.ShowHistoryAction"
+            scope="prototype">
+        <property name="userProperties" ref="QTrendUserProperties"/>
+        <property name="stockQuoteService" ref="QTrend.StockQuoteService"/>
+        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+    </bean>
+
+    <bean   id="Event.EstimateProfitOrLoss"
+            class="com.quartz.qtrend.actions.macd.MacdEstimateProfitAction"
+            scope="prototype">
+        <property name="userProperties" ref="QTrendUserProperties"/>
+        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+    </bean>
+
+    <bean   id="Event.EmaEstimateProfitOrLoss"
+            class="com.quartz.qtrend.actions.ema.EmaEstimateProfitAction"
+            scope="prototype">
+        <property name="userProperties" ref="QTrendUserProperties"/>
+        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+    </bean>
+
+    <bean   id="Event.ShowGraphic"
+            class="com.quartz.qtrend.actions.ShowGraphicAction"
+            scope="prototype">
+        <property name="stockQuoteService"  ref="QTrend.StockQuoteService"/>
+        <property name="userProperties" ref="QTrendUserProperties"/>
+        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+    </bean>
+
+    <bean   id="Event.ShowStockChartsGraphic"
+            class="com.quartz.qtrend.actions.stockcharts.ShowStockchartGraphicsAction"
+            scope="prototype">
+        <property name="properties" ref="QTrendProperties"/>
+        <property name="userProperties" ref="QTrendUserProperties"/>
+    </bean>
+
+    <bean   id="Event.ShowYahooSummary"
+            class="com.quartz.qtrend.actions.yahoo.ShowYahooSummaryAction"
+            scope="prototype" >
+        <property name="properties" ref="QTrendProperties"/>
+        <property name="userProperties" ref="QTrendUserProperties"/>
+    </bean>
+
+    <bean   id="Event.FindLastImportDates"
+            class="com.quartz.qtrend.actions.FindLastImportDatesAction"
+            scope="prototype">
+        <property name="exchangesService" ref="QTrend.ExchangesService"/>
+    </bean>
+    <bean   id="Event.ValidateQuotes"
+            class="com.quartz.qtrend.actions.ValidateQuotesAction"
+            scope="prototype">
+        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+    </bean>
+
+    <bean   id="Event.RecalculateExchange"
+            class="com.quartz.qtrend.actions.RecalculateExchangeAction"
+            scope="prototype">
+        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+        <property name="stockQuoteService"  ref="QTrend.StockQuoteService"/>
+        <property name="selectExchangeDialog" ref="QTrend.Select-Exchange-Dialog"/>
+        <property name="jobRunner" ref="QTrend.JobRunner"/>
+    </bean>
+    <bean   id="Event.RecalculateTicker"
+            class="com.quartz.qtrend.actions.RecalculateTickerAction"
+            scope="prototype">
+        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+        <property name="stockQuoteService"  ref="QTrend.StockQuoteService"/>
+        <property name="jobRunner" ref="QTrend.JobRunner"/>
+    </bean>
+    <bean   id="Event.SplitTicker"
+            class="com.quartz.qtrend.actions.SplitTickerAction"
+            scope="prototype">
+        <property name="stockQuoteService" ref="QTrend.StockQuoteService"/>
+        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+        <property name="exchangesService" ref="QTrend.ExchangesService"/>
+        <property name="userProperties" ref="QTrendUserProperties"/>
+    </bean>
+    <bean   id="Event.DeleteTicker"
+            class="com.quartz.qtrend.actions.DeleteTickerAction"
+            scope="prototype">
+        <property name="stockQuoteService" ref="QTrend.StockQuoteService"/>
+    </bean>
+    <bean   id="Event.RunGC"
+            class="com.quartz.qtrend.actions.RunGCAction"
+            scope="prototype"/>
+    <bean   id="Event.About"
+            class="com.quartz.qtrend.actions.about.AboutAction"
+            scope="prototype"/>
+
+
+    <!-- Graphics Frame events -->
+    <bean   id="Graphics.Close"
+            class="com.quartz.qtrend.graphs.ui.CloseAction"
+            scope="prototype"/>
+
+    <bean   id="Graphics.ViewAroonLongTerm"
+            class="com.quartz.qtrend.graphs.ui.ShowAroonGraphicAction"
+            scope="prototype">
+        <property name="aroonService"   ref="QTrend.AroonService"/>
+        <property name="shortTerm"      value="false"/>
+    </bean>
+
+    <bean   id="Graphics.ViewAroonShortTerm"
+            class="com.quartz.qtrend.graphs.ui.ShowAroonGraphicAction"
+            scope="prototype">
+        <property name="aroonService"   ref="QTrend.AroonService"/>
+        <property name="shortTerm"      value="true"/>
+    </bean>
+
+    <bean   id="Event.AddWatchList"
+            class="com.quartz.qtrend.actions.watchlists.AddWatchListAction"
+            scope="prototype">
+        <property name="editWatchListDialog" ref="QTrend.EditWatchlistsDialog"/>
+        <property name="watchListService" ref="QTrend.WatchListsService"/>
+    </bean>
+
+    <bean   id="Event.EditWatchList"
+            class="com.quartz.qtrend.actions.watchlists.EditWatchListAction"
+            scope="prototype">
+        <property name="editWatchListDialog" ref="QTrend.EditWatchlistsDialog"/>
+        <property name="selectSingleWatchListDialog" ref="QTrend.SelectSingleWatchListDialog"/>
+        <property name="watchListService" ref="QTrend.WatchListsService"/>
+    </bean>
+
+    <bean   id="Event.DeleteWatchLists"
+            class="com.quartz.qtrend.actions.watchlists.DeleteWatchListsAction"
+            scope="prototype">
+        <property name="selectWatchListsDialog" ref="QTrend.SelectWatchListsDialog"/>
+        <property name="watchListService" ref="QTrend.WatchListsService"/>
+    </bean>
+
+    <bean   id="Event.ViewWatchLists"
+            class="com.quartz.qtrend.actions.watchlists.ViewWatchListsAction"
+            scope="prototype">
+        <property name="selectWatchListsDialog" ref="QTrend.SelectWatchListsDialog"/>
+        <property name="watchListService" ref="QTrend.WatchListsService"/>
+        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+    </bean>
+
+    <bean   id="QTrend.DisplayAlerts"
+            class="com.quartz.qtrend.actions.DisplayStartupAlertsAction"
+            scope="prototype">
+        <property name="displayAlertsDialog" ref="QTrend.DisplayAlertsDialog"/>
+        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+
+    </bean>
+
+    <bean   id="Event.ShowPreferences"
+            class="com.quartz.qtrend.actions.configuration.ShowConfigurationAction"
+            scope="prototype">
+        <property name="configurationDialog" ref="QTrend.ConfigurationDialog"/>
+    </bean>
+</beans>
+

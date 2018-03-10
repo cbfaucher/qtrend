@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+    <bean   name="QTrendProperties" class="com.quartz.qutilities.util.spring.QPropertiesFactoryBean">
+        <property name="resource">
+            <bean class="org.springframework.core.io.ClassPathResource">
+                <constructor-arg value="/qtrend.properties"/>
+            </bean>
+        </property>
+    </bean>
+
+    <bean   name="QTrendUserProperties" class="com.quartz.qutilities.util.QUserProperties"  >
+        <constructor-arg type="java.lang.String" value="QTrendUserProperties"/>
+        <constructor-arg type="boolean" value="true"/>
+    </bean>
+
+    <bean   id="QTrend.JobRunner"
+            class="com.quartz.qutilities.jobrunner.AsyncJobRunner"
+            destroy-method="stop">
+        <constructor-arg index="0" value="${thread.pool.size}"/>
+        <constructor-arg index="1" value="1000"/>
+    </bean>
+
+    <bean   id="QTrend.ThreadPool"
+            class="com.quartz.qutilities.pool.ThreadPool"
+            destroy-method="close"
+             >
+        <constructor-arg    type="int"  value="${thread.pool.size}"/> <!-- This is the number of threads in the pool! -->
+    </bean>
+
+    <bean   id="QTrend.ImportRuleManager"
+            class="com.quartz.qtrend.rules.RuleManagerFactory"
+            lazy-init="false" >
+        <property name="exchangeConfigurationResource">
+            <bean   class="org.springframework.core.io.ClassPathResource">
+                <constructor-arg value="/exchange-configuration.xml"/>
+            </bean>
+        </property>
+   </bean>
+
+    <bean   id="HTTP.Proxy"
+            class="com.quartz.qutilities.net.spring.ProxyFactoryBean"
+            lazy-init="false" >
+        <property name="proxyEnabled" value="${proxy.enabled}"/>
+        <property name="proxyType" value="${proxy.type}"/>
+        <property name="proxyHost" value="${proxy.hostname}"/>
+        <property name="proxyPort" value="${proxy.port}"/>
+    </bean>
+
+
+    <!-- Mail stuff -->
+    <bean   id="QTrend.MailSender"
+            class="org.springframework.mail.javamail.JavaMailSenderImpl"
+            lazy-init="false" >
+        <property name="host" value="${mail.host}"/>
+    </bean>
+    <bean id="QTrend.MailTemplate" class="org.springframework.mail.SimpleMailMessage">
+        <property name="from" value="QTrend@com.quartz.qtrend.getrich.com"/>
+        <property name="to" value="${mail.to}"/>
+    </bean>
+
+    <bean   id="QTrend.MailOutput"
+            class="com.quartz.qtrend.tasks.MailOutput"
+            scope="prototype">
+        <property name="mailSender" ref="QTrend.MailSender"/>
+        <property name="mailTemplate" ref="QTrend.MailTemplate"/>
+    </bean>
+</beans>

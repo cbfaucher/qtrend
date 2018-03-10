@@ -1,4 +1,6 @@
 # Directories
+.idea/workspace.xml
+.idea/libraries
 data/
 dist/
 oldsrc/
