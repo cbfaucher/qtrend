@@ -8,19 +8,19 @@
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 
     <bean   id="QTrend.EditWatchlistsDialog"
-            class="com.quartz.com.quartz.qtrend.ui.watchlists.EditWatchListDialog">
+            class="com.quartz.qtrend.ui.watchlists.EditWatchListDialog">
         <property name="modal" value="true"/>
         <property name="title" value="Manage Watchlists..."/>
     </bean>
 
     <bean   id="QTrend.SelectWatchListsDialog"
-            class="com.quartz.com.quartz.qtrend.ui.watchlists.SelectWatchListsDialog">
+            class="com.quartz.qtrend.ui.watchlists.SelectWatchListsDialog">
         <property name="watchListService" ref="QTrend.WatchListsService"/>
         <property name="userProperties" ref="QTrendUserProperties"/>
     </bean>
 
     <bean   id="QTrend.SelectSingleWatchListDialog"
-            class="com.quartz.com.quartz.qtrend.ui.watchlists.SelectSingleWatchListDialog">
+            class="com.quartz.qtrend.ui.watchlists.SelectSingleWatchListDialog">
         <property name="watchListService" ref="QTrend.WatchListsService"/>
     </bean>
 

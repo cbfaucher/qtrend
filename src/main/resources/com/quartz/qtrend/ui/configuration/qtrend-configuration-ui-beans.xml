@@ -9,7 +9,7 @@
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 
     <bean   id="QTrend.ConfigurationDialog"
-            class="com.quartz.com.quartz.qtrend.ui.configuration.ConfigurationDialog"
+            class="com.quartz.qtrend.ui.configuration.ConfigurationDialog"
             scope="singleton" >
 
         <!-- Dialog properties -->
@@ -21,7 +21,7 @@
 
         <!-- Alerts panel -->
         <property name="alertsPanel">
-            <bean   class="com.quartz.com.quartz.qtrend.ui.configuration.AlertsPanel">
+            <bean   class="com.quartz.qtrend.ui.configuration.AlertsPanel">
                 <property name="userProperties" ref="QTrendUserProperties"/>
                 <property name="watchListService" ref="QTrend.WatchListsService"/>
             </bean>
@@ -29,7 +29,7 @@
     </bean>
 
     <bean   id="QTrend.DisplayAlertsDialog"
-            class="com.quartz.com.quartz.qtrend.ui.configuration.DisplayAlertsDialog"
+            class="com.quartz.qtrend.ui.configuration.DisplayAlertsDialog"
             scope="prototype">
         <property name="userProperties"     ref="QTrendUserProperties"/>
     </bean>

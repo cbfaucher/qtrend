@@ -55,7 +55,7 @@
       of an operation defined by the FooService interface -->
 <!--
     <aop:config>
-        <aop:pointcut id="ServiceOperation" expression="execution(* com.quartz.com.quartz.qtrend.dom.watchlists.WatchListService.*(..))"/>
+        <aop:pointcut id="ServiceOperation" expression="execution(* com.quartz.qtrend.dom.watchlists.WatchListService.*(..))"/>
         <aop:advisor advice-ref="QTrend.TxnAdvice" pointcut-ref="ServiceOperation"/>
     </aop:config>
 -->

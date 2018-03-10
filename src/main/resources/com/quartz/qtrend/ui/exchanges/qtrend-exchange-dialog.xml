@@ -8,7 +8,7 @@
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 
     <bean   id="QTrend.Select-Exchange-Dialog"
-            class="com.quartz.com.quartz.qtrend.ui.exchanges.SelectExchangesDialog"
+            class="com.quartz.qtrend.ui.exchanges.SelectExchangesDialog"
             scope="prototype">
         <property name="title" value="Select..."/>
         <property name="modal" value="true"/>
@@ -24,7 +24,7 @@
             </bean>
         </property>
         <property name="exchangePanel">
-            <bean   class="com.quartz.com.quartz.qtrend.ui.exchanges.SelectTickersPanel">
+            <bean   class="com.quartz.qtrend.ui.exchanges.SelectTickersPanel">
                 <property name="userProperties" ref="QTrendUserProperties"/>
                 <property name="tickers">
                     <bean   class="com.quartz.qutilities.swing.spring.PropertyReferenceFactoryBean">
@@ -35,7 +35,7 @@
             </bean>
         </property>
         <property name="buttonPanel">
-            <bean   class="com.quartz.com.quartz.qtrend.ui.exchanges.ButtonPanel">
+            <bean   class="com.quartz.qtrend.ui.exchanges.ButtonPanel">
                 <property name="layout">
                     <bean   class="java.awt.FlowLayout">
                         <property name="alignment" value="2"/><!-- right -->

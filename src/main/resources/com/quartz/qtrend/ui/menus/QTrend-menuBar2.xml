@@ -76,12 +76,12 @@
 
     </menu>
 
-<!--    <menu label="Fidoodah" mnemonic="I" class-name="com.quartz.com.quartz.qtrend.ui.menus.WatchListMenuCreator"/>-->
+<!--    <menu label="Fidoodah" mnemonic="I" class-name="com.quartz.qtrend.ui.menus.WatchListMenuCreator"/>-->
     <menu label="Watchlists" mnemonic="W">
         <menu-item label="Add..." mnemonic="A" command="Event.AddWatchList"/>
         <menu-item label="Edit..." mnemonic="E" command="Event.EditWatchList"/>
         <menu-separator/>
-<!--        <menu label="View..." mnemonic="I" class-name="com.quartz.com.quartz.qtrend.ui.menus.WatchListMenuCreator"/>-->
+<!--        <menu label="View..." mnemonic="I" class-name="com.quartz.qtrend.ui.menus.WatchListMenuCreator"/>-->
         <menu-item label="View..." mnemonic="V" accelerator="alt W" command="Event.ViewWatchLists"/>
         <menu-separator/>
         <menu-item label="Delete..." mnemonic="D" command="Event.DeleteWatchLists"/>  

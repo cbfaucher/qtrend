@@ -11,7 +11,7 @@
     <bean   name="QTrendProperties" class="com.quartz.qutilities.util.spring.QPropertiesFactoryBean">
         <property name="resource">
             <bean class="org.springframework.core.io.ClassPathResource">
-                <constructor-arg value="/com.quartz.qtrend.properties"/>
+                <constructor-arg value="/qtrend.properties"/>
             </bean>
         </property>
     </bean>
