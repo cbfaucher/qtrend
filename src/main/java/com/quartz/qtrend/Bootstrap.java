@@ -39,7 +39,7 @@ public class Bootstrap
 
         //  QTrend properties
         PropertyPlaceholderConfigurer jdbcCfg = new PropertyPlaceholderConfigurer();
-        jdbcCfg.setLocation(new ClassPathResource("/config/com.quartz.qtrend.properties"));
+        jdbcCfg.setLocation(new ClassPathResource("/qtrend.properties"));
         jdbcCfg.postProcessBeanFactory(applicationContext.getBeanFactory());
 
         BeanFactorySingleton.setBeanFactory(applicationContext);

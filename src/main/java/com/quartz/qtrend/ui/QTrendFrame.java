@@ -101,7 +101,7 @@ public class QTrendFrame extends SpringFrame implements QEventFrame
     {
         //  menu bar
         //menuBar = new QTrendMenuBar(this);
-        final URL menuResUrl = getClass().getResource("/src/main/java/com.quartz.qtrend/ui/menus/QTrend-menuBar2.xml");
+        final URL menuResUrl = getClass().getResource("/com/quartz/qtrend/ui/menus/QTrend-menuBar2.xml");
         if (menuResUrl == null) throw new IOException("QTrend Menu Resource not found.");
         menuBar = XmlMenuBar.load(menuResUrl,
                                   new QEventActionListener(this), false);
