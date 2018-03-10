@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+    <!-- services for WatchLists -->
+    <bean   id="QTrend.WatchListsService"
+            class="com.quartz.com.quartz.qtrend.dom.watchlists.WatchListService">
+        <property name="jdbcTemplate" ref="QTrend.JdbcTemplate"/>
+        <property name="transactionTemplate" ref="QTrend.TransactionTemplate"/>
+    </bean>
+
+    <!-- Service for Aroon -->
+    <bean   id="QTrend.AroonService"
+            class="com.quartz.com.quartz.qtrend.dom.aroon.services.AroonService">
+        <property name="jdbcTemplate" ref="QTrend.JdbcTemplate"/>
+        <property name="transactionTemplate" ref="QTrend.TransactionTemplate"/>
+    </bean>
+
+    <!-- Service for Aroon -->
+    <bean   id="QTrend.LangfordService"
+            class="com.quartz.com.quartz.qtrend.dom.langford.services.LangfordDataService"
+            >
+        <property name="jdbcTemplate" ref="QTrend.JdbcTemplate"/>
+        <property name="stockQuoteService" ref="QTrend.StockQuoteService"/>
+        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+    </bean>
+
+    <!-- Service class for exchange-related methods -->
+    <bean   id="QTrend.ExchangesService"
+            class="com.quartz.com.quartz.qtrend.dom.exchanges.services.ExchangesService">
+        <property name="jdbcTemplate" ref="QTrend.JdbcTemplate"/>
+    </bean>
+
+    <!-- Service for StockQuote -->
+    <bean   id="QTrend.StockQuoteService"
+            class="com.quartz.com.quartz.qtrend.dom.services.StockQuoteService">
+        <property name="stockQuoteDao" ref="QTrend.StockQuoteDAO"/>
+        <property name="aroonService" ref="QTrend.AroonService"/>
+        <property name="langfordDataService" ref="QTrend.LangfordService"/>
+        <property name="jdbcTemplate" ref="QTrend.JdbcTemplate"/>
+        <property name="transactionTemplate" ref="QTrend.TransactionTemplate"/>
+    </bean>
+
+    <!-- Service for StockQuoteList -->
+    <bean   id="QTrend.StockQuoteListService"
+            class="com.quartz.com.quartz.qtrend.dom.services.StockQuoteListService"
+            >
+        <property name="stockQuoteService" ref="QTrend.StockQuoteService"/>
+        <property name="jdbcTemplate" ref="QTrend.JdbcTemplate"/>
+        <property name="properties" ref="QTrendProperties"/>
+        <property name="watchListService" ref="QTrend.WatchListsService"/>        
+    </bean>
+
+    <bean   id="QTrend.YahooService"
+            class="com.quartz.com.quartz.qtrend.dom.yahoo.YahooService">
+        <property name="properties" ref="QTrendProperties"/>
+        <property name="stockQuoteService" ref="QTrend.StockQuoteService"/>
+        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+    </bean>
+</beans>

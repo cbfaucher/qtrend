@@ -1,0 +1,110 @@
+<!DOCTYPE menu-bar SYSTEM "http://quartz.com/dtd/xml-menu-bar.dtd">
+
+<menu-bar>
+
+    <menu label="File" mnemonic="F">
+        <menu-item  label="New Window"
+                    mnemonic="N"
+                    accelerator="ctrl N"
+                    command="Event.NewWindow"/>
+        <menu-separator/>
+        <menu label="Yahoo!" mnemonic="Y" >
+            <menu-item label="Import new Ticker..." mnemonic="I" accelerator="ctrl I"
+                command="Event.ImportTickerHistoryFromWeb"/>
+            <menu-item label="Update existing tickers" mnemonic="U" accelerator="ctrl U" command="Event.UpdateTickers"/>
+        </menu>
+        <menu label="End-Of-Day Data">
+            <menu-item label="Import Daily Quotes..." mnemonic="I" accelerator="shift ctrl I" command="Event.ImportEodData"/>
+            <menu-item label="Import Ticker Names" mnemonic="I" accelerator="shift I" command="Event.ImportTickerNames"/>
+        </menu>
+        <menu-separator/>
+        <menu-item label="Preferences..." mnemonic="P" command="Event.ShowPreferences"/> 
+        <menu-separator/>
+        <menu-item label="Close" mnemonic="C" accelerator="ctrl F4" command="Event.CloseWindow"/>
+        <menu-item label="Exit" mnemonic="X" accelerator="alt F4" command="Event.Exit"/>
+    </menu>
+
+    <menu label="Edit" mnemonic="E" >
+        <menu-item label="Copy" mnemonic="C" accelerator="ctrl C" command="Event.Copy" />
+        <menu-item label="Select All" mnemonic="A" accelerator="ctrl A" command="Event.SelectAll" />
+        <menu-separator/>
+        <menu-item label="Find Tickers by Name..." mnemonic="F" accelerator="ctrl F" command="Event.FindByName" />
+    </menu>
+
+    <menu label="View" mnemonic="V">
+        <menu-item label="Show Latest" mnemonic="U" accelerator="ctrl M" command="Event.ShowSummary"/>
+        <menu-separator/>
+        <menu-item label="Show History" mnemonic="Y" accelerator="ctrl Y" command="Event.ShowHistory"/>
+        <menu-item label="Show Summary on Yahoo!" mnemonic="S" accelerator="ctrl U" command="Event.ShowYahooSummary"/>
+        <menu-separator/>
+        <menu-item label="Show Graphics..." mnemonic="G" accelerator="ctrl G" command="Event.ShowGraphic"/>
+        <menu-item label="Show Graphics on StockCharts.com..." mnemonic="R" accelerator="shift ctrl G" command="Event.ShowStockChartsGraphic"/>
+        <menu-separator/>
+        <menu-item label="Display Alerts..." mnemonic="A" accelerator="alt A" command="QTrend.DisplayAlerts"/>   
+    </menu>
+
+    <menu label="Search" mnemonic="S">
+        <menu label="MACD" mnemonic="M">
+            <menu-item label="Find OBS..." mnemonic="B" accelerator="ctrl B" command="Event.FindObs"/>
+            <menu-item label="Find OSS..." mnemonic="S" accelerator="ctrl S" command="Event.FindOss"/>
+            <menu-separator/>
+            <menu-item label="Find Last OBS..." mnemonic="B" accelerator="shift ctrl B" command="Event.LastMacdObs"/>
+            <menu-item label="Find Last OSS..." mnemonic="S" accelerator="shift ctrl S" command="Event.LastMacdOss"/>
+            <menu-separator/>
+            <menu-item label="Find incoming OBS..." mnemonic="I" accelerator="shift I" command="Event.FindIncomingObsSignals" />
+            <menu-item label="Find incoming OSS..." mnemonic="N" accelerator="shift N" command="Event.FindIncomingOssSignals" />
+            <menu-separator/>
+            <menu-item label="Estimate Profit or Loss..." mnemonic="E" accelerator="ctrl E" command="Event.EstimateProfitOrLoss"/>
+        </menu>
+        <menu label="EMA" mnemonic="E">
+            <menu-item label="Find OBS..." mnemonic="B" accelerator="alt ctrl B" command="Event.FindEmaObs"/>
+            <menu-item label="Find OSS..." mnemonic="S" accelerator="alt ctrl S" command="Event.FindEmaOss"/>
+            <menu-separator/>
+            <menu-item label="Find Last OBS..." mnemonic="B" accelerator="alt shift ctrl B" command="Event.LastEmaObs"/>
+            <menu-item label="Find Last OSS..." mnemonic="S" accelerator="alt shift ctrl S" command="Event.LastEmaOss"/>
+            <menu-separator/>
+            <menu-item label="Estimate Profit or Loss..." mnemonic="E" accelerator="alt ctrl E" command="Event.EmaEstimateProfitOrLoss"/>
+        </menu>
+        <menu label="RSI" mnemonic="R">
+            <menu-item label="Find Oversold Stocks (low RSI)..." mnemonic="V" accelerator="shift V" command="Event.FindOversoldStocks"/>
+            <menu-item label="Find Overbought Stocks (high RSI)..." mnemonic="V" accelerator="ctrl shift V" command="Event.FindOverboughtStocks"/>
+        </menu>
+        <menu-separator/>
+        <menu-item label="Show latest signals..." mnemonic="L" accelerator="ctrl L" command="Event.ShowLatestSignals"/>           
+        <menu-separator/>
+        <menu-item label="Find Price Drops" mnemonic="D" accelerator="ctrl D" command="Event.FindPriceDrops"/>
+
+    </menu>
+
+<!--    <menu label="Fidoodah" mnemonic="I" class-name="com.quartz.com.quartz.qtrend.ui.menus.WatchListMenuCreator"/>-->
+    <menu label="Watchlists" mnemonic="W">
+        <menu-item label="Add..." mnemonic="A" command="Event.AddWatchList"/>
+        <menu-item label="Edit..." mnemonic="E" command="Event.EditWatchList"/>
+        <menu-separator/>
+<!--        <menu label="View..." mnemonic="I" class-name="com.quartz.com.quartz.qtrend.ui.menus.WatchListMenuCreator"/>-->
+        <menu-item label="View..." mnemonic="V" accelerator="alt W" command="Event.ViewWatchLists"/>
+        <menu-separator/>
+        <menu-item label="Delete..." mnemonic="D" command="Event.DeleteWatchLists"/>  
+    </menu>
+
+    <menu label="Tools" mnemonic="T">
+        <menu-item label="Find Last Import Dates" mnemonic="F" command="Event.FindLastImportDates"/>
+        <menu-item label="Validate Quotes" mnemonic="V" command="Event.ValidateQuotes"/>
+        <menu-separator/>
+<!--
+        <menu-item label="Refresh Exchange Names" mnemonic="E" command="Event.RefreshExchangeNames" />
+        <menu-separator/>
+-->
+        <menu-item label="Recalculate Exchange..." mnemonic="R" command="Event.RecalculateExchange" />
+        <menu-item label="Recalculate Ticker..." mnemonic="T" command="Event.RecalculateTicker" />
+        <menu-separator/>
+        <menu-item label="Split Ticker..." mnemonic="S" command="Event.SplitTicker"/>
+        <menu-item label="Delete Ticker..." mnemonic="D" command="Event.DeleteTicker"/>
+        <menu-separator/>
+        <menu-item label="Run GC" mnemonic="G" command="Event.RunGC"/>
+    </menu>
+
+    <menu label="Help" mnemonic="H">
+        <menu-item label="About..." mnemonic="A" command="Event.About"/>
+    </menu>
+</menu-bar>

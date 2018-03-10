@@ -53,7 +53,7 @@
     </target>
 
     <target name="compile" depends="init">
-        <buildnumber file="${basedir}/application/src/qtrend-version.properties" /> 
+        <buildnumber file="/src/main/resources/com.quartz.qtrend-version.properties" />
         <javac  srcdir="${basedir}/application/src"
                 destdir="${basedir}/application/classes"
                 classpathref="class.path"/>
@@ -93,11 +93,11 @@
         <!-- config -->
         <copy   todir="${basedir}/dist/config">
             <fileset    dir="${basedir}/config">
-                <exclude name="qtrend.properties"/>
+                <exclude name="com.quartz.qtrend.properties"/>
                 <exclude name="exchange-configuration.xml"/>
             </fileset>
         </copy>
-        <copyfile src="${basedir}/dist/config/qtrend-prod.properties" dest="${basedir}/dist/config/qtrend.properties.template"/>  
+        <copyfile src="${basedir}/dist/config/com.quartz.qtrend-prod.properties" dest="${basedir}/dist/config/com.quartz.qtrend.properties.template"/>
 
         <copy   todir="${basedir}/dist/docs">
             <fileset    dir="${basedir}/docs"/>

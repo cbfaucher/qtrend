@@ -56,7 +56,7 @@ new exchanges.
 Running QTrend and tools
 ------------------------
 
-Run qtrend.bat to run QTrend
+Run com.quartz.qtrend.bat to run QTrend
 
 Run psql.bat to get access to SQL tool.
     Type \h for help on commands
