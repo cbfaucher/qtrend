@@ -7,11 +7,11 @@
 package com.quartz.qtrend.util;
 
 import com.quartz.qtrend.dom.StockException;
-import com.quartz.qtrend.dom.StockQuote;
 import com.quartz.qtrend.dom.helpers.Price;
 import com.quartz.qtrend.dom.helpers.Ticker;
 import com.quartz.qtrend.dom.services.StockQuoteService;
 import com.quartz.qutilities.util.DateUtilities;
+import lombok.val;
 import org.joda.time.LocalDate;
 
 import java.util.HashMap;
@@ -25,7 +25,7 @@ import java.util.StringTokenizer;
 public class YahooHistoryLineParser implements LineParser
 {
 
-    static final private Map<String, Integer> MONTH_TO_NUMBER = new HashMap<String, Integer>();
+    static final private Map<String, Integer> MONTH_TO_NUMBER = new HashMap<>();
     static
     {
         YahooHistoryLineParser.MONTH_TO_NUMBER.put("jan", 1);
@@ -67,7 +67,7 @@ public class YahooHistoryLineParser implements LineParser
         final LocalDate date = DateUtilities.toLocalDate(rawDate);
         if (oldestDate.compareTo(date) < 0)
         {
-            final StockQuote stockQuote = stockQuoteService.createNewStockQuote();
+            val stockQuote = stockQuoteService.createNewStockQuote();
             stockQuote.setStockExchange(exchange);
             stockQuote.setTicker(ticker);
             stockQuote.setDate(date);
@@ -81,6 +81,8 @@ public class YahooHistoryLineParser implements LineParser
             stockQuote.setHigh(high);
             stockQuote.setLow(low);
             stockQuote.setClose(close);
+
+            tokenizer.nextToken();
 
             final long volume = Long.parseLong(tokenizer.nextToken());
             stockQuote.setVolume(volume);

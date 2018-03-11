@@ -18,5 +18,6 @@ lib/
 
 # Files
 *.log
+*.csv
 **/*.class
 bin/set_postgresconfig.bat
