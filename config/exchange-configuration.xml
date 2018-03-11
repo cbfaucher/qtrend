@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!DOCTYPE exchange-configuration SYSTEM "http://quartz.com/dtd/exchange-configuration.dtd">
+<!-- TODO: XSD Please -->
+<!--<!DOCTYPE exchange-configuration SYSTEM "http://quartz.com/dtd/exchange-configuration.dtd">-->
 
 <exchange-configuration>
 

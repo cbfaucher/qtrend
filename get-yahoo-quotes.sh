@@ -33,7 +33,11 @@ function log () {
 # Period values are 'Seconds since 1970-01-01 00:00:00 UTC'. Also known as Unix time or epoch time.
 # Let's just assume we want it all and ask for a date range that starts at 1/1/1970.
 # NOTE: This doesn't work for old synbols like IBM which has Yahoo has back to 1962
-START_DATE=0
+if [[ ! -z $2 ]]; then
+    START_DATE=$2
+else
+    START_DATE=0
+fi
 END_DATE=$(date +%s)
 
 # Store the cookie in a temp file

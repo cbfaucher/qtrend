@@ -75,7 +75,7 @@ public class QTrendFrame extends SpringFrame implements QEventFrame
     {
         super();
 
-        final String iconRes = "/src/main/java/com.quartz.qtrend/ui/com.quartz.qtrend.jpg";
+        final String iconRes = "/com/quartz/qtrend/ui/qtrend.jpg";
         final URL iconUrl = getClass().getResource(iconRes);
         if (iconUrl != null) setIconImage(ImageIO.read(iconUrl));
         else
