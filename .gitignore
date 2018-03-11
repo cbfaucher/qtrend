@@ -1,6 +1,7 @@
 # Directories
 .idea/workspace.xml
 .idea/libraries
+.idea/dataSources
 data/
 dist/
 oldsrc/
@@ -18,3 +19,4 @@ lib/
 # Files
 *.log
 **/*.class
+bin/set_postgresconfig.bat
