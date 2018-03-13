@@ -38,7 +38,12 @@ if [[ ! -z $2 ]]; then
 else
     START_DATE=0
 fi
-END_DATE=$(date +%s)
+
+if [[ ! -z $3 ]]; then
+    END_DATE=$3
+else
+    END_DATE=$(date +%s)
+fi
 
 # Store the cookie in a temp file
 cookieJar=$(mktemp)
