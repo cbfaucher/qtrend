@@ -20,10 +20,10 @@ import com.quartz.qutilities.logging.ILog;
 import com.quartz.qutilities.logging.LogManager;
 import com.quartz.qutilities.io.FileUtilities;
 import com.quartz.qutilities.util.QProperties;
-import com.quartz.qutilities.util.Output;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.InitializingBean;
-import org.joda.time.LocalDate;
 
 import java.util.*;
 import java.io.IOException;
@@ -35,33 +35,14 @@ import java.io.File;
  * @author Christian
  * @since Quartz...
  */
+@NoArgsConstructor
 public class YahooService implements InitializingBean
 {
     static private final ILog LOG = LogManager.getLogger(YahooService.class);
 
-    private StockQuoteListService stockQuotesService;
-    private StockQuoteService       stockQuoteService;
-    private QProperties     properties;
-
-
-    public YahooService()
-    {
-    }
-
-    public void setStockQuotesService(StockQuoteListService pStockQuotesService)
-    {
-        stockQuotesService = pStockQuotesService;
-    }
-
-    public void setStockQuoteService(StockQuoteService pStockQuoteService)
-    {
-        stockQuoteService = pStockQuoteService;
-    }
-
-    public void setProperties(QProperties pProperties)
-    {
-        properties = pProperties;
-    }
+    @Setter private StockQuoteListService stockQuotesService;
+    @Setter private StockQuoteService       stockQuoteService;
+    @Setter private QProperties     properties;
 
     public void afterPropertiesSet() throws Exception
     {
@@ -114,7 +95,7 @@ public class YahooService implements InitializingBean
         final StockQuoteList unsortedQuotes = new StockQuoteList();
         final YahooTickerQuoteReader reader = new YahooTickerQuoteReader(properties);
 
-        final LocalDate endDate = new LocalDate();
+        final LocalDate endDate = new LocalDate().minusDays(1);
 
         for (UpdateInformation ui : pUpdateInformations)
         {

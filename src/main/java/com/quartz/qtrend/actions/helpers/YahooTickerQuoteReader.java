@@ -68,7 +68,7 @@ public class YahooTickerQuoteReader {
         try {
             //  build URL
 //            final URL url = buildURL(pTicker, pStartDate, pEndDate);
-            val url = callYahooScriptProcess(pTicker, pStartDate);
+            val url = callYahooScriptProcess(pTicker, pStartDate, pEndDate);
 
             //  content
             final Proxy proxy = QTrendBeanNames.HTTP_PROXY.getBean();
@@ -89,7 +89,7 @@ public class YahooTickerQuoteReader {
 
     }
 
-    private URL callYahooScriptProcess(Ticker pTicker, LocalDate pStartDate) throws IOException, ImporterException {
+    private URL callYahooScriptProcess(Ticker pTicker, LocalDate pStartDate, LocalDate pEndDate) throws IOException, ImporterException {
         //            val cmd = Optional.ofNullable(properties.getProperty(PROP_YAHOO_TICKER_HISTORY_CMD))
 //                    .map(s -> s.replaceAll("#TICKER#", pTicker.asYahooTicker()))
 //                    .map(s -> s.replaceAll("#FROM#", "" + (pStartDate.toDateTimeAtStartOfDay().getMillis() / 1000)))
@@ -108,8 +108,9 @@ public class YahooTickerQuoteReader {
         val sh = "get-yahoo-quotes.sh";
         val yahooTicker = pTicker.asYahooTicker();
         val from = "" + pStartDate.toDateTimeAtStartOfDay().getMillis() / 1000;
+        val to = "" + pEndDate.toDateTimeAtStartOfDay().getMillis() / 1000;
 
-        val cmds = Arrays.asList(bash, sh, yahooTicker, from);
+        val cmds = Arrays.asList(bash, sh, yahooTicker, from, to);
         System.out.println("CMD=" + cmds.stream().collect(Collectors.joining(" ")));
 
         val builder = new ProcessBuilder(cmds);
