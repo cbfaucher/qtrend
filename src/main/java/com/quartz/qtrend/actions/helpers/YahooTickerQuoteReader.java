@@ -136,6 +136,8 @@ public class YahooTickerQuoteReader {
             }
         }
 
+        //  make sure those files are gone...
+        resultFile.deleteOnExit();
 
         return resultFile.toURI().toURL();
     }

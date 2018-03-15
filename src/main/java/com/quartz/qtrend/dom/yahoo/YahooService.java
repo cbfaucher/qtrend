@@ -95,7 +95,7 @@ public class YahooService implements InitializingBean
         final StockQuoteList unsortedQuotes = new StockQuoteList();
         final YahooTickerQuoteReader reader = new YahooTickerQuoteReader(properties);
 
-        final LocalDate endDate = new LocalDate().minusDays(1);
+        final LocalDate endDate = new LocalDate();
 
         for (UpdateInformation ui : pUpdateInformations)
         {

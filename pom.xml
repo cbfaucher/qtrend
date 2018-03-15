@@ -57,6 +57,23 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>appassembler-maven-plugin</artifactId>
+                <configuration>
+                    <programs>
+                        <program>
+                            <mainClass>com.quartz.qtrend.Main</mainClass>
+                            <name>qtrend</name>
+                        </program>
+                        <program>
+                            <mainClass>com.quartz.qtrend.tasks.updates.Main</mainClass>
+                            <name>qtrend-update</name>
+                        </program>
+                    </programs>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- TODO: XSD Please -->
+<!--<!DOCTYPE exchange-configuration SYSTEM "http://quartz.com/dtd/exchange-configuration.dtd">-->
+
+<exchange-configuration>
+
+    <exchange   name="OBB"
+                minimum-price="0.005"
+                minimum-volume="100000" >
+        <includes>
+            <price-volume-ratio average-capital-invested="2000" threshold="0.05"/>
+        </includes>
+    </exchange>
+
+    <exchange   name="NYSE"
+                minimum-volume="1000000">
+<!--        <includes>-->
+<!--            -->
+<!--        </includes>-->
+        <excludes>
+            <all/>
+        </excludes>
+    </exchange>
+
+    <exchange   name="NASDAQ"
+                minimum-volume="1000000">
+<!--        <includes>-->
+<!--            -->
+<!--        </includes>-->
+        <excludes>
+            <all/>
+        </excludes>
+    </exchange>
+
+    <exchange name="TSE" >
+<!--
+        <includes>
+            <all/>
+        </includes>
+-->
+        <excludes>
+            <all/>
+        </excludes>
+    </exchange>
+
+    <exchange name="VSE" >
+<!--
+        <includes>
+            <all/>
+        </includes>
+-->
+        <excludes>
+            <all/>
+        </excludes>
+    </exchange>
+</exchange-configuration>

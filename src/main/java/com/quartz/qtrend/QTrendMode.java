@@ -30,7 +30,7 @@ public enum QTrendMode
             new ClassPathResource("/com/quartz/qtrend/ui/configuration/qtrend-configuration-ui-beans.xml")
     ),
     UPDATE_TICKERS_TASK(
-            new ClassPathResource("/com/quartz/qtrend/trend-common.xml"),
+            new ClassPathResource("/com/quartz/qtrend/qtrend-common.xml"),
             new ClassPathResource("/com/quartz/qtrend/qtrend-database.xml"),
             new ClassPathResource("/com/quartz/qtrend/qtrend-dao.xml"),
             new ClassPathResource("/com/quartz/qtrend/qtrend-service.xml")
