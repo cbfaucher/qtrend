@@ -13,6 +13,9 @@ Send t Google Graphics
 
 TODO
 ====
+- DELETE TODAY, REUPDATE
+- Remove JGraph --> StockCharts only
+
 
 select 	date, periodsequence, signal, 
 	(select max(date), signal 
