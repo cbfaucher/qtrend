@@ -40,6 +40,8 @@ public class Bootstrap
         jdbcCfg.setLocation(new ClassPathResource("/qtrend.properties"));
         jdbcCfg.postProcessBeanFactory(applicationContext.getBeanFactory());
 
+        applicationContext.refresh();
+
         BeanFactorySingleton.setBeanFactory(applicationContext);
     }
 

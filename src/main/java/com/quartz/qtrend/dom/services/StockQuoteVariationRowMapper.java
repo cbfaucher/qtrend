@@ -12,7 +12,9 @@ import com.quartz.qtrend.dom.exchanges.StockQuoteVariationImpl;
 import com.quartz.qtrend.dom.helpers.Price;
 import com.quartz.qtrend.dom.helpers.Ticker;
 import com.quartz.qutilities.util.DateUtilities;
-import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
+import lombok.RequiredArgsConstructor;
+import lombok.val;
+import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,41 +25,35 @@ import java.sql.SQLException;
  * @author Christian
  * @since Quartz...
  */
-public class StockQuoteVariationRowMapper implements ParameterizedRowMapper<StockQuoteVariation>
-{
+@RequiredArgsConstructor
+public class StockQuoteVariationRowMapper implements RowMapper<StockQuoteVariation> {
     final private Ticker exchange;
     final private Ticker ticker;
 
-    public StockQuoteVariationRowMapper(StockQuote pQuote)
-    {
+    public StockQuoteVariationRowMapper(StockQuote pQuote) {
         this(pQuote.getStockExchange(), pQuote.getTicker());
     }
 
-    public StockQuoteVariationRowMapper(Ticker pExchange, Ticker pTicker)
-    {
-        exchange = pExchange;
-        ticker = pTicker;
-    }
+    public StockQuoteVariation mapRow(ResultSet pRs, int rowNum) throws SQLException {
+        val ticker = (this.ticker != null
+                      ? this.ticker
+                      : new Ticker(pRs.getString("ticker")));
 
-    public StockQuoteVariation mapRow(ResultSet pRs, int rowNum) throws SQLException
-    {
-        final String ticker = (this.ticker != null ? this.ticker.toString() : pRs.getString("ticker"));
-        final StockQuoteVariationImpl variation = new StockQuoteVariationImpl(
-                exchange.toString(),
-                ticker,
-                pRs.getFloat("CLOSEVAR1"),
-                pRs.getFloat("CLOSEVAR3"),
-                pRs.getFloat("CLOSEVAR7"),
-                pRs.getFloat("DIFFSTEMA"),
-                pRs.getFloat("DIFFLTEMA"),
-                pRs.getFloat("DIFFEMA56"),
-                pRs.getFloat("DIFFEMA112"),
-                pRs.getFloat("RSI"),
-                pRs.getString("SIGNAL"));
-        variation.setDate(DateUtilities.toLocalDate(pRs.getDate("DATE")));
-        variation.setClose(new Price(pRs.getFloat("CLOSE")));
-        variation.setVolume(pRs.getLong("VOLUME"));
-
-        return variation;
+        return StockQuoteVariationImpl.builder()
+                                      .stockExchange(exchange)
+                                      .ticker(ticker)
+                                      .closeVariation1day(pRs.getFloat("CLOSEVAR1"))
+                                      .closeVariation3days(pRs.getFloat("CLOSEVAR3"))
+                                      .closeVariation7days(pRs.getFloat("CLOSEVAR7"))
+                                      .diffEma7(pRs.getFloat("DIFFSTEMA"))
+                                      .diffEma28(pRs.getFloat("DIFFLTEMA"))
+                                      .diffEma56(pRs.getFloat("DIFFEMA56"))
+                                      .diffEma112(pRs.getFloat("DIFFEMA112"))
+                                      .rsi(pRs.getFloat("RSI"))
+                                      .langfordSignal(pRs.getString("SIGNAL"))
+                                      .date(DateUtilities.toLocalDate(pRs.getDate("DATE")))
+                                      .close(new Price(pRs.getFloat("CLOSE")))
+                                      .volume(pRs.getLong("VOLUME"))
+                                      .build();
     }
 }

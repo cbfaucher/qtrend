@@ -8,7 +8,8 @@ package com.quartz.qtrend.dom.aroon.services;
 
 import com.quartz.qtrend.dom.aroon.Aroon;
 import com.quartz.qtrend.dom.aroon.IAroonParent;
-import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
+import lombok.RequiredArgsConstructor;
+import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,22 +20,19 @@ import java.sql.SQLException;
  * @author Christian
  * @since Quartz...
  */
-public class LoadAroonRowMapper implements ParameterizedRowMapper<Aroon>
+@RequiredArgsConstructor
+public class LoadAroonRowMapper implements RowMapper<Aroon>
 {
     private final IAroonParent parent;
     private final int period;
 
-    public LoadAroonRowMapper(IAroonParent pParent, int pPeriod)
-    {
-        parent = pParent;
-        period = pPeriod;
-    }
-
     public Aroon mapRow(ResultSet rs, int rowNum) throws SQLException
     {
-        final Aroon aroon = new Aroon(parent, period);
-        aroon.setAroonUp(rs.getFloat("AROONUP"));
-        aroon.setAroonDown(rs.getFloat("AROONDOWN"));
-        return aroon;
+        return Aroon.builder()
+                    .parent(parent)
+                    .period(period)
+                    .aroonUp(rs.getFloat("AROONUP"))
+                    .aroonDown(rs.getFloat("AROONDOWN"))
+                    .build();
     }
 }

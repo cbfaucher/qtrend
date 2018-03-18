@@ -9,7 +9,11 @@ package com.quartz.qtrend.dom;
 import com.quartz.qtrend.dom.aroon.Aroon;
 import com.quartz.qtrend.dom.exchanges.StockQuoteVariation;
 import com.quartz.qtrend.dom.helpers.Price;
+import com.quartz.qtrend.dom.helpers.Ticker;
 import com.quartz.qtrend.dom.langford.LangfordData;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import org.joda.time.LocalDate;
 
 import java.sql.Time;
 import java.util.List;
@@ -20,18 +24,10 @@ import java.util.List;
  * @author Christian
  * @since Quartz...
  */
+@NoArgsConstructor
 public class StockQuoteImpl extends AbstractStockQuoteImpl implements StockQuote
 {
-    ///////////////////////////////////////
-    ////    STATIC ATTRIBUTES
-
-    ///////////////////////////////////////
-    ////    STATIC METHODS
-
-    ///////////////////////////////////////
-    ////    INSTANCE ATTRIBUTES
-
-    private long      pk = -1l;     //key below zero means not saved.
+    private long      pk = -1L;     //key below zero means not saved.
     private int       periodSequence;
 
     private Time      time;
@@ -55,16 +51,26 @@ public class StockQuoteImpl extends AbstractStockQuoteImpl implements StockQuote
     private Aroon aroonShortTerm = null;
     private Aroon aroonLongTerm = null;
 
-    ///////////////////////////////////////
-    ////    CONSTRUCTORS
-
-    public StockQuoteImpl()
-    {
-        super();
+    @Builder(toBuilder = true)
+    private StockQuoteImpl(Ticker stockExchange, Ticker ticker, String tickerName, LocalDate date, Price close, Price mininumClose, Price maximumClose, long volume, long averageVolume, int tickerCount, long pk, int periodSequence, Time time, Price open, Price low, Price high, float priceDifference, StockQuoteNavigator stockQuoteNavigator, LangfordData langfordData, StockQuoteVariation variation, StockQuote previousStockQuote, List<StockQuote> previousStocksIncludingMe, Aroon aroonShortTerm, Aroon aroonLongTerm) {
+        super(stockExchange, ticker, tickerName, date, close, mininumClose, maximumClose, volume, averageVolume, tickerCount);
+        this.pk = pk;
+        this.periodSequence = periodSequence;
+        this.time = time;
+        this.volume = volume;
+        this.averageVolume = averageVolume;
+        this.open = open;
+        this.low = low;
+        this.high = high;
+        this.priceDifference = priceDifference;
+        this.stockQuoteNavigator = stockQuoteNavigator;
+        this.langfordData = langfordData;
+        this.variation = variation;
+        this.previousStockQuote = previousStockQuote;
+        this.previousStocksIncludingMe = previousStocksIncludingMe;
+        this.aroonShortTerm = aroonShortTerm;
+        this.aroonLongTerm = aroonLongTerm;
     }
-
-    ///////////////////////////////////////
-    ////    INSTANCE METHODS
 
     public Aroon getAroonShortTerm() throws StockException
     {

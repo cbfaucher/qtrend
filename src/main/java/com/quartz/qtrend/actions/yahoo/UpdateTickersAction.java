@@ -16,6 +16,11 @@ import com.quartz.qutilities.logging.LogManager;
 import com.quartz.qutilities.swing.events.JFrameAware;
 import com.quartz.qutilities.swing.events.QEventHandler;
 import com.quartz.qutilities.swing.events.QEventManager;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.extern.log4j.Log4j;
+import lombok.val;
 import org.springframework.beans.factory.InitializingBean;
 
 import java.util.EventObject;
@@ -26,39 +31,20 @@ import java.util.EventObject;
  * @author Christian
  * @since Quartz...
  */
+@RequiredArgsConstructor
+@Log4j
 public class UpdateTickersAction implements QEventHandler, JFrameAware<QTrendFrame>, InitializingBean
 {
     static private final ILog LOG = LogManager.getLogger(UpdateTickersAction.class);
 
-    private YahooService    yahooService;
-    private QTrendFrame     frame;
-    private JobRunner       jobRunner;
-
-    public UpdateTickersAction()
-    {
-    }
-
-    ///////////////////////////////////////
-    ////    INSTANCE METHODS
+    //  TODO: use @RequiredArgsConstructor
+    @Setter private YahooService    yahooService;
+    @Setter private QTrendFrame     frame;
+    @Setter private JobRunner       jobRunner;
 
     public void afterPropertiesSet() throws Exception
     {
         if (yahooService == null) throw new IllegalStateException("YahooService not set.");
-    }
-
-    public void setYahooService(YahooService pYahooService)
-    {
-        yahooService = pYahooService;
-    }
-
-    public void setFrame(QTrendFrame pFrame)
-    {
-        frame = pFrame;
-    }
-
-    public void setJobRunner(JobRunner pJobRunner)
-    {
-        jobRunner = pJobRunner;
     }
 
     public void handleEvent(QEventManager pEventManager, EventObject pEvent, String pCommand)
@@ -68,18 +54,12 @@ public class UpdateTickersAction implements QEventHandler, JFrameAware<QTrendFra
         jobRunner.runJob(new UpdateJob());
     }
 
-
-    ///////////////////////////////////////
-    ////    INNER CLASSES
+    @NoArgsConstructor
     private class UpdateJob extends DefaultJob
     {
-        public UpdateJob()
-        {
-        }
-
         public Object runJob() throws Exception
         {
-            final Output output = frame.getOutput();
+            val output = frame.getOutput();
 
             yahooService.updateTickers(output);
 

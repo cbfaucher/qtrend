@@ -13,8 +13,9 @@ Send t Google Graphics
 
 TODO 2018
 =========
+- Update Spring
+- Use SpringBoot instead of Bootstrap
 - DELETE TODAY, REUPDATE
-- Remove JGraph --> StockCharts only
 - Find and remove duplicate dates, recalculate
     SELECT TICKER, "date", COUNT(*) AS NB
     FROM STOCKQUOTES
@@ -22,6 +23,16 @@ TODO 2018
     HAVING COUNT(*) > 1
     ORDER BY TICKER, "date"
     ;
+- Use @RequiredArgsConstructor
+    com.quartz.qtrend.actions.yahoo.UpdateTickersAction
+    com.quartz.qtrend.dom.yahoo.YahooService
+- Replace QUtilities Logging by Log4J/Slf4j
+- Replace JobRunner by Executors
+- Get SQLs out of code
+- Get rid of JODA Time
+- SHow Alerts:
+    - Show only when 'SIGN' column is NOT empty and
+    - Group by date
 
 
 

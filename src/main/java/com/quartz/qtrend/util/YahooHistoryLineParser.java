@@ -7,10 +7,12 @@
 package com.quartz.qtrend.util;
 
 import com.quartz.qtrend.dom.StockException;
+import com.quartz.qtrend.dom.StockQuoteImpl;
 import com.quartz.qtrend.dom.helpers.Price;
 import com.quartz.qtrend.dom.helpers.Ticker;
 import com.quartz.qtrend.dom.services.StockQuoteService;
 import com.quartz.qutilities.util.DateUtilities;
+import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.joda.time.LocalDate;
 
@@ -22,12 +24,12 @@ import java.util.StringTokenizer;
 /**
  * The line parser for Yahoo's CSV format.
  */
-public class YahooHistoryLineParser implements LineParser
-{
+@RequiredArgsConstructor
+public class YahooHistoryLineParser implements LineParser {
 
     static final private Map<String, Integer> MONTH_TO_NUMBER = new HashMap<>();
-    static
-    {
+
+    static {
         YahooHistoryLineParser.MONTH_TO_NUMBER.put("jan", 1);
         YahooHistoryLineParser.MONTH_TO_NUMBER.put("feb", 2);
         YahooHistoryLineParser.MONTH_TO_NUMBER.put("mar", 3);
@@ -43,56 +45,37 @@ public class YahooHistoryLineParser implements LineParser
     }
 
     final private StockQuoteService stockQuoteService;
+    final private List quotes;
     final private Ticker exchange;
     final private Ticker ticker;
-    final private List quotes;
     final private LocalDate oldestDate;
 
-    public YahooHistoryLineParser(StockQuoteService pStockQuoteService, List pQuotes, Ticker pExchange, Ticker pTicker, LocalDate pOldestDate)
-    {
-        stockQuoteService = pStockQuoteService;
-        quotes = pQuotes;
-        exchange = pExchange;
-        ticker = pTicker;
-        oldestDate = pOldestDate;
-    }
-
-    public void parseLine(String pLine) throws LineParserException
-    {
+    public void parseLine(String pLine) throws LineParserException {
         final StringTokenizer tokenizer = new StringTokenizer(pLine, ",;");
 
 //            final Date date = parseDate(tokenizer.nextToken());
         final String rawDate = tokenizer.nextToken();
 
         final LocalDate date = DateUtilities.toLocalDate(rawDate);
-        if (oldestDate.compareTo(date) < 0)
-        {
-            val stockQuote = stockQuoteService.createNewStockQuote();
-            stockQuote.setStockExchange(exchange);
-            stockQuote.setTicker(ticker);
-            stockQuote.setDate(date);
-
-            final Price open = new Price(tokenizer.nextToken());
-            final Price high = new Price(tokenizer.nextToken());
-            final Price low = new Price(tokenizer.nextToken());
-            final Price close = new Price(tokenizer.nextToken());
-
-            stockQuote.setOpen(open);
-            stockQuote.setHigh(high);
-            stockQuote.setLow(low);
-            stockQuote.setClose(close);
+        if (oldestDate.compareTo(date) < 0) {
+            val stockQuoteBuilder = StockQuoteImpl.builder()
+                                                  .stockExchange(exchange)
+                                                  .ticker(ticker)
+                                                  .date(date)
+                                                  .open(new Price(tokenizer.nextToken()))
+                                                  .high(new Price(tokenizer.nextToken()))
+                                                  .low(new Price(tokenizer.nextToken()))
+                                                  .close(new Price(tokenizer.nextToken()));
 
             tokenizer.nextToken();
 
-            final long volume = Long.parseLong(tokenizer.nextToken());
-            stockQuote.setVolume(volume);
+            stockQuoteBuilder.volume(Long.parseLong(tokenizer.nextToken()));
 
-            try
-            {
+            val stockQuote = stockQuoteBuilder.build();
+
+            try {
                 stockQuoteService.recalculate(stockQuote);
-            }
-            catch (StockException e)
-            {
+            } catch (StockException e) {
                 throw new LineParserException(e);
             }
 

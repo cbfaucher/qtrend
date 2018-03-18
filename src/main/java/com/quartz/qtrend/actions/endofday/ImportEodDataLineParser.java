@@ -10,7 +10,7 @@ import com.quartz.qtrend.QTrendBeanNames;
 import com.quartz.qtrend.UnknownExchangeException;
 import com.quartz.qtrend.dom.BasicStockInfo;
 import com.quartz.qtrend.dom.StockException;
-import com.quartz.qtrend.dom.StockQuote;
+import com.quartz.qtrend.dom.StockQuoteImpl;
 import com.quartz.qtrend.dom.helpers.Price;
 import com.quartz.qtrend.dom.helpers.Ticker;
 import com.quartz.qtrend.dom.services.StockQuoteService;
@@ -21,6 +21,8 @@ import com.quartz.qtrend.util.LineParserException;
 import com.quartz.qtrend.util.Progress;
 import com.quartz.qutilities.logging.ILog;
 import com.quartz.qutilities.logging.LogManager;
+import lombok.Getter;
+import lombok.val;
 import org.joda.time.LocalDate;
 
 import java.util.List;
@@ -34,22 +36,22 @@ import java.util.TreeSet;
  * @author Christian
  * @since Quartz...
  */
-class ImportEodDataLineParser implements LineParser
-{
+class ImportEodDataLineParser implements LineParser {
     static private final ILog LOG = LogManager.getLogger(ImportEodDataLineParser.class);
 
     final private StockQuoteService stockQuoteService;
-    final private List      quotes;
-    final private Ticker    exchange;
-    final private Progress  progress;
+    final private List quotes;
+    final private Ticker exchange;
+    final private Progress progress;
 
     final private IExchangeRule exchangeRules;
 
-    final private Set<BasicStockInfo>   tickersUpdated = new TreeSet<BasicStockInfo>();
-    final private Set<BasicStockInfo>   tickersIgnored = new TreeSet<BasicStockInfo>();
+    @Getter
+    final private Set<BasicStockInfo> tickersUpdated = new TreeSet<>();
+    @Getter
+    final private Set<BasicStockInfo> tickersIgnored = new TreeSet<>();
 
-    ImportEodDataLineParser(StockQuoteService pStockQuoteService, Ticker pExchange, List pQuotes, Progress pProgress) throws UnknownExchangeException
-    {
+    ImportEodDataLineParser(StockQuoteService pStockQuoteService, Ticker pExchange, List pQuotes, Progress pProgress) throws UnknownExchangeException {
         stockQuoteService = pStockQuoteService;
         quotes = pQuotes;
         exchange = pExchange;
@@ -59,82 +61,62 @@ class ImportEodDataLineParser implements LineParser
         exchangeRules = ruleManager.getExchangeRule(exchange);
     }
 
-    public Set<BasicStockInfo> getTickersUpdated()
-    {
-        return tickersUpdated;
-    }
+    public void parseLine(String pLine) throws LineParserException {
+        val tokenizer = new StringTokenizer(pLine, ",");
 
-    public Set<BasicStockInfo> getTickersIgnored()
-    {
-        return tickersIgnored;
-    }
-
-    public void parseLine(String pLine) throws LineParserException
-    {
-        final StringTokenizer tokenizer = new StringTokenizer(pLine, ",");
-
-        final Ticker ticker = new Ticker(tokenizer.nextToken().trim());    //ticker
+        val ticker = new Ticker(tokenizer.nextToken().trim());    //ticker
         tokenizer.nextToken();                          //period type
 
-        final LocalDate date = parseDate(tokenizer.nextToken().trim());
-        final Price open = new Price(tokenizer.nextToken().trim());
-        final Price high = new Price(tokenizer.nextToken().trim());
-        final Price low = new Price(tokenizer.nextToken().trim());
-        final Price close = new Price(tokenizer.nextToken().trim());
-        final long volume = Long.parseLong(tokenizer.nextToken().trim());
+        val date = parseDate(tokenizer.nextToken().trim());
+        val open = new Price(tokenizer.nextToken().trim());
+        val high = new Price(tokenizer.nextToken().trim());
+        val low = new Price(tokenizer.nextToken().trim());
+        val close = new Price(tokenizer.nextToken().trim());
+        val volume = Long.parseLong(tokenizer.nextToken().trim());
 
-        try
-        {
-            final String tickerName = stockQuoteService.getTickerName(ticker);
+        try {
+            val tickerName = stockQuoteService.getTickerName(ticker);
 
-            final BasicStockInfo stockBasicInfo = new BasicStockInfo(exchange, ticker, tickerName, close, volume);
+            val stockBasicInfo = new BasicStockInfo(exchange, ticker, tickerName, close, volume);
 
-            try
-            {
-                final StockQuote stock = stockQuoteService.createNewStockQuote();
-                stock.setStockExchange(exchange);
-                stock.setTicker(ticker);
-                stock.setDate(date);
-                stock.setOpen(open);
-                stock.setHigh(high);
-                stock.setLow(low);
-                stock.setClose(close);
-                stock.setVolume(volume);
+            try {
+                val stock = StockQuoteImpl.builder()
+                                          .stockExchange(exchange)
+                                          .ticker(ticker)
+                                          .date(date)
+                                          .open(open)
+                                          .high(high)
+                                          .low(low)
+                                          .close(close)
+                                          .volume(volume)
+                                          .build();
 
                 stockQuoteService.recalculate(stock);
 
-                if (exchangeRules.accept(stock))
-                {
+                if (exchangeRules.accept(stock)) {
                     quotes.add(stock);
 
                     tickersUpdated.add(stockBasicInfo);
 
                     progress.setText(ticker + "(" + tickerName + ") updated...");
-                }
-                else
-                {
+                } else {
                     tickersIgnored.add(stockBasicInfo);
 
                     progress.setText(ticker + "(" + tickerName + ") ignored...");
                 }
-            }
-            finally
-            {
+            } finally {
                 progress.increment();
             }
-        }
-        catch (StockException e)
-        {
+        } catch (StockException e) {
             LOG.error("Could not add Ticker '" + ticker + "'", e);
         }
     }
 
-    private LocalDate parseDate(String s)
-    {
+    private LocalDate parseDate(String s) {
         //  20060327
-        final int year = Integer.parseInt(s.substring(0, 4));
-        final int month = Integer.parseInt(s.substring(4, 6));
-        final int day = Integer.parseInt(s.substring(6, 8));
+        val year = Integer.parseInt(s.substring(0, 4));
+        val month = Integer.parseInt(s.substring(4, 6));
+        val day = Integer.parseInt(s.substring(6, 8));
 
         //  todo: check date creation!
         return new LocalDate(year, month, day);

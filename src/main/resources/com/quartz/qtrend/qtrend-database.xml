@@ -8,55 +8,50 @@
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 
-    <bean id="QTrend.DataSource" class="org.apache.commons.dbcp.BasicDataSource"  destroy-method="close" >
+    <bean id="QTrend.DataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="${jdbc.driver}"/>
         <property name="url" value="${jdbc.url}"/>
         <property name="username" value="${jdbc.user}"/>
         <property name="password" value="${jdbc.password}"/>
 
-        <property name="maxActive"  value="15"/>
-        <property name="maxIdle"  value="10"/>
-        <property name="minIdle"  value="5"/>
+        <property name="maxActive" value="15"/>
+        <property name="maxIdle" value="10"/>
+        <property name="minIdle" value="5"/>
     </bean>
 
-      <!-- enable the configuration of transactional behavior based on annotations -->
-<!--    <tx:annotation-driven transaction-manager="QTrend.TxnManager"/>-->
+    <!-- enable the configuration of transactional behavior based on annotations -->
+    <!--    <tx:annotation-driven transaction-manager="QTrend.TxnManager"/>-->
 
-    <bean   id="QTrend.TxnManager"
-            class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
-            lazy-init="false" >
+    <bean id="QTrend.TxnManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+          lazy-init="false">
         <property name="dataSource" ref="QTrend.DataSource"/>
     </bean>
 
-    <bean   name="QTrend.JdbcTemplate"
-            class="org.springframework.jdbc.core.simple.SimpleJdbcTemplate">
-        <constructor-arg>
-            <bean class="org.springframework.jdbc.core.JdbcTemplate">
-                <property name="dataSource" ref="QTrend.DataSource"/>
-            </bean>
-        </constructor-arg>
+    <bean name="QTrend.JdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="QTrend.DataSource"/>
     </bean>
 
-    <bean   name="QTrend.TransactionTemplate"
-            class="com.quartz.qutilities.spring.transactions.QTransactionTemplate">
+    <bean name="QTrend.TransactionTemplate"
+          class="com.quartz.qutilities.spring.transactions.QTransactionTemplate">
         <constructor-arg ref="QTrend.TxnManager"/>
     </bean>
 
-<!--
-    <tx:advice id="QTrend.TxnAdvice" transaction-manager="QTrend.TxnManager">
+    <!--
+        <tx:advice id="QTrend.TxnAdvice" transaction-manager="QTrend.TxnManager">
 
-        <tx:attributes>
-          <tx:method name="*"/>
-        </tx:attributes>
-    </tx:advice>
--->
+            <tx:attributes>
+              <tx:method name="*"/>
+            </tx:attributes>
+        </tx:advice>
+    -->
 
-  <!-- ensure that the above transactional advice runs for any execution
-      of an operation defined by the FooService interface -->
-<!--
-    <aop:config>
-        <aop:pointcut id="ServiceOperation" expression="execution(* com.quartz.qtrend.dom.watchlists.WatchListService.*(..))"/>
-        <aop:advisor advice-ref="QTrend.TxnAdvice" pointcut-ref="ServiceOperation"/>
-    </aop:config>
--->
+    <!-- ensure that the above transactional advice runs for any execution
+        of an operation defined by the FooService interface -->
+    <!--
+        <aop:config>
+            <aop:pointcut id="ServiceOperation" expression="execution(* com.quartz.qtrend.dom.watchlists.WatchListService.*(..))"/>
+            <aop:advisor advice-ref="QTrend.TxnAdvice" pointcut-ref="ServiceOperation"/>
+        </aop:config>
+    -->
 </beans>

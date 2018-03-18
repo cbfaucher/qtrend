@@ -49,12 +49,11 @@
 
     <!-- Service for StockQuoteList -->
     <bean   id="QTrend.StockQuoteListService"
-            class="com.quartz.qtrend.dom.services.StockQuoteListService"
-            >
-        <property name="stockQuoteService" ref="QTrend.StockQuoteService"/>
-        <property name="jdbcTemplate" ref="QTrend.JdbcTemplate"/>
-        <property name="properties" ref="QTrendProperties"/>
-        <property name="watchListService" ref="QTrend.WatchListsService"/>        
+            class="com.quartz.qtrend.dom.services.StockQuoteListService">
+        <constructor-arg ref="QTrend.StockQuoteService"/>
+        <constructor-arg ref="QTrend.JdbcTemplate"/>
+        <constructor-arg ref="QTrendProperties"/>
+        <constructor-arg ref="QTrend.WatchListsService"/>
     </bean>
 
     <bean   id="QTrend.YahooService"

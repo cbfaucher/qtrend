@@ -6,7 +6,8 @@
  */
 package com.quartz.qtrend.dom.watchlists;
 
-import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
+import lombok.RequiredArgsConstructor;
+import org.springframework.jdbc.core.RowMapper;
 import org.apache.commons.lang.StringUtils;
 
 import java.sql.ResultSet;
@@ -18,7 +19,8 @@ import java.sql.SQLException;
  * @author Christian
  * @since Quartz...
  */
-public class StringRowMapper implements ParameterizedRowMapper<String>
+@RequiredArgsConstructor
+public class StringRowMapper implements RowMapper<String>
 {
     final private String columnName;
     final private String valueIfNull;
@@ -26,12 +28,6 @@ public class StringRowMapper implements ParameterizedRowMapper<String>
     public StringRowMapper(String pColumnName)
     {
         this(pColumnName, null);
-    }
-
-    public StringRowMapper(String pColumnName, String pValueIfNull)
-    {
-        columnName = pColumnName;
-        valueIfNull = pValueIfNull;
     }
 
     public String mapRow(ResultSet rs, int rowNum) throws SQLException

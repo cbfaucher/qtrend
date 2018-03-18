@@ -13,10 +13,13 @@ import com.quartz.qtrend.dom.helpers.MACD;
 import com.quartz.qtrend.dom.helpers.RSI;
 import com.quartz.qtrend.dom.langford.LangfordData;
 import com.quartz.qtrend.dom.langford.LangfordDataImpl;
-import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
+import lombok.RequiredArgsConstructor;
+import lombok.val;
+import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 
 /**
  * INSERT YOUR COMMENT HERE....
@@ -24,33 +27,32 @@ import java.sql.SQLException;
  * @author Christian
  * @since Quartz...
  */
-public class LangfordDataRowMapper implements ParameterizedRowMapper<LangfordData>
-{
+@RequiredArgsConstructor
+public class LangfordDataRowMapper implements RowMapper<LangfordData> {
     private final StockQuote quote;
 
-    public LangfordDataRowMapper(StockQuote pQuote)
-    {
-        quote = pQuote;
-    }
-
-    public LangfordData mapRow(ResultSet rs, int rowNum) throws SQLException
-    {
-        final LangfordDataImpl langfordData = new LangfordDataImpl(quote);
-        langfordData.setRsi(new RSI(rs.getFloat("RSI")));
-        langfordData.setShortTermEma(new EMA(rs.getFloat("STEMA")));
-        langfordData.setLongTermEma(new EMA(rs.getFloat("LTEMA")));
-        langfordData.setEma56(new EMA(rs.getFloat("EMA56")));
-        langfordData.setEma112(new EMA(rs.getFloat("EMA112")));
-        langfordData.setMacd(new MACD(
-                rs.getFloat("MACD"),
-                rs.getFloat("EMADIFFERENCE"),
-                rs.getFloat("MACDSTEMA"),
-                rs.getFloat("MACDLTEMA") ));
-        final String variation = rs.getString("VARIATION");
-        langfordData.setVariation(variation != null ? variation.toString() : null);
-        final String signal = rs.getString("SIGNAL");
-        langfordData.setSignal(Signal.fromCode(signal != null ? signal.trim() : null));
-        langfordData.setIncomingSignal(rs.getFloat("NEXTSIGNAL"));
+    public LangfordData mapRow(ResultSet rs, int rowNum) throws SQLException {
+        val langfordData = LangfordDataImpl.builder()
+                                           .stockQuote(quote)
+                                           .rsi(new RSI(rs.getFloat("RSI")))
+                                           .shortTermEma(new EMA(rs.getFloat("STEMA")))
+                                           .longTermEma(new EMA(rs.getFloat("LTEMA")))
+                                           .ema56(new EMA(rs.getFloat("EMA56")))
+                                           .ema112(new EMA(rs.getFloat("EMA112")))
+                                           .macd(new MACD(
+                                                   rs.getFloat("MACD"),
+                                                   rs.getFloat("EMADIFFERENCE"),
+                                                   rs.getFloat("MACDSTEMA"),
+                                                   rs.getFloat("MACDLTEMA")))
+                                           .variation(Optional.ofNullable(rs.getString("VARIATION"))
+                                                              .map(String::toString)
+                                                              .orElse(null))
+                                           .signal(Optional.ofNullable(rs.getString("SIGNAL"))
+                                                           .map(String::trim)
+                                                           .map(Signal::fromCode)
+                                                           .orElse(null))
+                                           .incomingSignal(rs.getFloat("NEXTSIGNAL"))
+                                           .build();
 
         quote.setLangfordData(langfordData);
 
