@@ -8,6 +8,8 @@ package com.quartz.qtrend;
 
 import com.quartz.qtrend.ui.QTrendFrame;
 import com.quartz.qutilities.logging.LogManager;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 /**
  * Entry point to QTrend.
@@ -15,14 +17,9 @@ import com.quartz.qutilities.logging.LogManager;
  * @author Christian
  * @since Quartz...
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Main
 {
-    ///////////////////////////////////////
-    ////    STATIC ATTRIBUTES
-
-    ///////////////////////////////////////
-    ////    STATIC METHODS
-
     /**
      * Entry point
      */
@@ -38,20 +35,4 @@ public class Main
 
         frame.setVisible(true);
     }
-
-    ///////////////////////////////////////
-    ////    INSTANCE ATTRIBUTES
-
-    ///////////////////////////////////////
-    ////    CONSTRUCTORS
-
-    private Main()
-    {
-    }
-
-    ///////////////////////////////////////
-    ////    INSTANCE METHODS
-
-    ///////////////////////////////////////
-    ////    INNER CLASSES
 }
