@@ -6,28 +6,30 @@
  */
 package com.quartz.qtrend.dom.yahoo;
 
+import com.quartz.qtrend.actions.helpers.YahooTickerQuoteReader;
+import com.quartz.qtrend.dom.StockException;
+import com.quartz.qtrend.dom.StockQuote;
+import com.quartz.qtrend.dom.StockQuoteList;
 import com.quartz.qtrend.dom.services.StockQuoteListService;
 import com.quartz.qtrend.dom.services.StockQuoteService;
-import com.quartz.qtrend.dom.helpers.Ticker;
-import com.quartz.qtrend.dom.StockQuoteList;
-import com.quartz.qtrend.dom.StockQuote;
-import com.quartz.qtrend.dom.StockException;
-import com.quartz.qutilities.util.Output;
 import com.quartz.qtrend.util.ImporterException;
 import com.quartz.qtrend.util.YahooHistoryLineParser;
-import com.quartz.qtrend.actions.helpers.YahooTickerQuoteReader;
+import com.quartz.qutilities.io.FileUtilities;
 import com.quartz.qutilities.logging.ILog;
 import com.quartz.qutilities.logging.LogManager;
-import com.quartz.qutilities.io.FileUtilities;
+import com.quartz.qutilities.util.Output;
 import com.quartz.qutilities.util.QProperties;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.val;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.InitializingBean;
 
-import java.util.*;
-import java.io.IOException;
 import java.io.File;
+import java.io.IOException;
+import java.util.Collection;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 /**
  * INSERT YOUR COMMENT HERE....
@@ -36,48 +38,47 @@ import java.io.File;
  * @since Quartz...
  */
 @NoArgsConstructor
-public class YahooService implements InitializingBean
-{
+public class YahooService implements InitializingBean {
     static private final ILog LOG = LogManager.getLogger(YahooService.class);
 
-    @Setter private StockQuoteListService stockQuotesService;
-    @Setter private StockQuoteService       stockQuoteService;
-    @Setter private QProperties     properties;
+    //  TODO: use @RequiredArgsConstructor
+    @Setter
+    private StockQuoteListService stockQuotesService;
+    @Setter
+    private StockQuoteService stockQuoteService;
+    @Setter
+    private QProperties properties;
 
-    public void afterPropertiesSet() throws Exception
-    {
+    public void afterPropertiesSet() throws Exception {
         if (stockQuotesService == null) throw new IllegalStateException("StockQuoteListService not set.");
         if (stockQuoteService == null) throw new IllegalStateException("StockQuoteService not set.");
     }
 
-    public void updateTickers(final Output pOutput) throws StockException, IOException, ImporterException
-    {
+    public void updateTickers(final Output pOutput) throws StockException, IOException, ImporterException {
         //  get current status of tickers
         pOutput.writeln("Loading tickers' Update information");
 
-        final Map<Ticker, UpdateInformation> updateInformations = stockQuotesService.getUpdateInformation();
+        val updateInformations = stockQuotesService.getUpdateInformation();
 
         //  read unsorted tickers from Yahoo!
         pOutput.writeln("Uploading update information from Yahoo!...");
-        final StockQuoteList unsortedQuotes = loadTickerUpdatesFromYahoo(updateInformations.values(), pOutput);
+        val unsortedQuotes = loadTickerUpdatesFromYahoo(updateInformations.values(), pOutput);
 
         //  sort tickers by dates
         pOutput.writeln("Sorting...");
-        final SortedMap<LocalDate, StockQuoteList> quotesByDate = sortQuotesByDate(unsortedQuotes);
+        val quotesByDate = sortQuotesByDate(unsortedQuotes);
 
         //  saveQuoteOnly and recalculate
         pOutput.writeln("Saving updates...");
-        for (LocalDate key : quotesByDate.keySet())
-        {
+        for (val key : quotesByDate.keySet()) {
             pOutput.writeln("\n" + key.toString());
 
-            final StockQuoteList quotes = quotesByDate.get(key);
+            val quotes = quotesByDate.get(key);
 
             //  recalculate all quotes
-            for (StockQuote sq : quotes)
-            {
+            for (val sq : quotes) {
                 LOG.debug("--> " + key.toString() + ": " + sq.getTicker());
-                final UpdateInformation ui = updateInformations.get(sq.getTicker());
+                val ui = updateInformations.get(sq.getTicker());
                 pOutput.writeln("- " + sq.getTicker().toString());
                 sq.setPeriodSequence(ui.getLastPeriodSequence() + 1);
                 ui.stepLastPeriodSequence();
@@ -90,80 +91,63 @@ public class YahooService implements InitializingBean
     }
 
     private StockQuoteList loadTickerUpdatesFromYahoo(final Collection<UpdateInformation> pUpdateInformations, final Output pOutput)
-            throws ImporterException, IOException
-    {
-        final StockQuoteList unsortedQuotes = new StockQuoteList();
-        final YahooTickerQuoteReader reader = new YahooTickerQuoteReader(properties);
+            throws ImporterException, IOException {
+        val unsortedQuotes = new StockQuoteList();
+        val reader = new YahooTickerQuoteReader(properties);
 
-        final LocalDate endDate = new LocalDate();
+        val endDate = new LocalDate();
 
-        for (UpdateInformation ui : pUpdateInformations)
-        {
-            final LocalDate lastImportDate = ui.getLastImportDate();
+        for (val ui : pUpdateInformations) {
+            val lastImportDate = ui.getLastImportDate();
             LocalDate startDate = null;
 
-            if (lastImportDate.compareTo(endDate) == 0)
-            {
+            if (lastImportDate.equals(endDate)) {
                 pOutput.writeln(ui.getTicker() + " is already up-to-date (" + endDate + ")!");
 
                 //  delete today's quote, so we can update it.
                 stockQuoteService.deleteQuote(ui.getTicker(), endDate);
 
                 startDate = lastImportDate;
-            }
-            else
-            {
+            } else {
                 startDate = lastImportDate.plusDays(1);
             }
 
-            final YahooHistoryLineParser lineParser = new YahooHistoryLineParser(stockQuoteService,
-                                                                                 unsortedQuotes,
-                                                                                 ui.getExchange(),
-                                                                                 ui.getTicker(),
-                                                                                 lastImportDate);
+            val lineParser = new YahooHistoryLineParser(stockQuoteService,
+                                                        unsortedQuotes,
+                                                        ui.getExchange(),
+                                                        ui.getTicker(),
+                                                        lastImportDate);
 
             //  check for override file (for test only)
-            final String overrideFile = System.getProperty("yahoo.update.override.file");
+            val overrideFile = System.getProperty("yahoo.update.override.file");
 
-            if (overrideFile == null)
-            {
-                try
-                {
+            if (overrideFile == null) {
+                try {
                     reader.read(ui.getTicker(), startDate, endDate, lineParser);
-                }
-                catch (ImporterException e)
-                {
-                    if (e.getCause() instanceof IOException)
-                    {
+                } catch (ImporterException e) {
+                    if (e.getCause() instanceof IOException) {
                         LOG.warn("Could not update ticker: " + ui.getTicker(), e);
                         pOutput.writeln("WARNING: Could not update " + ui.getTicker() + "!  Reason=" + e.getCause().getMessage());
                         continue;
-                    }
-                    else
-                    {
+                    } else {
                         throw e;
                     }
                 }
-            }
-            else
-            {
-                final File content = new File(overrideFile);
-                final List<String> lines = FileUtilities.loadFile(content);
-                for (String l : lines) lineParser.parseLine(l);
+            } else {
+                val content = new File(overrideFile);
+                val lines = FileUtilities.loadFile(content);
+                for (val l : lines) lineParser.parseLine(l);
             }
         }
 
         return unsortedQuotes;
     }
 
-    private SortedMap<LocalDate, StockQuoteList> sortQuotesByDate(final StockQuoteList pUnsortedQuotes)
-    {
+    private SortedMap<LocalDate, StockQuoteList> sortQuotesByDate(final StockQuoteList pUnsortedQuotes) {
         final SortedMap<LocalDate, StockQuoteList> quotesByDate = new TreeMap<LocalDate, StockQuoteList>();
-        for (StockQuote sq : pUnsortedQuotes)
-        {
+        for (StockQuote sq : pUnsortedQuotes) {
             StockQuoteList dateQuotes = quotesByDate.get(sq.getDate());
-            if (dateQuotes == null)
-            {
+            if (dateQuotes == null) {
                 dateQuotes = new StockQuoteList();
                 quotesByDate.put(sq.getDate(), dateQuotes);
             }
