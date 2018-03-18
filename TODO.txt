@@ -28,6 +28,11 @@ TODO 2018
     com.quartz.qtrend.dom.yahoo.YahooService
 - Replace QUtilities Logging by Log4J/Slf4j
 - Replace JobRunner by Executors
+- Get SQLs out of code
+- Get rid of JODA Time
+- SHow Alerts:
+    - Show only when 'SIGN' column is NOT empty and
+    - Group by date
 
 
 

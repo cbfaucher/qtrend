@@ -11,7 +11,9 @@ import com.quartz.qtrend.dom.aroon.services.LoadAroonRowMapper;
 import com.quartz.qtrend.dom.dao.StockQuoteLoadContext;
 import com.quartz.qtrend.dom.exchanges.StockQuoteVariation;
 import com.quartz.qtrend.dom.langford.services.LangfordDataRowMapper;
-import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
+import lombok.RequiredArgsConstructor;
+import lombok.val;
+import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,20 +24,15 @@ import java.sql.SQLException;
  * @author Christian
  * @since Quartz...
  */
-public class LoadFullQuoteRowMapper implements ParameterizedRowMapper<StockQuote>
+@RequiredArgsConstructor
+public class LoadFullQuoteRowMapper implements RowMapper<StockQuote>
 {
     final private StockQuoteLoadContext loadContext;
-
-
-    public LoadFullQuoteRowMapper(StockQuoteLoadContext pContext)
-    {
-        loadContext = pContext;
-    }
 
     public StockQuote mapRow(ResultSet rs, int rowNum) throws SQLException
     {
 //        final StockQuote quote = stockQuoteDao.loadStockQuoteOnly(pResultSet, pContext);
-        final StockQuote quote = new LoadStockQuoteOnlyRowMapper().mapRow(rs, rowNum);
+        val quote = new LoadStockQuoteOnlyRowMapper().mapRow(rs, rowNum);
 
         if (loadContext != null)
         {

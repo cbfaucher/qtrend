@@ -7,7 +7,8 @@
 package com.quartz.qtrend.dom.services;
 
 import com.quartz.qtrend.dom.helpers.Ticker;
-import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
+import lombok.RequiredArgsConstructor;
+import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,21 +19,17 @@ import java.sql.SQLException;
  * @author Christian
  * @since Quartz...
  */
-public class TickerOnlyRowMapper implements ParameterizedRowMapper<Ticker>
+@RequiredArgsConstructor
+public class TickerOnlyRowMapper implements RowMapper<Ticker>
 {
     final private String columnName;
 
     /**
      * Ctor, with column name 'ticker'
      */
-    public TickerOnlyRowMapper()
+    TickerOnlyRowMapper()
     {
         this("ticker");
-    }
-
-    public TickerOnlyRowMapper(final String pColumnName)
-    {
-        columnName = pColumnName;
     }
 
     public Ticker mapRow(ResultSet rs, int rowNum) throws SQLException

@@ -8,7 +8,9 @@ package com.quartz.qtrend.dom.services;
 
 import com.quartz.qtrend.dom.FullTickerName;
 import com.quartz.qtrend.dom.helpers.Ticker;
-import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
+import lombok.NoArgsConstructor;
+import lombok.val;
+import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,17 +21,14 @@ import java.sql.SQLException;
  * @author Christian
  * @since Quartz...
  */
-public class FullTickerNameRowMapper implements ParameterizedRowMapper<FullTickerName>
+@NoArgsConstructor
+public class FullTickerNameRowMapper implements RowMapper<FullTickerName>
 {
-    public FullTickerNameRowMapper()
-    {
-    }
-
     public FullTickerName mapRow(ResultSet rs, int rowNum) throws SQLException
     {
-        final Ticker exchange = new Ticker(rs.getString("stockexchange").trim());
-        final Ticker ticker = loadTicker(exchange, rs.getString("ticker").trim());
-        final String name = rs.getString("name").trim();
+        val exchange = new Ticker(rs.getString("stockexchange").trim());
+        val ticker = loadTicker(exchange, rs.getString("ticker").trim());
+        val name = rs.getString("name").trim();
 
         return new FullTickerName(exchange, ticker, name);
     }

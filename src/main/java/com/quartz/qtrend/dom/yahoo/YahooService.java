@@ -23,8 +23,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.val;
 import org.joda.time.LocalDate;
-import org.springframework.beans.factory.InitializingBean;
 
+import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
@@ -38,7 +38,7 @@ import java.util.TreeMap;
  * @since Quartz...
  */
 @NoArgsConstructor
-public class YahooService implements InitializingBean {
+public class YahooService {
     static private final ILog LOG = LogManager.getLogger(YahooService.class);
 
     //  TODO: use @RequiredArgsConstructor
@@ -49,7 +49,8 @@ public class YahooService implements InitializingBean {
     @Setter
     private QProperties properties;
 
-    public void afterPropertiesSet() throws Exception {
+    @PostConstruct
+    public void init() throws Exception {
         if (stockQuotesService == null) throw new IllegalStateException("StockQuoteListService not set.");
         if (stockQuoteService == null) throw new IllegalStateException("StockQuoteService not set.");
     }

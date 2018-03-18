@@ -13,21 +13,20 @@ import com.quartz.qtrend.dom.dao.StockQuoteLoadContext;
 import com.quartz.qtrend.dom.helpers.Ticker;
 import com.quartz.qtrend.dom.langford.LangfordDataImpl;
 import com.quartz.qtrend.dom.langford.services.LangfordDataService;
+import com.quartz.qutilities.logging.ILog;
+import com.quartz.qutilities.logging.LogManager;
 import com.quartz.qutilities.spring.transactions.QTransactionCallback;
 import com.quartz.qutilities.spring.transactions.QTransactionTemplate;
 import com.quartz.qutilities.util.DateUtilities;
-import com.quartz.qutilities.logging.ILog;
-import com.quartz.qutilities.logging.LogManager;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.val;
 import org.joda.time.LocalDate;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
-import org.joda.time.YearMonthDay;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -42,51 +41,38 @@ import java.util.Map;
  * @since Quartz...
  */
 @NoArgsConstructor
-public class StockQuoteService
-{
+public class StockQuoteService {
     static private final ILog LOG = LogManager.getLogger(StockQuoteService.class);
 
+    //  todo: SQL
     private static final String SQL_GET_PREVIOUS_STOCK =
             "SELECT * " +
             "FROM STOCKQUOTES JOIN Langford ON StockQuotes.ID=Langford.REFID " +
             "WHERE TICKER=? AND PERIODSEQUENCE=?;";
 
     //  set by spring
-    private StockQuoteDAO       stockQuoteDao;
+    @Setter
+    private StockQuoteDAO stockQuoteDao;
+    @Setter
     private LangfordDataService langfordDataService;
-    private AroonService        aroonService;
+    @Setter
+    private AroonService aroonService;
 
     //  brand new way!
     @Setter
-    private SimpleJdbcTemplate   jdbcTemplate = null;
+    private JdbcTemplate jdbcTemplate = null;
 
     @Setter
     private QTransactionTemplate transactionTemplate = null;
 
-    public void setStockQuoteDao(StockQuoteDAO pStockQuoteDao)
-    {
-        stockQuoteDao = pStockQuoteDao;
-    }
-
-    public void setLangfordDataService(LangfordDataService pLangfordDataService)
-    {
-        langfordDataService = pLangfordDataService;
-    }
-
-    public void setAroonService(AroonService pAroonService)
-    {
-        aroonService = pAroonService;
-    }
-
-    public int deleteTicker(Ticker pTicker) throws StockException
-    {
-        return jdbcTemplate.update("delete from stockquotes where ticker=?;",
+    public int deleteTicker(Ticker pTicker) throws StockException {
+        return jdbcTemplate.update("DELETE FROM stockquotes WHERE ticker=?;",
                                    pTicker.toString());
     }
 
-    public void recalculate(StockQuote pStockQuote) throws StockException
-    {
+    public void recalculate(StockQuote pStockQuote) throws StockException {
         calculatePriceDifference(pStockQuote);
+
         if (pStockQuote.hasLangfordData() == false) pStockQuote.setLangfordData(new LangfordDataImpl(pStockQuote));
         langfordDataService.calculate(pStockQuote.getLangfordData());
         calculateAverageVolume(pStockQuote);
@@ -96,37 +82,29 @@ public class StockQuoteService
     }
 
     public StockQuote load(ResultSet pResultSet, StockQuoteLoadContext pContext)
-            throws StockException
-    {
-        try
-        {
+            throws StockException {
+        try {
             return new LoadFullQuoteRowMapper(pContext).mapRow(pResultSet, 1);
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             throw new StockException(e);
         }
     }
 
-    private void calculateAverageVolume(StockQuote pStockQuote) throws StockException
-    {
- //       if (periodSequence < 1) throw new StockException("Invalid period sequence: " + periodSequence);
+    private void calculateAverageVolume(StockQuote pStockQuote) throws StockException {
+        //       if (periodSequence < 1) throw new StockException("Invalid period sequence: " + periodSequence);
 
-        final StockQuote previousQuote = getPreviousQuote(pStockQuote);
+        val previousQuote = getPreviousQuote(pStockQuote);
 
-        if (previousQuote == null)
-        {
+        if (previousQuote == null) {
             //  if no pervious quote, this means this quote is the first.
             assert pStockQuote.getPeriodSequence() < 1;
 
             pStockQuote.setAverageVolume(pStockQuote.getVolume());
-        }
-        else
-        {
+        } else {
 
-            final int previousPeriodSequence = previousQuote.getPeriodSequence();
+            val previousPeriodSequence = previousQuote.getPeriodSequence();
 
-            final int divider = (previousPeriodSequence < 29 ? previousPeriodSequence : 29);
+            val divider = (previousPeriodSequence < 29 ? previousPeriodSequence : 29);
 
             long total = previousQuote.getAverageVolume() * divider;
             total += pStockQuote.getVolume();
@@ -145,11 +123,9 @@ public class StockQuoteService
 //        averageVolume = (totalVolume / AVG_VOLUME_PERIODS);
     }
 
-    public void calculatePriceDifference(StockQuote pStockQuote) throws StockException
-    {
-        final StockQuote previous = getPreviousQuote(pStockQuote);
-        if (previous == null)
-        {
+    public void calculatePriceDifference(StockQuote pStockQuote) throws StockException {
+        val previous = getPreviousQuote(pStockQuote);
+        if (previous == null) {
             pStockQuote.setPriceDifference(0.0f);
             return;
         }
@@ -157,70 +133,46 @@ public class StockQuoteService
         pStockQuote.setPriceDifference(pStockQuote.getClose().price - previous.getClose().price);
     }
 
-    public StockQuote createNewStockQuote()
-    {
-        return new StockQuoteImpl();
-    }
+    void saveQuoteAndIndicators(final StockQuote pStockQuote) throws StockException {
+        transactionTemplate.execute((QTransactionCallback<Integer>) status -> {
+            final boolean isInsert = stockQuoteDao.saveQuoteOnly(pStockQuote);
 
-    public void saveQuoteAndIndicators(final StockQuote pStockQuote) throws StockException
-    {
-        transactionTemplate.execute(new QTransactionCallback<Integer>()
-        {
-            public Integer doInTransaction(TransactionStatus status) throws Exception
-            {
-                final boolean isInsert = stockQuoteDao.saveQuoteOnly(pStockQuote);
-
-                //  langford
-                if (pStockQuote.hasLangfordData())
-                {
-                    langfordDataService.saveLangfordDataOnly(pStockQuote, isInsert);
-                }
-                else
-                {
-                    //  failure on insert if langford not calculated
-                    if (isInsert == true) throw new StockException("Inserting new Quote without Langford data present!");
-                }
-
-                //  aroon short & long terms
-                if (pStockQuote.hasAroonShortTerm())
-                {
-                    aroonService.save(pStockQuote.getAroonShortTerm());
-                }
-                else
-                {
-                    //  failure on insert if no aroon short term
-                    if (isInsert == true) throw new StockException("Inserting a new Quote without Aroon short term.");
-                }
-
-                if (pStockQuote.hasAroonLongTerm())
-                {
-                    aroonService.save(pStockQuote.getAroonLongTerm());
-                }
-                else
-                {
-                    //  failure on insert if no aroon long term
-                    if (isInsert == true) throw new StockException("Inserting a new Quote without Aroon long term.");
-                }
-
-                return 1;
+            //  langford
+            if (pStockQuote.hasLangfordData()) {
+                langfordDataService.saveLangfordDataOnly(pStockQuote, isInsert);
+            } else {
+                //  failure on insert if langford not calculated
+                if (isInsert) throw new StockException("Inserting new Quote without Langford data present!");
             }
+
+            //  aroon short & long terms
+            if (pStockQuote.hasAroonShortTerm()) {
+                aroonService.save(pStockQuote.getAroonShortTerm());
+            } else {
+                //  failure on insert if no aroon short term
+                if (isInsert) throw new StockException("Inserting a new Quote without Aroon short term.");
+            }
+
+            if (pStockQuote.hasAroonLongTerm()) {
+                aroonService.save(pStockQuote.getAroonLongTerm());
+            } else {
+                //  failure on insert if no aroon long term
+                if (isInsert) throw new StockException("Inserting a new Quote without Aroon long term.");
+            }
+
+            return 1;
         });
     }
 
-    private StockQuote getPreviousQuote(StockQuote pStockQuote, StockQuoteNavigator pNavigator) throws StockException
-    {
+    private StockQuote getPreviousQuote(StockQuote pStockQuote, StockQuoteNavigator pNavigator) throws StockException {
         //  first if previous is set in stock quote.  If yes, use it.
         StockQuote previous = pStockQuote.getPreviousStockQuote();
         if (previous != null) return previous;
 
-        if (pNavigator != null && pNavigator.supportsGetPreviousQuote())
-        {
+        if (pNavigator != null && pNavigator.supportsGetPreviousQuote()) {
             previous = pNavigator.getPreviousQuote(pStockQuote);
-        }
-        else
-        {
-            try
-            {
+        } else {
+            try {
                 final StockQuoteLoadContext context = new StockQuoteLoadContext();
                 context.setRowContainsLangford(true);
 
@@ -228,9 +180,7 @@ public class StockQuoteService
                                                    new LoadFullQuoteRowMapper(context),
                                                    pStockQuote.getTicker().toString(),
                                                    pStockQuote.getPeriodSequence() - 1);
-            }
-            catch (IncorrectResultSizeDataAccessException e)
-            {
+            } catch (IncorrectResultSizeDataAccessException e) {
                 //  find a better way to detect no previous quote than an exception...
                 return null;
             }
@@ -241,83 +191,69 @@ public class StockQuoteService
         return previous;
     }
 
-    public StockQuote getPreviousQuote(StockQuote pStockQuote) throws StockException
-    {
+    public StockQuote getPreviousQuote(StockQuote pStockQuote) throws StockException {
         return getPreviousQuote(pStockQuote, pStockQuote.getStockQuoteNavigator());
     }
 
-    public StockQuote getLatestQuote(final Ticker pTicker)
-    {
+    public StockQuote getLatestQuote(final Ticker pTicker) {
+        //  todo: SQL
         final String SQL =
-                "select stockquotes.*, langford.* " +
-                "from   stockquotes " +
-                "       inner join " +
+                "SELECT stockquotes.*, langford.* " +
+                "FROM   stockquotes " +
+                "       INNER JOIN " +
                 "       langford " +
-                "       on refid=id " +
-                "where ticker=? " +
-                "and date=(select max(date) from stockquotes where ticker=?);";
+                "       ON refid=id " +
+                "WHERE ticker=? " +
+                "AND date=(SELECT max(date) FROM stockquotes WHERE ticker=?);";
 
         final StockQuoteLoadContext context = new StockQuoteLoadContext(true, false, false);
 
-        return transactionTemplate.execute(new QTransactionCallback<StockQuote>()
-        {
-            public StockQuote doInTransaction(TransactionStatus status) throws Exception
-            {
-                final List<StockQuote> info = jdbcTemplate.query(SQL,
-                                                                 new LoadFullQuoteRowMapper(context),
-                                                                 pTicker.toString(), pTicker.toString());
-                if (info.isEmpty()) return null;
-                if (info.size() == 1) return info.get(0);
-                throw new StockException("Many records found for latest, for ticker " + pTicker);
-            }
+        return transactionTemplate.execute((QTransactionCallback<StockQuote>) status -> {
+            final List<StockQuote> info = jdbcTemplate.query(SQL,
+                                                             new LoadFullQuoteRowMapper(context),
+                                                             pTicker.toString(), pTicker.toString());
+            if (info.isEmpty()) return null;
+            if (info.size() == 1) return info.get(0);
+            throw new StockException("Many records found for latest, for ticker " + pTicker);
         });
     }
 
-    public String getTickerName(Ticker pTicker)
-    {
+    public String getTickerName(Ticker pTicker) {
         if (pTicker == null) return null;
 
-        try
-        {
-            return jdbcTemplate.queryForObject("select name from names where ticker=?;", String.class, pTicker.toString().replaceAll("/", "."));
-        }
-        catch (EmptyResultDataAccessException e)
-        {
+        try {
+            return jdbcTemplate.queryForObject("SELECT name FROM names WHERE ticker=?;", String.class, pTicker.toString().replaceAll("/", "."));
+        } catch (EmptyResultDataAccessException e) {
             return pTicker.toString();
         }
     }
 
-    private Map<Ticker, FullTickerName> loadTickerNames()
-    {
-        final List<FullTickerName> loaded = jdbcTemplate.query("SELECT stockexchange,ticker, name FROM Names;",
-                                                               new FullTickerNameRowMapper());
+    private Map<Ticker, FullTickerName> loadTickerNames() {
+        //  todo: SQL
+        val loaded = jdbcTemplate.query("SELECT stockexchange,ticker, name FROM Names;",
+                                        new FullTickerNameRowMapper());
 
-        final Map<Ticker, FullTickerName> tickerNames = new HashMap<Ticker, FullTickerName>();
+        val tickerNames = new HashMap<Ticker, FullTickerName>();
 
-        for (final FullTickerName n : loaded)
-        {
+        for (final FullTickerName n : loaded) {
             tickerNames.put(n.ticker, n);
         }
 
         return tickerNames;
     }
 
-    public void saveTickerNames(Map<Ticker, FullTickerName> pNames)
-    {
-        final Map<Ticker, FullTickerName> currentNames = loadTickerNames();
+    public void saveTickerNames(Map<Ticker, FullTickerName> pNames) {
+        val currentNames = loadTickerNames();
 
         //  update names
         currentNames.putAll(pNames);
 
-        transactionTemplate.execute(new TransactionCallbackWithoutResult()
-        {
-            protected void doInTransactionWithoutResult(TransactionStatus status)
-            {
+        transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+            protected void doInTransactionWithoutResult(TransactionStatus status) {
                 //  delete current names
                 jdbcTemplate.update("DELETE FROM Names;");
 
-                for (FullTickerName fullTickerName : currentNames.values())
-                {
+                for (FullTickerName fullTickerName : currentNames.values()) {
                     jdbcTemplate.update("INSERT INTO Names (stockexchange,ticker, name) VALUES (?, ?, ?);",
                                         fullTickerName.exchange.toString(),
                                         fullTickerName.ticker.toString(),
@@ -327,10 +263,8 @@ public class StockQuoteService
         });
     }
 
-    public void deleteQuote(Ticker pTicker, LocalDate pEndDate)
-    {
-        if (jdbcTemplate.update("delete from stockquotes where ticker=? and date=?;", pTicker.toString(), DateUtilities.toJavaSqlDate(pEndDate)) != 1)
-        {
+    public void deleteQuote(Ticker pTicker, LocalDate pEndDate) {
+        if (jdbcTemplate.update("DELETE FROM stockquotes WHERE ticker=? AND date=?;", pTicker.toString(), DateUtilities.toJavaSqlDate(pEndDate)) != 1) {
             LOG.warn("No quote found for ticker " + pTicker + " on " + pEndDate);
         }
     }

@@ -20,7 +20,9 @@ import com.quartz.qtrend.dom.services.StockQuoteListService;
 import com.quartz.qtrend.dom.services.StockQuoteService;
 import com.quartz.qutilities.math.Dot;
 import com.quartz.qutilities.math.Line;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.Collection;
 
@@ -30,6 +32,7 @@ import java.util.Collection;
  * @author Christian
  * @since Quartz...
  */
+@NoArgsConstructor
 public class LangfordDataService
 {
     ///////////////////////////////////////
@@ -48,7 +51,8 @@ public class LangfordDataService
             return pStock.getLangfordData().getShortTermEma().ema;
         }
     };
-    static public final EmaRetriever LTEMA_RETRIEVER = new EmaRetriever()
+
+    private static final EmaRetriever LTEMA_RETRIEVER = new EmaRetriever()
     {
 
         public float getValue(StockQuote pStock)
@@ -61,7 +65,8 @@ public class LangfordDataService
             return pStock.getLangfordData().getLongTermEma().ema;
         }
     };
-    static public final EmaRetriever EMA56_RETRIEVER = new EmaRetriever()
+
+    private static final EmaRetriever EMA56_RETRIEVER = new EmaRetriever()
     {
 
         public float getValue(StockQuote pStock)
@@ -75,7 +80,7 @@ public class LangfordDataService
             return (ema56 != null ? ema56.ema : pStock.getClose().price);
         }
     };
-    static public final EmaRetriever EMA112_RETRIEVER = new EmaRetriever()
+    private static final EmaRetriever EMA112_RETRIEVER = new EmaRetriever()
     {
 
         public float getValue(StockQuote pStock)
@@ -90,16 +95,11 @@ public class LangfordDataService
         }
     };
 
-    ///////////////////////////////////////
-    ////    STATIC METHODS
-
-    ///////////////////////////////////////
-    ////    INSTANCE ATTRIBUTES
-
     //  set by spring
-    private SimpleJdbcTemplate   jdbcTemplate = null;
-    private StockQuoteListService stockQuotesService;
-    private StockQuoteService   stockQuoteService;
+    @Setter private JdbcTemplate jdbcTemplate = null;
+    @Setter private StockQuoteListService stockQuotesService;
+    @Setter private StockQuoteService   stockQuoteService;
+
     private static final EmaRetriever MACD_STEMA_RETRIEVER = new EmaRetriever()
     {
 
@@ -129,6 +129,8 @@ public class LangfordDataService
     static final String POSITIVE = "+";
     static final String NEGATIVE = "-";
     static final String NO_VARIATION = "";
+
+    //  todo: SQL
     private static final String SQL_INSERT_LANGFORD = "INSERT INTO Langford(REFID, RSI, STEMA, LTEMA, EMA56, EMA112, " +
                     "MACDSTEMA, MACDLTEMA, EMADIFFERENCE, MACD, VARIATION, SIGNAL, NEXTSIGNAL) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
@@ -136,29 +138,6 @@ public class LangfordDataService
                     "SET RSI=?, STEMA=?, LTEMA=?, EMA56=?, EMA112=?, MACDSTEMA=?, MACDLTEMA=?, EMADIFFERENCE=?, MACD=?, VARIATION=?, SIGNAL=?, NEXTSIGNAL=? " +
                     "WHERE REFID=?;";
 
-    ///////////////////////////////////////
-    ////    CONSTRUCTORS
-
-    public LangfordDataService()
-    {
-    }
-    ///////////////////////////////////////
-    ////    INSTANCE METHODS
-
-    public void setJdbcTemplate(SimpleJdbcTemplate pJdbcTemplate)
-    {
-        jdbcTemplate = pJdbcTemplate;
-    }
-
-    public void setStockQuotesService(StockQuoteListService pStockQuotesService)
-    {
-        stockQuotesService = pStockQuotesService;
-    }
-
-    public void setStockQuoteService(StockQuoteService pStockQuoteService)
-    {
-        stockQuoteService = pStockQuoteService;
-    }
 
     public void saveLangfordDataOnly(StockQuote pStockQuote, boolean pInsert) throws StockException
     {

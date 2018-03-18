@@ -8,8 +8,11 @@ package com.quartz.qtrend.dom;
 
 import com.quartz.qtrend.dom.helpers.Price;
 import com.quartz.qtrend.dom.helpers.Ticker;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.joda.time.LocalDate;
-import org.joda.time.YearMonthDay;
 import org.apache.commons.lang.StringUtils;
 
 /**
@@ -18,17 +21,11 @@ import org.apache.commons.lang.StringUtils;
  * @author Christian
  * @since Quartz...
  */
+@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public abstract class AbstractStockQuoteImpl implements AbstractStockQuote
 {
-    ///////////////////////////////////////
-    ////    STATIC ATTRIBUTES
-
-    ///////////////////////////////////////
-    ////    STATIC METHODS
-
-    ///////////////////////////////////////
-    ////    INSTANCE ATTRIBUTES
-
     protected Ticker    stockExchange;
     protected Ticker    ticker;
     protected String    tickerName;
@@ -39,13 +36,6 @@ public abstract class AbstractStockQuoteImpl implements AbstractStockQuote
     protected long            volume;
     protected long            averageVolume;
     protected int             tickerCount;
-
-    ///////////////////////////////////////
-    ////    CONSTRUCTORS
-
-    protected AbstractStockQuoteImpl()
-    {
-    }
 
     protected AbstractStockQuoteImpl(String pStockExchange, String pTicker)
     {
@@ -62,15 +52,6 @@ public abstract class AbstractStockQuoteImpl implements AbstractStockQuote
     ///////////////////////////////////////
     ////    INSTANCE METHODS
 
-    public Ticker getStockExchange()
-    {
-        return stockExchange;
-    }
-
-    public Ticker getTicker()
-    {
-        return ticker;
-    }
 
     public void setStockExchange(Ticker pStockExchange)
     {
@@ -82,19 +63,9 @@ public abstract class AbstractStockQuoteImpl implements AbstractStockQuote
         ticker = pTicker;
     }
 
-    public LocalDate getDate()
-    {
-        return date;
-    }
-
     public void setDate(LocalDate pDate)
     {
         date = pDate;
-    }
-
-    public long getVolume()
-    {
-        return volume;
     }
 
     public void setVolume(long pVolume)
@@ -102,19 +73,9 @@ public abstract class AbstractStockQuoteImpl implements AbstractStockQuote
         volume = pVolume;
     }
 
-    public Price getClose()
-    {
-        return close;
-    }
-
     public void setClose(Price pClose)
     {
         close = pClose;
-    }
-
-    public Price getMininumClose()
-    {
-        return mininumClose;
     }
 
     public void setMininumClose(Price pMininumClose)
@@ -122,19 +83,9 @@ public abstract class AbstractStockQuoteImpl implements AbstractStockQuote
         mininumClose = pMininumClose;
     }
 
-    public Price getMaximumClose()
-    {
-        return maximumClose;
-    }
-
     public void setMaximumClose(Price pMaximumClose)
     {
         maximumClose = pMaximumClose;
-    }
-
-    public long getAverageVolume()
-    {
-        return averageVolume;
     }
 
     public void setAverageVolume(long pAverageVolume)
@@ -152,8 +103,4 @@ public abstract class AbstractStockQuoteImpl implements AbstractStockQuote
         buffer.append(" Volume=").append(volume);
         return buffer.toString().trim();
     }
-
-    ///////////////////////////////////////
-    ////    INNER CLASSES
-
 }

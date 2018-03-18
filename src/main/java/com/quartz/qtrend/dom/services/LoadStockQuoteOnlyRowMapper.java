@@ -6,10 +6,12 @@
  */
 package com.quartz.qtrend.dom.services;
 
-import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import com.quartz.qtrend.dom.StockQuote;
 import com.quartz.qtrend.dom.StockQuoteImpl;
 import com.quartz.qtrend.dom.services.readers.*;
+import lombok.NoArgsConstructor;
+import lombok.val;
+import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,7 +22,8 @@ import java.sql.SQLException;
  * @author Christian
  * @since Quartz...
  */
-public class LoadStockQuoteOnlyRowMapper implements ParameterizedRowMapper<StockQuote>
+@NoArgsConstructor
+public class LoadStockQuoteOnlyRowMapper implements RowMapper<StockQuote>
 {
     static private final IFieldReader[] ALL_STOCK_QUOTE_READERS = {
         new AverageVolumeReader(),
@@ -46,14 +49,9 @@ public class LoadStockQuoteOnlyRowMapper implements ParameterizedRowMapper<Stock
         new VolumeReader()
     };
 
-    public LoadStockQuoteOnlyRowMapper()
-    {
-
-    }
-
     public StockQuote mapRow(ResultSet rs, int rowNum) throws SQLException
     {
-        final StockQuote quote = new StockQuoteImpl();
+        val quote = new StockQuoteImpl();
 
         for (IFieldReader fieldReader : ALL_STOCK_QUOTE_READERS)
         {

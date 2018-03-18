@@ -20,49 +20,46 @@ import com.quartz.qtrend.dom.helpers.RSI;
  */
 public interface LangfordData
 {
-    ///////////////////////////////////////
-    ////    STATIC ATTRIBUTES
-
-    ///////////////////////////////////////
-    ////    INSTANCE METHODS
-
-    ///////////////////////////////////////
-    ////    INNER CLASSES
-    RSI getRsi();
+    StockQuote getStockQuote();
 
     EMA getShortTermEma();
 
     EMA getLongTermEma();
-
     EMA getEma56();
-
     EMA getEma112();
 
+    RSI getRsi();
     MACD getMacd();
 
-    void setRsi(RSI pRsi);
-
-    void setShortTermEma(EMA pShortTermEma);
-
-    void setLongTermEma(EMA pLongTermEma);
-
-    void setEma56(EMA pEma);
-    void setEma112(EMA pEma);
-
-    void setMacd(MACD pMacd);
-
     String getVariation();
-
-    void setVariation(String pVariation);
-
     Signal getSignal();
-
-    void setSignal(Signal pSignal);
-
     Float getIncomingSignal();
 
+    @Deprecated
+    void setRsi(RSI pRsi);
+
+    @Deprecated
+    void setShortTermEma(EMA pShortTermEma);
+
+    @Deprecated
+    void setLongTermEma(EMA pLongTermEma);
+
+    @Deprecated
+    void setEma56(EMA pEma);
+
+    @Deprecated
+    void setEma112(EMA pEma);
+
+    @Deprecated
+    void setMacd(MACD pMacd);
+
+    @Deprecated
+    void setVariation(String pVariation);
+
+    @Deprecated
+    void setSignal(Signal pSignal);
+
+    @Deprecated
     void setIncomingSignal(Float pIncomingSignal);
 
-
-    StockQuote getStockQuote();
 }

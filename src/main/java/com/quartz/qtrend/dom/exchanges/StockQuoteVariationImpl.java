@@ -7,6 +7,11 @@
 package com.quartz.qtrend.dom.exchanges;
 
 import com.quartz.qtrend.dom.AbstractStockQuoteImpl;
+import com.quartz.qtrend.dom.helpers.Price;
+import com.quartz.qtrend.dom.helpers.Ticker;
+import lombok.Builder;
+import lombok.Getter;
+import org.joda.time.LocalDate;
 
 
 /**
@@ -15,17 +20,9 @@ import com.quartz.qtrend.dom.AbstractStockQuoteImpl;
  * @author Christian
  * @since Quartz...
  */
+@Getter
 public class StockQuoteVariationImpl extends AbstractStockQuoteImpl implements StockQuoteVariation
 {
-    ///////////////////////////////////////
-    ////    STATIC ATTRIBUTES
-
-    ///////////////////////////////////////
-    ////    STATIC METHODS
-
-    ///////////////////////////////////////
-    ////    INSTANCE ATTRIBUTES
-
     final private float closeVariation1day;
     final private float closeVariation3days;
     final private float closeVariation7days;
@@ -38,74 +35,17 @@ public class StockQuoteVariationImpl extends AbstractStockQuoteImpl implements S
     final private float rsi;
     final private String langfordSignal;
 
-    ///////////////////////////////////////
-    ////    CONSTRUCTORS
-
-    public StockQuoteVariationImpl(String pStockExchange, String pTicker, float pCloseVariation1, float pCloseVariation3, float pCloseVariation7, float pDiffEma7, float pDiffEma28, float pDiffEma56, float pDiffEma112, float pRsi, String pSignal)
-    {
-        super(pStockExchange, pTicker);
-
-        closeVariation1day = pCloseVariation1;
-        closeVariation3days = pCloseVariation3;
-        closeVariation7days = pCloseVariation7;
-
-        diffEma7 = pDiffEma7;
-        diffEma28 = pDiffEma28;
-        diffEma56 = pDiffEma56;
-        diffEma112 = pDiffEma112;
-
-        rsi = pRsi;
-        langfordSignal = pSignal;
+    @Builder(toBuilder = true)
+    public StockQuoteVariationImpl(Ticker stockExchange, Ticker ticker, String tickerName, LocalDate date, Price close, Price mininumClose, Price maximumClose, long volume, long averageVolume, int tickerCount, float closeVariation1day, float closeVariation3days, float closeVariation7days, float diffEma7, float diffEma28, float diffEma56, float diffEma112, float rsi, String langfordSignal) {
+        super(stockExchange, ticker, tickerName, date, close, mininumClose, maximumClose, volume, averageVolume, tickerCount);
+        this.closeVariation1day = closeVariation1day;
+        this.closeVariation3days = closeVariation3days;
+        this.closeVariation7days = closeVariation7days;
+        this.diffEma7 = diffEma7;
+        this.diffEma28 = diffEma28;
+        this.diffEma56 = diffEma56;
+        this.diffEma112 = diffEma112;
+        this.rsi = rsi;
+        this.langfordSignal = langfordSignal;
     }
-
-    ///////////////////////////////////////
-    ////    INSTANCE METHODS
-
-    public float getCloseVariation1day()
-    {
-        return closeVariation1day;
-    }
-
-    public float getCloseVariation3days()
-    {
-        return closeVariation3days;
-    }
-
-    public float getCloseVariation7days()
-    {
-        return closeVariation7days;
-    }
-
-    public float getDiffEma7()
-    {
-        return diffEma7;
-    }
-
-    public float getDiffEma28()
-    {
-        return diffEma28;
-    }
-
-    public float getDiffEma56()
-    {
-        return diffEma56;
-    }
-
-    public float getDiffEma112()
-    {
-        return diffEma112;
-    }
-
-    public float getRsi()
-    {
-        return rsi;
-    }
-
-    public String getLangfordSignal()
-    {
-        return langfordSignal;
-    }
-
-    ///////////////////////////////////////
-    ////    INNER CLASSES
 }

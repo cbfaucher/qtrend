@@ -7,6 +7,7 @@
 package com.quartz.qtrend.dom.aroon;
 
 
+import lombok.*;
 
 /**
  * The Aroon technical indicator information, for a given period.
@@ -14,53 +15,26 @@ package com.quartz.qtrend.dom.aroon;
  * @author Christian
  * @since Quartz...
  */
+@RequiredArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder(toBuilder = true)
+@Getter
 public class Aroon
 {
-    final private IAroonParent quote;
+    final private IAroonParent parent;
 
-    private int period;
+    final private int period;
 
-    private float aroonUp;
-    private float aroonDown;
-
-    public Aroon(IAroonParent pQuote, int pPeriod)
-    {
-        quote = pQuote;
-        period = pPeriod;
-    }
+    @Setter private float aroonUp;
+    @Setter private float aroonDown;
 
     public IAroonParent getParent()
     {
-        return quote;
-    }
-
-    public int getPeriod()
-    {
-        return period;
-    }
-
-    public float getAroonUp()
-    {
-        return aroonUp;
-    }
-
-    public float getAroonDown()
-    {
-        return aroonDown;
+        return parent;
     }
 
     public float getOscillator()
     {
         return (aroonUp - aroonDown);
-    }
-
-    public void setAroonUp(float pAroonUp)
-    {
-        aroonUp = pAroonUp;
-    }
-
-    public void setAroonDown(float pAroonDown)
-    {
-        aroonDown = pAroonDown;
     }
 }
