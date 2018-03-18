@@ -11,10 +11,18 @@ In OBB, range for OHLC is not well measure (needs prob. cents in scale, not $)
 Add a support to change range view in Show Graphics.
 Send t Google Graphics
 
-TODO
-====
+TODO 2018
+=========
 - DELETE TODAY, REUPDATE
 - Remove JGraph --> StockCharts only
+- Find and remove duplicate dates, recalculate
+    SELECT TICKER, "date", COUNT(*) AS NB
+    FROM STOCKQUOTES
+    GROUP BY TICKER, "date"
+    HAVING COUNT(*) > 1
+    ORDER BY TICKER, "date"
+    ;
+
 
 
 select 	date, periodsequence, signal, 
