@@ -37,8 +37,8 @@
         <menu-item label="Show History" mnemonic="Y" accelerator="ctrl Y" command="Event.ShowHistory"/>
         <menu-item label="Show Summary on Yahoo!" mnemonic="S" accelerator="ctrl U" command="Event.ShowYahooSummary"/>
         <menu-separator/>
-        <menu-item label="Show Graphics..." mnemonic="G" accelerator="ctrl G" command="Event.ShowGraphic"/>
-        <menu-item label="Show Graphics on StockCharts.com..." mnemonic="R" accelerator="shift ctrl G" command="Event.ShowStockChartsGraphic"/>
+        <!--<menu-item label="Show Graphics..." mnemonic="G" accelerator="ctrl G" command="Event.ShowGraphic"/>-->
+        <menu-item label="Show Graphics on StockCharts.com..." mnemonic="G" accelerator="ctrl G" command="Event.ShowStockChartsGraphic"/>
         <menu-separator/>
         <menu-item label="Display Alerts..." mnemonic="A" accelerator="alt A" command="QTrend.DisplayAlerts"/>   
     </menu>

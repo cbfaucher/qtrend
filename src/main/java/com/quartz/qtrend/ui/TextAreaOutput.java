@@ -24,21 +24,9 @@ import java.awt.event.KeyEvent;
 public class TextAreaOutput extends JTextArea implements Output
 {
 
-    ///////////////////////////////////////
-    ////    STATIC ATTRIBUTES
-
-    ///////////////////////////////////////
-    ////    STATIC METHODS
-
-    ///////////////////////////////////////
-    ////    INSTANCE ATTRIBUTES
-
     final private QTrendFrame frame;
 
-    ///////////////////////////////////////
-    ////    CONSTRUCTORS
-
-    public TextAreaOutput(QTrendFrame pQTrendFrame)
+    TextAreaOutput(QTrendFrame pQTrendFrame)
     {
         frame = pQTrendFrame;
 
@@ -54,8 +42,8 @@ public class TextAreaOutput extends JTextArea implements Output
         popupMenu.addSeparator();
         popupMenu.add(MenuFactory.createMenuItem(frame, "Show Summary on Yahoo!", KeyEvent.VK_S, "Event.ShowYahooSummary"));
         popupMenu.addSeparator();
-        popupMenu.add(MenuFactory.createMenuItem(frame, "Show Graphics...", KeyEvent.VK_G, QTrendEvents.SHOW_GRAPHIC));
-        popupMenu.add(MenuFactory.createMenuItem(frame, "Show Graphics on StockCharts.com...", KeyEvent.VK_R, QTrendEvents.SHOW_STOCKCHART_GRAPHICS));
+//        popupMenu.add(MenuFactory.createMenuItem(frame, "Show Graphics...", KeyEvent.VK_G, QTrendEvents.SHOW_GRAPHIC));
+        popupMenu.add(MenuFactory.createMenuItem(frame, "Show Graphics on StockCharts.com...", KeyEvent.VK_G, QTrendEvents.SHOW_STOCKCHART_GRAPHICS));
         popupMenu.addSeparator();
         popupMenu.add(MenuFactory.createMenuItem(frame, "Import Ticker History...", KeyEvent.VK_M, QTrendEvents.IMPORT_TICKER_HISTORY));
 
@@ -69,12 +57,7 @@ public class TextAreaOutput extends JTextArea implements Output
 
     public void setPosition(final int pCharIndex)
     {
-        SwingUtils.invokeLaterIfNeeded(new Runnable() {
-            public void run()
-            {
-                setCaretPosition(pCharIndex);
-            }
-        });
+        SwingUtils.invokeLaterIfNeeded(() -> setCaretPosition(pCharIndex));
     }
 
     public void writeln(String pText)
@@ -89,13 +72,10 @@ public class TextAreaOutput extends JTextArea implements Output
 
     public void write(final String pText)
     {
-        SwingUtils.invokeLaterIfNeeded(new Runnable() {
-                public void run()
-                {
-                    System.out.println(pText);
-                    append(pText);
-                }
-            });
+        SwingUtils.invokeLaterIfNeeded(() -> {
+            System.out.println(pText);
+            append(pText);
+        });
     }
 
     public void clear()
