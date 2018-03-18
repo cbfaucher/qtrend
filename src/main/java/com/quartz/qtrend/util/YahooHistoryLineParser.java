@@ -59,6 +59,7 @@ public class YahooHistoryLineParser implements LineParser {
         final LocalDate date = DateUtilities.toLocalDate(rawDate);
         if (oldestDate.compareTo(date) < 0) {
             val stockQuoteBuilder = StockQuoteImpl.builder()
+                                                  .pk(-1L)
                                                   .stockExchange(exchange)
                                                   .ticker(ticker)
                                                   .date(date)
