@@ -19,12 +19,15 @@ import com.quartz.qutilities.util.DateUtilities;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.val;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.TransactionStatus;
 
 import javax.annotation.PostConstruct;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 
 /**
  * INSERT YOUR COMMENT HERE....
@@ -79,7 +82,7 @@ public class StockQuoteDAO implements IStockQuoteDAO {
                 val pk = jdbcTemplate.queryForObject(SQL_SELECT_NEXT_ID, Long.class);
                 pStockQuote.setId(pk);
 
-                val nextPeriodSequence = jdbcTemplate.queryForObject(SQL_NEXT_SEQUENCE_FOR_EXCHANGE, Integer.class, pStockQuote.getTicker().toString());
+                val nextPeriodSequence = getNextPeriodSequence(pStockQuote);
                 pStockQuote.setPeriodSequence(nextPeriodSequence);
 
                 if (jdbcTemplate.update(
@@ -103,6 +106,13 @@ public class StockQuoteDAO implements IStockQuoteDAO {
                 return pStockQuote;
             }
         });
+    }
+
+    private Integer getNextPeriodSequence(StockQuote pStockQuote) {
+        return Optional.ofNullable(jdbcTemplate.queryForObject(SQL_NEXT_SEQUENCE_FOR_EXCHANGE,
+                                                               Integer.class,
+                                                               pStockQuote.getTicker().toString()))
+                       .orElse(1);
     }
 
     public StockQuote update(StockQuote pStockQuote) throws StockException {
