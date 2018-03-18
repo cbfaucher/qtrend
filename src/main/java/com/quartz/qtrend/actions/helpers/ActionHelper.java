@@ -139,7 +139,7 @@ public final class ActionHelper
         String value = JOptionPane.showInputDialog(pParent, "What is the ticker?",
                                                    lastTicker);
         if (value == null) return null;
-        userProperties.setProperty(QTrendConstants.UserPropertyNames.USERPROP_LAST_TICKER, lastTicker);
+        userProperties.setProperty(QTrendConstants.UserPropertyNames.USERPROP_LAST_TICKER, value);
         return new Ticker(value);
     }
 
