@@ -6,7 +6,6 @@
  */
 package com.quartz.qtrend.actions.helpers;
 
-import com.quartz.qtrend.QTrendBeanNames;
 import com.quartz.qtrend.dom.helpers.Ticker;
 import com.quartz.qtrend.util.ImporterException;
 import com.quartz.qtrend.util.LineParser;
@@ -16,6 +15,7 @@ import com.quartz.qutilities.util.QProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.joda.time.LocalDate;
+import org.springframework.context.ApplicationContext;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -42,6 +42,7 @@ public class YahooTickerQuoteReader {
     public static final String PROP_YAHOO_TICKER_HISTORY_CMD = "yahoo.ticker.history.cmd";
 
     final private QProperties properties;
+    final private ApplicationContext applicationContext;
 
     private URL buildURL(final Ticker pTicker, final LocalDate pStartDate, final LocalDate pEndDate)
             throws ImporterException, MalformedURLException {
@@ -71,14 +72,13 @@ public class YahooTickerQuoteReader {
             val url = callYahooScriptProcess(pTicker, pStartDate, pEndDate);
 
             //  content
-            final Proxy proxy = QTrendBeanNames.HTTP_PROXY.getBean();
-            final BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection(proxy).getInputStream()));
+            val proxy = applicationContext.getBean(Proxy.class);
+            val reader = new BufferedReader(new InputStreamReader(url.openConnection(proxy).getInputStream()));
             try {
                 String line = null;
                 while ((line = reader.readLine()) != null) {
                     if (line.toLowerCase().startsWith("date")) continue;   //  ignore header line.
                     pLineParser.parseLine(line);
-                    ;
                 }
             } finally {
                 reader.close();

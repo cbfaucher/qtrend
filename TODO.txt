@@ -13,7 +13,6 @@ Send t Google Graphics
 
 TODO 2018
 =========
-- Update Spring
 - Use SpringBoot instead of Bootstrap
 - DELETE TODAY, REUPDATE
 - Find and remove duplicate dates, recalculate

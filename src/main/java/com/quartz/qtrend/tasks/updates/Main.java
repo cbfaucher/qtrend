@@ -6,11 +6,7 @@
  */
 package com.quartz.qtrend.tasks.updates;
 
-import com.quartz.qtrend.Bootstrap;
-import com.quartz.qtrend.QTrendBeanNames;
 import com.quartz.qtrend.QTrendConstants;
-import com.quartz.qtrend.QTrendMode;
-import com.quartz.qtrend.dom.alerts.Alert;
 import com.quartz.qtrend.dom.alerts.ToAlertConverter;
 import com.quartz.qtrend.dom.services.StockQuoteListService;
 import com.quartz.qtrend.dom.yahoo.YahooService;
@@ -18,11 +14,12 @@ import com.quartz.qtrend.tasks.MailOutput;
 import com.quartz.qtrend.tasks.TaskOutput;
 import com.quartz.qutilities.logging.ILog;
 import com.quartz.qutilities.logging.LogManager;
+import com.quartz.qutilities.spring.BeanFactorySingleton;
 import com.quartz.qutilities.util.Output;
 import com.quartz.qutilities.util.QProperties;
 import com.quartz.qutilities.util.QUserProperties;
-
-import java.util.Collection;
+import lombok.val;
+import org.springframework.boot.SpringApplication;
 
 /**
  * The entry point for auto-update
@@ -41,26 +38,28 @@ public class Main
     {
         try
         {
-            Bootstrap.init(QTrendMode.UPDATE_TICKERS_TASK);
+//            Bootstrap.init(QTrendMode.UPDATE_TICKERS_TASK);
+            val context = SpringApplication.run(TickerUpdaterApplication.class, pArgs);
+            BeanFactorySingleton.setBeanFactory(context);
 
             //  do updates
-            final YahooService yahooService = QTrendBeanNames.YAHOO_SERVICE.getBean();
+            final YahooService yahooService = context.getBean(YahooService.class);
             LOG.info("Starting auto-update for tickers...");
             yahooService.updateTickers(new TaskOutput());
 
             //  then display alersts
-            final QProperties properties = QTrendBeanNames.PROPERTIES.getBean();
+            val properties = context.getBean(QProperties.class);
             if ("true".equalsIgnoreCase(properties.getProperty("task.auto-update.displayAlerts", "true")))
             {
-                final QUserProperties userProperties = QTrendBeanNames.USER_PROPERTIES.getBean();
-                final StockQuoteListService stockQuotesService = QTrendBeanNames.STOCK_QUOTE_LIST_SERVICE.getBean();
+                val userProperties = context.getBean(QUserProperties.class);
+                val stockQuotesService = context.getBean(StockQuoteListService.class);
 
-                final Collection<Alert> favoriteAlerts = userProperties.getPropertyAsCollection(
+                val favoriteAlerts = userProperties.getPropertyAsCollection(
                         QTrendConstants.UserPropertyNames.USERPROP_ORDERED_ALERTS, new ToAlertConverter());
 
-                final String outputClassName = System.getProperty("output.class");
+                val outputClassName = System.getProperty("output.class");
 
-                final Output output; 
+                final Output output;
 
                 if (outputClassName != null)
                 {
@@ -68,7 +67,7 @@ public class Main
                 }
                 else
                 {
-                    output = QTrendBeanNames.MAIL_OUTPUT.getBean();
+                    output = context.getBean(MailOutput.class);
                 }
 
                 LOG.info("Checking alerts: " + favoriteAlerts);

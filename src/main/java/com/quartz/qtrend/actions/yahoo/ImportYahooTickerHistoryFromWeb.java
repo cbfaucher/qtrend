@@ -13,7 +13,6 @@ import com.quartz.qtrend.dom.services.StockQuoteService;
 import com.quartz.qtrend.ui.QTrendFrame;
 import com.quartz.qtrend.util.LineParser;
 import com.quartz.qtrend.util.LineParserException;
-import com.quartz.qutilities.util.Output;
 import com.quartz.qutilities.jobrunner.Job;
 import com.quartz.qutilities.jobrunner.JobRunner;
 import com.quartz.qutilities.logging.ILog;
@@ -21,10 +20,15 @@ import com.quartz.qutilities.logging.LogManager;
 import com.quartz.qutilities.swing.events.JFrameAware;
 import com.quartz.qutilities.swing.events.QEventHandler;
 import com.quartz.qutilities.swing.events.QEventManager;
+import com.quartz.qutilities.util.Output;
 import com.quartz.qutilities.util.QProperties;
 import com.quartz.qutilities.util.QUserProperties;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.joda.time.LocalDate;
-import org.joda.time.YearMonthDay;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 
 import javax.swing.*;
 import java.io.File;
@@ -38,61 +42,25 @@ import java.util.EventObject;
  * @author Christian
  * @since Quartz...
  */
-public class ImportYahooTickerHistoryFromWeb implements QEventHandler, JFrameAware<QTrendFrame>
+@NoArgsConstructor
+@Getter
+public class ImportYahooTickerHistoryFromWeb implements ApplicationContextAware, QEventHandler, JFrameAware<QTrendFrame>
 {
     static private final ILog LOG = LogManager.getLogger(ImportYahooTickerHistoryFromWeb.class);
 
     private static final String USERPROP_LAST_START_DATE = "last.start.date";
 
     //  from spring
-    private QProperties     properties;
-    private QUserProperties userProperties;
-    private JobRunner       jobRunner;
-    private StockQuoteListService stockQuotesService;
-    private StockQuoteService       stockQuoteService;
+    @Setter private QProperties     properties;
+    @Setter private QUserProperties userProperties;
+    @Setter private JobRunner       jobRunner;
+    @Setter private StockQuoteListService stockQuotesService;
+    @Setter private StockQuoteService       stockQuoteService;
+
+    @Setter private ApplicationContext applicationContext;
 
     //  from frame
-    private QTrendFrame     frame;
-
-
-    public ImportYahooTickerHistoryFromWeb()
-    {
-    }
-
-    public void setFrame(QTrendFrame pFrame)
-    {
-        frame = pFrame;
-    }
-
-    public void setStockQuotesService(StockQuoteListService pStockQuotesService)
-    {
-        stockQuotesService = pStockQuotesService;
-    }
-
-    public void setStockQuoteService(StockQuoteService pStockQuoteService)
-    {
-        stockQuoteService = pStockQuoteService;
-    }
-
-    QTrendFrame getFrame()
-    {
-        return frame;
-    }
-
-    public void setJobRunner(JobRunner pJobRunner)
-    {
-        jobRunner = pJobRunner;
-    }
-
-    public void setProperties(QProperties pProperties)
-    {
-        properties = pProperties;
-    }
-
-    public void setUserProperties(QUserProperties pUserProperties)
-    {
-        userProperties = pUserProperties;
-    }
+    @Setter private QTrendFrame     frame;
 
     public void handleEvent(QEventManager pEventManager, EventObject pEvent, String pCommand)
     {
@@ -132,23 +100,11 @@ public class ImportYahooTickerHistoryFromWeb implements QEventHandler, JFrameAwa
 
         LOG.info("Importing " + exchange + "/" + ticker + " from " + startDate + " to " + endDate + "...");
 
-        final Job importYahooHistoryJob = new ImportTickerHistoryJob(this, exchange, ticker, startDate, endDate);
+        final Job importYahooHistoryJob = new ImportTickerHistoryJob(applicationContext,
+                                                                     this,
+                                                                     exchange, ticker,
+                                                                     startDate, endDate);
         jobRunner.runJob(importYahooHistoryJob);
-    }
-
-    QProperties getProperties()
-    {
-        return properties;
-    }
-
-    StockQuoteService getStockQuoteService()
-    {
-        return stockQuoteService;
-    }
-
-    StockQuoteListService getStockQuotesService()
-    {
-        return stockQuotesService;
     }
 
     class MyLineParser implements LineParser

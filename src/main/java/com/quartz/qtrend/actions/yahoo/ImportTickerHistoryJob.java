@@ -18,7 +18,7 @@ import com.quartz.qutilities.jobrunner.DefaultJob;
 import com.quartz.qutilities.logging.ILog;
 import com.quartz.qutilities.logging.LogManager;
 import org.joda.time.LocalDate;
-import org.joda.time.YearMonthDay;
+import org.springframework.context.ApplicationContext;
 
 import java.io.File;
 import java.util.List;
@@ -30,18 +30,23 @@ class ImportTickerHistoryJob extends DefaultJob
 {
     static private final ILog LOG = LogManager.getLogger(ImportTickerHistoryJob.class);
 
-    final private StockQuoteService                 stockQuoteService;
-    final private ImportYahooTickerHistoryFromWeb importYahooTickerHistory;
-    final private ProgressDialog progressDialog;
+    private final ApplicationContext applicationContext;
+    private final StockQuoteService                 stockQuoteService;
+    private final ImportYahooTickerHistoryFromWeb importYahooTickerHistory;
+    private final ProgressDialog progressDialog;
     private final Ticker exchange;
     private final Ticker ticker;
     private final LocalDate startDate;
     private final LocalDate endDate;
 
-    ImportTickerHistoryJob(ImportYahooTickerHistoryFromWeb pImportYahooTickerHistory,
-                           Ticker pExchange, Ticker pTicker,
-                           LocalDate pStartDate, LocalDate pEndDate)
+    ImportTickerHistoryJob(ApplicationContext applicationContext,
+                           ImportYahooTickerHistoryFromWeb pImportYahooTickerHistory,
+                           Ticker pExchange,
+                           Ticker pTicker,
+                           LocalDate pStartDate,
+                           LocalDate pEndDate)
     {
+        this.applicationContext = applicationContext;
         stockQuoteService = pImportYahooTickerHistory.getStockQuoteService();
         importYahooTickerHistory = pImportYahooTickerHistory;
         progressDialog = new ProgressDialog(importYahooTickerHistory.getFrame());
@@ -77,7 +82,8 @@ class ImportTickerHistoryJob extends DefaultJob
         final String overrideFile = System.getProperty("yahoo.history.override.file");
         if (overrideFile == null)
         {
-            final YahooTickerQuoteReader reader = new YahooTickerQuoteReader(importYahooTickerHistory.getProperties());
+            final YahooTickerQuoteReader reader = new YahooTickerQuoteReader(importYahooTickerHistory.getProperties(),
+                                                                             applicationContext);
             reader.read(ticker, startDate, endDate, parser);
         }
         else
