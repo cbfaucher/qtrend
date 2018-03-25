@@ -38,7 +38,6 @@ public class Main
     {
         try
         {
-//            Bootstrap.init(QTrendMode.UPDATE_TICKERS_TASK);
             val context = SpringApplication.run(TickerUpdaterApplication.class, pArgs);
             BeanFactorySingleton.setBeanFactory(context);
 
