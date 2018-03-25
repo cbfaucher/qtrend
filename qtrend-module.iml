@@ -4,16 +4,17 @@
     <facet type="Spring" name="Spring">
       <configuration>
         <fileset id="fileset" name="Spring Application Context" removed="false">
-          <file>file://$MODULE_DIR$/src/main/java/com/quartz/qtrend/qtrend-common.xml</file>
-          <file>file://$MODULE_DIR$/src/main/java/com/quartz/qtrend/ui/configuration/qtrend-configuration-ui-beans.xml</file>
-          <file>file://$MODULE_DIR$/src/main/java/com/quartz/qtrend/qtrend-dao.xml</file>
-          <file>file://$MODULE_DIR$/src/main/java/com/quartz/qtrend/qtrend-database.xml</file>
-          <file>file://$MODULE_DIR$/src/main/java/com/quartz/qtrend/qtrend-events.xml</file>
-          <file>file://$MODULE_DIR$/src/main/java/com/quartz/qtrend/ui/exchanges/qtrend-exchange-dialog.xml</file>
-          <file>file://$MODULE_DIR$/src/main/java/com/quartz/qtrend/qtrend-main-frame.xml</file>
-          <file>file://$MODULE_DIR$/src/main/java/com/quartz/qtrend/qtrend-operations.xml</file>
-          <file>file://$MODULE_DIR$/src/main/java/com/quartz/qtrend/qtrend-service.xml</file>
-          <file>file://$MODULE_DIR$/src/main/java/com/quartz/qtrend/ui/watchlists/qtrend-watchlists.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/com/quartz/qtrend/qtrend-common.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/com/quartz/qtrend/ui/configuration/qtrend-configuration-ui-beans.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/com/quartz/qtrend/qtrend-dao.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/com/quartz/qtrend/qtrend-database.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/com/quartz/qtrend/qtrend-events.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/com/quartz/qtrend/ui/exchanges/qtrend-exchange-dialog.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/com/quartz/qtrend/qtrend-main-frame.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/com/quartz/qtrend/qtrend-operations.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/com/quartz/qtrend/qtrend-service.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/com/quartz/qtrend/ui/watchlists/qtrend-watchlists.xml</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/quartz/qtrend/tasks/updates/TickerUpdaterApplication.java</file>
         </fileset>
       </configuration>
     </facet>
