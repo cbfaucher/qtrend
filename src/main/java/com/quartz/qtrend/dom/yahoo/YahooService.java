@@ -23,6 +23,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.val;
 import org.joda.time.LocalDate;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
@@ -38,7 +40,7 @@ import java.util.TreeMap;
  * @since Quartz...
  */
 @NoArgsConstructor
-public class YahooService {
+public class YahooService implements ApplicationContextAware {
     static private final ILog LOG = LogManager.getLogger(YahooService.class);
 
     //  TODO: use @RequiredArgsConstructor
@@ -48,6 +50,8 @@ public class YahooService {
     private StockQuoteService stockQuoteService;
     @Setter
     private QProperties properties;
+    @Setter
+    private ApplicationContext applicationContext;
 
     @PostConstruct
     public void init() throws Exception {
@@ -94,7 +98,7 @@ public class YahooService {
     private StockQuoteList loadTickerUpdatesFromYahoo(final Collection<UpdateInformation> pUpdateInformations, final Output pOutput)
             throws ImporterException, IOException {
         val unsortedQuotes = new StockQuoteList();
-        val reader = new YahooTickerQuoteReader(properties);
+        val reader = new YahooTickerQuoteReader(properties, applicationContext);
 
         val endDate = new LocalDate();
 
