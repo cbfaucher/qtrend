@@ -6,10 +6,14 @@
  */
 package com.quartz.qtrend;
 
+import com.quartz.qtrend.tasks.updates.TickerUpdaterApplication;
 import com.quartz.qtrend.ui.QTrendFrame;
 import com.quartz.qutilities.logging.LogManager;
+import com.quartz.qutilities.spring.BeanFactorySingleton;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import lombok.val;
+import org.springframework.boot.SpringApplication;
 
 /**
  * Entry point to QTrend.
@@ -27,7 +31,9 @@ public class Main
     {
         LogManager.getLogger(Main.class);
 
-        Bootstrap.init(QTrendMode.USER_INTERFACE);
+//        Bootstrap.init(QTrendMode.USER_INTERFACE);
+        val context = SpringApplication.run(QTrendApplication.class, pArgs);
+        BeanFactorySingleton.setBeanFactory(context);
 
         final QTrendFrame frame = QTrendBeanNames.MAIN_FRAME.getBean();
 
