@@ -20,7 +20,6 @@ import com.quartz.qtrend.dom.services.StockQuoteListService;
 import com.quartz.qtrend.dom.services.StockQuoteService;
 import com.quartz.qtrend.dom.watchlists.IWatchListService;
 import com.quartz.qtrend.util.SimpleStockQuoteNavigator;
-import com.quartz.qutilities.util.QProperties;
 import lombok.val;
 import org.junit.Assert;
 import org.junit.Before;
@@ -62,7 +61,7 @@ public class LangfordDataImplTest implements TestCaseUtils
 
     @Before
     public void setup() {
-        stockQuoteListService = new StockQuoteListService();
+        stockQuoteListService = new StockQuoteListService(null, null, null, null);
 
         langfordDataService = new LangfordDataService(jdbcTemplate, stockQuoteListService, stockQuoteService);
     }

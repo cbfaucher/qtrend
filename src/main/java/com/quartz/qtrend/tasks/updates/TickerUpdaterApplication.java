@@ -1,6 +1,7 @@
 package com.quartz.qtrend.tasks.updates;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
@@ -8,5 +9,6 @@ import org.springframework.context.annotation.ImportResource;
                              "classpath:/com/quartz/qtrend/qtrend-database.xml",
                              "classpath:/com/quartz/qtrend/qtrend-dao.xml",
                              "classpath:/com/quartz/qtrend/qtrend-service.xml"})
+@ComponentScan("com.quartz.qtrend")
 public class TickerUpdaterApplication {
 }

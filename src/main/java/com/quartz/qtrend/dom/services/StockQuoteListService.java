@@ -46,7 +46,7 @@ import java.util.*;
  * @since Quartz...
  */
 @Component("QTrend.StockQuoteListService")
-@NoArgsConstructor
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class StockQuoteListService implements IStockQuoteListService {
     static private final ILog LOG = LogManager.getLogger(StockQuoteListService.class);
 
@@ -157,10 +157,10 @@ public class StockQuoteListService implements IStockQuoteListService {
 
 
     //  brand new way!
-    @Autowired private JdbcTemplate jdbcTemplate;
-    @Autowired private QProperties properties;
-    @Autowired private IStockQuoteService stockQuoteService;
-    @Autowired @Getter private IWatchListService watchListService;
+    private final JdbcTemplate jdbcTemplate;
+    private final QProperties properties;
+    private final IStockQuoteService stockQuoteService;
+    @Getter private final IWatchListService watchListService;
 
     @PostConstruct
     public void init() throws Exception {

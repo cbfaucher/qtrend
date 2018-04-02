@@ -19,7 +19,6 @@ import com.quartz.qtrend.dom.services.*;
 import com.quartz.qutilities.math.Dot;
 import com.quartz.qutilities.math.Line;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
