@@ -10,6 +10,7 @@ import com.quartz.qtrend.UnknownExchangeException;
 import com.quartz.qtrend.dom.helpers.Ticker;
 import com.quartz.qutilities.logging.ILog;
 import com.quartz.qutilities.logging.LogManager;
+import lombok.NoArgsConstructor;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -21,30 +22,12 @@ import java.util.Map;
  * @author Christian
  * @since Quartz...
  */
+@NoArgsConstructor
 public class RuleManager
 {
-    ///////////////////////////////////////
-    ////    STATIC ATTRIBUTES
-
     static private final ILog LOG = LogManager.getLogger(RuleManager.class);
 
-    ///////////////////////////////////////
-    ////    STATIC METHODS
-
-    ///////////////////////////////////////
-    ////    INSTANCE ATTRIBUTES
-
-    final private Map<Ticker, ExchangeRules> exchangeRules = new HashMap<Ticker, ExchangeRules>();
-
-    ///////////////////////////////////////
-    ////    CONSTRUCTORS
-
-    public RuleManager()
-    {
-    }
-
-    ///////////////////////////////////////
-    ////    INSTANCE METHODS
+    final private Map<Ticker, ExchangeRules> exchangeRules = new HashMap<>();
 
     public IExchangeRule getExchangeRule(Ticker pExchange) throws UnknownExchangeException
     {
@@ -70,8 +53,6 @@ public class RuleManager
         return exchangeRules.keySet();    
     }
 
-    ///////////////////////////////////////
-    ////    INNER CLASSES
     public <T extends Collection<Ticker>> T getSupportedExchanges(T pTargetCollection)
     {
         for (Ticker t : exchangeRules.keySet()) pTargetCollection.add(t);

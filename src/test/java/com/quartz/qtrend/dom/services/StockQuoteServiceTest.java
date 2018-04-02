@@ -53,7 +53,7 @@ public class StockQuoteServiceTest extends QTestCase
 
     protected void setUp() throws Exception
     {
-        stockQuoteService = new StockQuoteService();
+        stockQuoteService = new StockQuoteService(null, null, null, null, null);
     }
 
     protected void tearDown() throws Exception

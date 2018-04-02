@@ -14,8 +14,8 @@ import com.quartz.qtrend.dom.alerts.IAlertAction;
 import com.quartz.qtrend.dom.dao.StockQuoteLoadContext;
 import com.quartz.qtrend.dom.helpers.Price;
 import com.quartz.qtrend.dom.helpers.Ticker;
+import com.quartz.qtrend.dom.watchlists.IWatchListService;
 import com.quartz.qtrend.dom.watchlists.StringRowMapper;
-import com.quartz.qtrend.dom.watchlists.WatchListService;
 import com.quartz.qtrend.dom.yahoo.UpdateInformation;
 import com.quartz.qutilities.formatter.FormatException;
 import com.quartz.qutilities.formatter.RowFormat;
@@ -30,7 +30,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.joda.time.LocalDate;
 import org.joda.time.YearMonthDay;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
 
 import javax.annotation.PostConstruct;
@@ -42,8 +44,9 @@ import java.util.*;
  * @author Christian
  * @since Quartz...
  */
-@RequiredArgsConstructor
-public class StockQuoteListService {
+@Component
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+public class StockQuoteListService implements IStockQuoteListService {
     static private final ILog LOG = LogManager.getLogger(StockQuoteListService.class);
 
     //  todo: SQL
@@ -155,8 +158,8 @@ public class StockQuoteListService {
     //  brand new way!
     private final JdbcTemplate jdbcTemplate;
     private final QProperties properties;
-    private final StockQuoteService stockQuoteService;
-    @Getter private final WatchListService watchListService;
+    private final IStockQuoteService stockQuoteService;
+    @Getter private final IWatchListService watchListService;
 
     @PostConstruct
     public void init() throws Exception {
@@ -416,6 +419,7 @@ public class StockQuoteListService {
                                   pExchange.toString(), pWantedSignal.toString());
     }
 
+    @Override
     public Collection<StockQuote> getPreviousQuotesIncludingMe(StockQuote pStockQuote, int pNumberOfQuotes, StockQuoteNavigator pNavigator) throws StockException {
         //  in a cache first, use it.
         List<StockQuote> previousStocksIncludingMe = pStockQuote.getPreviousStocksIncludingMe();

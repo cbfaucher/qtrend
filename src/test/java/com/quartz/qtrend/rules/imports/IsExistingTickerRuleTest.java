@@ -6,21 +6,18 @@
  */
 package com.quartz.qtrend.rules.imports;
 
-import com.quartz.qutilities.unittests.QTestCase;
-import com.quartz.qtrend.Main;
-import com.quartz.qtrend.Bootstrap;
-import com.quartz.qtrend.QTrendMode;
-import com.quartz.qtrend.dom.helpers.Ticker;
-import com.quartz.qtrend.dom.helpers.Ticker;
-import com.quartz.qtrend.dom.StockQuote;
 import com.quartz.qtrend.dom.StockQuoteImpl;
 import com.quartz.qtrend.dom.helpers.Ticker;
-import com.mockobjects.ExpectationCounter;
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import com.quartz.qtrend.dom.services.StockQuoteListService;
+import lombok.val;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.HashSet;
-import java.util.Set;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verifyZeroInteractions;
 
 /**
  * Unit Test cases for {@link IsExistingTickerRule}
@@ -28,55 +25,31 @@ import java.util.Set;
  * @author lmcchbf
  * @since 21-Aug-2006
  */
-public class IsExistingTickerRuleTest extends QTestCase
+@RunWith(MockitoJUnitRunner.class)
+public class IsExistingTickerRuleTest //extends QTestCase
 {
-    ///////////////////////////////////////
-    ////    STATIC ATTRIBUTES
+    @Mock
+    private StockQuoteListService service;
 
-    ///////////////////////////////////////
-    ////    STATIC METHODS
-	
-    static public final Test suite()
-    {
-        return new TestSuite(IsExistingTickerRuleTest.class);
-    }	
-
-    ///////////////////////////////////////
-    ////    INSTANCE ATTRIBUTES
-
-    ///////////////////////////////////////
-    ////    CONSTRUCTORS
-
-    public IsExistingTickerRuleTest(String name)
-    {
-        super(name);
-    }
-
-    ///////////////////////////////////////
-    ////    INSTANCE METHODS
-
-    protected void setUp() throws Exception
-    {
-        Bootstrap.init(QTrendMode.USER_INTERFACE);
-    }
-
-    public void test_accept() throws Exception
-    {
-        final ExpectationCounter counterNyse = new ExpectationCounter("loadTickers-NYSE");
-        counterNyse.setExpected(1);
-
-    	final IsExistingTickerRule rule = new IsExistingTickerRule(new Ticker("NYSE"));
-        final Set<Ticker> existingTickers = new HashSet<Ticker>();
+    @org.junit.Test
+    public void test_accept() throws Exception {
+        val rule = new IsExistingTickerRule(new Ticker("NYSE"), service);
+        val existingTickers = new HashSet<Ticker>();
         existingTickers.add(new Ticker("BOL"));
         existingTickers.add(new Ticker("REV"));
         rule.setExistingTickers(existingTickers);
 
-//        final StockQuote quote = new StockQuoteImpl(null, , );
-//        assertEquals(true, rule.accept(asdf));
-//        assertEquals(true, rule.accept(asdf));
-//        assertEquals(false, rule.accept(asdf));
+        assertEquals(true, rule.accept(StockQuoteImpl.builder()
+                                                     .ticker(new Ticker("BOL"))
+                                                     .build()));
+        assertEquals(true, rule.accept(StockQuoteImpl.builder()
+                                                     .ticker(new Ticker("REV"))
+                                                     .build()));
+        assertEquals(false, rule.accept(StockQuoteImpl.builder()
+                                                      .ticker(new Ticker("ZZZ"))
+                                                      .build()));
 
-        counterNyse.verify();
+        verifyZeroInteractions(service);
     }
 
     ///////////////////////////////////////

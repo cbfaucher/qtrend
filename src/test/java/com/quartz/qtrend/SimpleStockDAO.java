@@ -6,14 +6,19 @@
  */
 package com.quartz.qtrend;
 
-import com.quartz.qtrend.dom.*;
+import com.quartz.qtrend.dom.BasicStockInfo;
+import com.quartz.qtrend.dom.StockException;
+import com.quartz.qtrend.dom.StockQuote;
+import com.quartz.qtrend.dom.StockQuoteList;
 import com.quartz.qtrend.dom.dao.IStockQuoteDAO;
 import com.quartz.qtrend.dom.helpers.Ticker;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * INSERT YOUR COMMENT HERE....
@@ -21,35 +26,15 @@ import java.util.Map;
  * @author Christian
  * @since Quartz...
  */
-public class SimpleStockDAO<R> implements IStockQuoteDAO
+@NoArgsConstructor
+public class SimpleStockDAO implements IStockQuoteDAO
 {
-    ///////////////////////////////////////
-    ////    STATIC ATTRIBUTES
-
-    ///////////////////////////////////////
-    ////    STATIC METHODS
-
-    ///////////////////////////////////////
-    ////    INSTANCE ATTRIBUTES
-
-    final private Map<TickerKey, Integer> tickerSequences = new HashMap<TickerKey, Integer>();
-    final public List<StockQuoteImpl> stocks = new ArrayList<StockQuoteImpl>();
+    final public List<StockQuote> stocks = new ArrayList<>();
     public static final int UNSAVED_PK = -1;
 
-    ///////////////////////////////////////
-    ////    CONSTRUCTORS
-
-    public SimpleStockDAO()
+    public StockQuote getStockByPeriodSequence(int pPeriod)
     {
-    }
-
-    ///////////////////////////////////////
-    ////    INSTANCE METHODS
-
-
-    public StockQuoteImpl getStockByPeriodSequence(int pPeriod)
-    {
-        for (StockQuoteImpl s : stocks)
+        for (StockQuote s : stocks)
         {
             if (s.getPeriodSequence() == pPeriod) return s;
         }
@@ -71,7 +56,7 @@ public class SimpleStockDAO<R> implements IStockQuoteDAO
      */
     public long save(StockQuote pStock) throws StockException
     {
-        stocks.add((StockQuoteImpl) pStock);
+        stocks.add(pStock);
         return stocks.size();
     }
 
@@ -86,44 +71,12 @@ public class SimpleStockDAO<R> implements IStockQuoteDAO
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    ///////////////////////////////////////
-    ////    INNER CLASSES
-
-    ///////////////////////////////////////
-    ////    INNER CLASSES
-
+    @EqualsAndHashCode
+    @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
     static class TickerKey
     {
         final private Ticker exchange;
         final private Ticker ticker;
-
-        TickerKey(Ticker pExchange, Ticker pTicker)
-        {
-            exchange = pExchange;
-            ticker = pTicker;
-        }
-
-        public boolean equals(Object o)
-        {
-            if (this == o) return true;
-            if (!(o instanceof TickerKey)) return false;
-
-            final TickerKey tickerKey = (TickerKey) o;
-
-            if (!exchange.equals(tickerKey.exchange)) return false;
-            if (!ticker.equals(tickerKey.ticker)) return false;
-
-            return true;
-        }
-
-        public int hashCode()
-        {
-            int result;
-            result = exchange.hashCode();
-            result = 29 * result + ticker.hashCode();
-            return result;
-        }
-
 
         public String toString()
         {

@@ -22,14 +22,15 @@
         <property name="transactionTemplate" ref="QTrend.TransactionTemplate"/>
     </bean>
 
-    <!-- Service for Aroon -->
+    <!-- Service for Langford -->
+<!--
     <bean   id="QTrend.LangfordService"
-            class="com.quartz.qtrend.dom.langford.services.LangfordDataService"
-            >
-        <property name="jdbcTemplate" ref="QTrend.JdbcTemplate"/>
-        <property name="stockQuoteService" ref="QTrend.StockQuoteService"/>
-        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
+            class="com.quartz.qtrend.dom.langford.services.LangfordDataService">
+        <constructor-arg ref="QTrend.JdbcTemplate"/>
+        <constructor-arg ref="QTrend.StockQuoteService"/>
+        <constructor-arg ref="QTrend.StockQuoteListService"/>
     </bean>
+-->
 
     <!-- Service class for exchange-related methods -->
     <bean   id="QTrend.ExchangesService"
@@ -38,6 +39,7 @@
     </bean>
 
     <!-- Service for StockQuote -->
+<!--
     <bean   id="QTrend.StockQuoteService"
             class="com.quartz.qtrend.dom.services.StockQuoteService">
         <property name="stockQuoteDao" ref="QTrend.StockQuoteDAO"/>
@@ -46,8 +48,10 @@
         <property name="jdbcTemplate" ref="QTrend.JdbcTemplate"/>
         <property name="transactionTemplate" ref="QTrend.TransactionTemplate"/>
     </bean>
+-->
 
     <!-- Service for StockQuoteList -->
+<!--
     <bean   id="QTrend.StockQuoteListService"
             class="com.quartz.qtrend.dom.services.StockQuoteListService">
         <constructor-arg ref="QTrend.StockQuoteService"/>
@@ -55,6 +59,7 @@
         <constructor-arg ref="QTrendProperties"/>
         <constructor-arg ref="QTrend.WatchListsService"/>
     </bean>
+-->
 
     <bean   id="QTrend.YahooService"
             class="com.quartz.qtrend.dom.yahoo.YahooService">

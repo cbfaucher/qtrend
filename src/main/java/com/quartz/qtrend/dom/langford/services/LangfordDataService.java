@@ -15,14 +15,13 @@ import com.quartz.qtrend.dom.helpers.MACD;
 import com.quartz.qtrend.dom.helpers.RSI;
 import com.quartz.qtrend.dom.langford.EmaRetriever;
 import com.quartz.qtrend.dom.langford.LangfordData;
-import com.quartz.qtrend.dom.services.ServicesHelper;
-import com.quartz.qtrend.dom.services.StockQuoteListService;
-import com.quartz.qtrend.dom.services.StockQuoteService;
+import com.quartz.qtrend.dom.services.*;
 import com.quartz.qutilities.math.Dot;
 import com.quartz.qutilities.math.Line;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 
@@ -32,8 +31,9 @@ import java.util.Collection;
  * @author Christian
  * @since Quartz...
  */
-@NoArgsConstructor
-public class LangfordDataService
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@Component
+public class LangfordDataService implements ILangfordDataService
 {
     ///////////////////////////////////////
     ////    STATIC ATTRIBUTES
@@ -96,9 +96,9 @@ public class LangfordDataService
     };
 
     //  set by spring
-    @Setter private JdbcTemplate jdbcTemplate = null;
-    @Setter private StockQuoteListService stockQuotesService;
-    @Setter private StockQuoteService   stockQuoteService;
+    private final JdbcTemplate jdbcTemplate;
+    private final IStockQuoteListService stockQuotesService;
+    private final IStockQuoteService stockQuoteService;
 
     private static final EmaRetriever MACD_STEMA_RETRIEVER = new EmaRetriever()
     {
@@ -139,6 +139,7 @@ public class LangfordDataService
                     "WHERE REFID=?;";
 
 
+    @Override
     public void saveLangfordDataOnly(StockQuote pStockQuote, boolean pInsert) throws StockException
     {
         if (pInsert)
@@ -151,6 +152,7 @@ public class LangfordDataService
         }
     }
 
+    @Override
     public void calculate(LangfordData pLangfordData) throws StockException
     {
         calculateRSI(pLangfordData);
