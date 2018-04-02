@@ -14,6 +14,9 @@ import com.quartz.qtrend.dom.services.StockQuoteListService;
 import com.quartz.qtrend.rules.IRule;
 import com.quartz.qutilities.logging.ILog;
 import com.quartz.qutilities.logging.LogManager;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.List;
@@ -26,6 +29,7 @@ import java.util.Set;
  * @author Christian
  * @since Quartz...
  */
+@RequiredArgsConstructor
 public class IsExistingTickerRule implements IRule
 {
     ///////////////////////////////////////
@@ -42,8 +46,8 @@ public class IsExistingTickerRule implements IRule
     final private Ticker   exchangeName;
     final private StockQuoteListService stockQuotesService;
 
-
-    private Set<Ticker> existingTickers = new HashSet<Ticker>();
+    @Setter(AccessLevel.PACKAGE)
+    private Set<Ticker> existingTickers = new HashSet<>();
 
     ///////////////////////////////////////
     ////    CONSTRUCTORS
@@ -54,15 +58,6 @@ public class IsExistingTickerRule implements IRule
 
         exchangeName = pExchangeName;
         stockQuotesService = QTrendBeanNames.STOCK_QUOTE_LIST_SERVICE.getBean();
-    }
-
-    ///////////////////////////////////////
-    ////    INSTANCE METHODS
-
-    //  for unit tests!
-    void setExistingTickers(Set<Ticker> pExistingTickers)
-    {
-        existingTickers = pExistingTickers;
     }
 
     public boolean accept(StockQuote pQuote)

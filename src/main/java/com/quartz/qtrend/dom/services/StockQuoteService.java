@@ -12,19 +12,21 @@ import com.quartz.qtrend.dom.dao.StockQuoteDAO;
 import com.quartz.qtrend.dom.dao.StockQuoteLoadContext;
 import com.quartz.qtrend.dom.helpers.Ticker;
 import com.quartz.qtrend.dom.langford.LangfordDataImpl;
-import com.quartz.qtrend.dom.langford.services.LangfordDataService;
+import com.quartz.qtrend.dom.langford.services.ILangfordDataService;
 import com.quartz.qutilities.logging.ILog;
 import com.quartz.qutilities.logging.LogManager;
 import com.quartz.qutilities.spring.transactions.QTransactionCallback;
 import com.quartz.qutilities.spring.transactions.QTransactionTemplate;
 import com.quartz.qutilities.util.DateUtilities;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.joda.time.LocalDate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 
@@ -41,7 +43,8 @@ import java.util.Map;
  * @since Quartz...
  */
 @NoArgsConstructor
-public class StockQuoteService {
+@Component("QTrend.StockQuoteService")
+public class StockQuoteService implements IStockQuoteService {
     static private final ILog LOG = LogManager.getLogger(StockQuoteService.class);
 
     //  todo: SQL
@@ -50,20 +53,11 @@ public class StockQuoteService {
             "FROM STOCKQUOTES JOIN Langford ON StockQuotes.ID=Langford.REFID " +
             "WHERE TICKER=? AND PERIODSEQUENCE=?;";
 
-    //  set by spring
-    @Setter
-    private StockQuoteDAO stockQuoteDao;
-    @Setter
-    private LangfordDataService langfordDataService;
-    @Setter
-    private AroonService aroonService;
-
-    //  brand new way!
-    @Setter
-    private JdbcTemplate jdbcTemplate = null;
-
-    @Setter
-    private QTransactionTemplate transactionTemplate = null;
+    @Autowired private StockQuoteDAO stockQuoteDao;
+    @Autowired private ILangfordDataService langfordDataService;
+    @Autowired private AroonService aroonService;
+    @Autowired private JdbcTemplate jdbcTemplate;
+    @Autowired private QTransactionTemplate transactionTemplate;
 
     public int deleteTicker(Ticker pTicker) throws StockException {
         return jdbcTemplate.update("DELETE FROM stockquotes WHERE ticker=?;",
@@ -133,7 +127,8 @@ public class StockQuoteService {
         pStockQuote.setPriceDifference(pStockQuote.getClose().price - previous.getClose().price);
     }
 
-    void saveQuoteAndIndicators(final StockQuote pStockQuote) throws StockException {
+    @Override
+    public void saveQuoteAndIndicators(final StockQuote pStockQuote) throws StockException {
         transactionTemplate.execute((QTransactionCallback<Integer>) status -> {
             final boolean isInsert = stockQuoteDao.saveQuoteOnly(pStockQuote);
 
@@ -191,10 +186,12 @@ public class StockQuoteService {
         return previous;
     }
 
+    @Override
     public StockQuote getPreviousQuote(StockQuote pStockQuote) throws StockException {
         return getPreviousQuote(pStockQuote, pStockQuote.getStockQuoteNavigator());
     }
 
+    @Override
     public StockQuote getLatestQuote(final Ticker pTicker) {
         //  todo: SQL
         final String SQL =
