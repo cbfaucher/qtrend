@@ -11,14 +11,14 @@ import com.quartz.qtrend.dom.StockQuote;
 import com.quartz.qtrend.dom.aroon.Aroon;
 import com.quartz.qtrend.dom.aroon.IAroonParent;
 import com.quartz.qtrend.dom.helpers.Price;
-import com.quartz.qutilities.spring.transactions.QTransactionCallback;
-import com.quartz.qutilities.spring.transactions.QTransactionTemplate;
 import com.quartz.qutilities.util.DateUtilities;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.RequiredArgsConstructor;
 import lombok.val;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,7 +30,8 @@ import java.util.List;
  * @author Christian
  * @since Quartz...
  */
-@NoArgsConstructor
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@Component
 public class AroonService {
 
     //  todo: SQL
@@ -54,11 +55,7 @@ public class AroonService {
             "LIMIT ?;";
 
 
-    //  brand new way!
-    @Setter
-    private JdbcTemplate jdbcTemplate = null;
-    @Setter
-    private QTransactionTemplate transactionTemplate = null;
+    private final JdbcTemplate jdbcTemplate = null;
 
     public Aroon create(IAroonParent pParent, int pPeriod) throws StockException {
         final Aroon aroon = new Aroon(pParent, pPeriod);
@@ -99,18 +96,16 @@ public class AroonService {
                                            pPeriod);
     }
 
+    @Transactional
     public void save(final Aroon pAroon) throws StockException {
-        transactionTemplate.execute((QTransactionCallback<Object>) status -> {
-            val id = pAroon.getParent().getId();
-            val period = pAroon.getPeriod();
 
-            jdbcTemplate.update(SQL_DELETE_BY_REFID_AND_PERIOD, id, period);
+        val id = pAroon.getParent().getId();
+        val period = pAroon.getPeriod();
 
-            jdbcTemplate.update(SQL_INSERT_BY_REFID_AND_PERIOD,
-                                id, period, pAroon.getAroonUp(), pAroon.getAroonDown());
+        jdbcTemplate.update(SQL_DELETE_BY_REFID_AND_PERIOD, id, period);
 
-            return null;  //    nothing to return
-        });
+        jdbcTemplate.update(SQL_INSERT_BY_REFID_AND_PERIOD,
+                            id, period, pAroon.getAroonUp(), pAroon.getAroonDown());
     }
 
     private int getPeriodSequenceWithHighPrice(IAroonParent pQuote, int pPeriod) {

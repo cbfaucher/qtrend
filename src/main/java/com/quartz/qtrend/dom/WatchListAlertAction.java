@@ -11,10 +11,10 @@ import com.quartz.qtrend.dom.alerts.AlertParameters;
 import com.quartz.qtrend.dom.alerts.IAlertAction;
 import com.quartz.qtrend.dom.services.StockQuoteListService;
 import com.quartz.qtrend.dom.watchlists.WatchList;
-import com.quartz.qtrend.dom.watchlists.WatchListDoesNotExistException;
 import com.quartz.qutilities.formatter.FormatException;
 import com.quartz.qutilities.formatter.RowFormat;
 import com.quartz.qutilities.util.Output;
+import lombok.NoArgsConstructor;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.List;
@@ -25,12 +25,9 @@ import java.util.List;
  * @author Christian
  * @since Quartz...
  */
+@NoArgsConstructor
 public class WatchListAlertAction implements IAlertAction
 {
-    public WatchListAlertAction()
-    {
-    }
-
     public void execute(Alert pAlert, StockQuoteListService pService, Output pOutput, RowFormat<List<StockQuote>, StockQuote> pFormat) throws FormatException
     {
         final String watchListName = pAlert.getParameterValue(AlertParameters.PARAM_WATCHLIST_NAME);
@@ -46,7 +43,7 @@ public class WatchListAlertAction implements IAlertAction
             pOutput.writeln(pFormat.formatTitle(true));
             pOutput.writeln(pFormat.format(quotes));
         }
-        catch (WatchListDoesNotExistException e)
+        catch (StockException e)
         {
             pOutput.writeln("ERROR: Watchlist not found: " + watchListName);
         }

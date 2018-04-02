@@ -19,9 +19,6 @@ public enum QTrendMode
 {
     USER_INTERFACE(
             new ClassPathResource("/com/quartz/qtrend/qtrend-common.xml"),
-            new ClassPathResource("/com/quartz/qtrend/qtrend-database.xml"),
-            new ClassPathResource("/com/quartz/qtrend/qtrend-dao.xml"),
-            new ClassPathResource("/com/quartz/qtrend/qtrend-service.xml"),
 //            new ClassPathResource("/com/quartz/com.quartz.qtrend/com.quartz.qtrend-operations.xml"),
             new ClassPathResource("/com/quartz/qtrend/qtrend-events.xml"),
             new ClassPathResource("/com/quartz/qtrend/qtrend-main-frame.xml"),
@@ -30,10 +27,7 @@ public enum QTrendMode
             new ClassPathResource("/com/quartz/qtrend/ui/configuration/qtrend-configuration-ui-beans.xml")
     ),
     UPDATE_TICKERS_TASK(
-            new ClassPathResource("/com/quartz/qtrend/qtrend-common.xml"),
-            new ClassPathResource("/com/quartz/qtrend/qtrend-database.xml"),
-            new ClassPathResource("/com/quartz/qtrend/qtrend-dao.xml"),
-            new ClassPathResource("/com/quartz/qtrend/qtrend-service.xml")
+            new ClassPathResource("/com/quartz/qtrend/qtrend-common.xml")
 //            new ClassPathResource("/com/quartz/com.quartz.qtrend/com.quartz.qtrend-operations.xml"),
 //            new ClassPathResource("/com/quartz/com.quartz.qtrend/com.quartz.qtrend-events.xml"),
 //            new ClassPathResource("/com/quartz/com.quartz.qtrend/com.quartz.qtrend-main-frame.xml"),

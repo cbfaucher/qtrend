@@ -3,12 +3,11 @@ package com.quartz.qtrend;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
+@EnableTransactionManagement
 @ImportResource({"classpath:/com/quartz/qtrend/qtrend-common.xml",
-                 "classpath:/com/quartz/qtrend/qtrend-database.xml",
-                 "classpath:/com/quartz/qtrend/qtrend-dao.xml",
-                 "classpath:/com/quartz/qtrend/qtrend-service.xml",
 //                 "classpath:/com/quartz/qtrend/qtrend-operations.xml",
                  "classpath:/com/quartz/qtrend/qtrend-events.xml",
                  "classpath:/com/quartz/qtrend/qtrend-main-frame.xml",

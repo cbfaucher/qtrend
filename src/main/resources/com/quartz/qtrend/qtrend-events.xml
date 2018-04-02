@@ -338,14 +338,6 @@
         <property name="watchListService" ref="QTrend.WatchListsService"/>
     </bean>
 
-    <bean   id="Event.ViewWatchLists"
-            class="com.quartz.qtrend.actions.watchlists.ViewWatchListsAction"
-            scope="prototype">
-        <property name="selectWatchListsDialog" ref="QTrend.SelectWatchListsDialog"/>
-        <property name="watchListService" ref="QTrend.WatchListsService"/>
-        <property name="stockQuotesService" ref="QTrend.StockQuoteListService"/>
-    </bean>
-
     <bean   id="QTrend.DisplayAlerts"
             class="com.quartz.qtrend.actions.DisplayStartupAlertsAction"
             scope="prototype">
