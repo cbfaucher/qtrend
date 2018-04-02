@@ -26,6 +26,7 @@ import com.quartz.qutilities.util.DateUtilities;
 import com.quartz.qutilities.util.Output;
 import com.quartz.qutilities.util.QProperties;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.joda.time.LocalDate;
@@ -44,8 +45,8 @@ import java.util.*;
  * @author Christian
  * @since Quartz...
  */
-@Component
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@Component("QTrend.StockQuoteListService")
+@NoArgsConstructor
 public class StockQuoteListService implements IStockQuoteListService {
     static private final ILog LOG = LogManager.getLogger(StockQuoteListService.class);
 
@@ -156,10 +157,10 @@ public class StockQuoteListService implements IStockQuoteListService {
 
 
     //  brand new way!
-    private final JdbcTemplate jdbcTemplate;
-    private final QProperties properties;
-    private final IStockQuoteService stockQuoteService;
-    @Getter private final IWatchListService watchListService;
+    @Autowired private JdbcTemplate jdbcTemplate;
+    @Autowired private QProperties properties;
+    @Autowired private IStockQuoteService stockQuoteService;
+    @Autowired @Getter private IWatchListService watchListService;
 
     @PostConstruct
     public void init() throws Exception {

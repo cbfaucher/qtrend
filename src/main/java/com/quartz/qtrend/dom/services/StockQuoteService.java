@@ -18,6 +18,7 @@ import com.quartz.qutilities.logging.LogManager;
 import com.quartz.qutilities.spring.transactions.QTransactionCallback;
 import com.quartz.qutilities.spring.transactions.QTransactionTemplate;
 import com.quartz.qutilities.util.DateUtilities;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.joda.time.LocalDate;
@@ -41,7 +42,7 @@ import java.util.Map;
  * @author Christian
  * @since Quartz...
  */
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@NoArgsConstructor
 @Component("QTrend.StockQuoteService")
 public class StockQuoteService implements IStockQuoteService {
     static private final ILog LOG = LogManager.getLogger(StockQuoteService.class);
@@ -52,11 +53,11 @@ public class StockQuoteService implements IStockQuoteService {
             "FROM STOCKQUOTES JOIN Langford ON StockQuotes.ID=Langford.REFID " +
             "WHERE TICKER=? AND PERIODSEQUENCE=?;";
 
-    private final StockQuoteDAO stockQuoteDao;
-//    private final ILangfordDataService langfordDataService;
-    private final AroonService aroonService;
-    private final JdbcTemplate jdbcTemplate;
-    private final QTransactionTemplate transactionTemplate;
+    @Autowired private StockQuoteDAO stockQuoteDao;
+    @Autowired private ILangfordDataService langfordDataService;
+    @Autowired private AroonService aroonService;
+    @Autowired private JdbcTemplate jdbcTemplate;
+    @Autowired private QTransactionTemplate transactionTemplate;
 
     public int deleteTicker(Ticker pTicker) throws StockException {
         return jdbcTemplate.update("DELETE FROM stockquotes WHERE ticker=?;",

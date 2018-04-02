@@ -52,11 +52,7 @@ public class LangfordDataImplTest implements TestCaseUtils
 
     private StockQuoteListService stockQuoteListService;
 
-    private final StockQuoteService stockQuoteService = new StockQuoteService(null,
-                                                                              null,
-                                                                              null,
-                                                                              null,
-                                                                              null);
+    private final StockQuoteService stockQuoteService = new StockQuoteService();
 
     private LangfordDataService langfordDataService;
 
@@ -66,7 +62,7 @@ public class LangfordDataImplTest implements TestCaseUtils
 
     @Before
     public void setup() {
-        stockQuoteListService = new StockQuoteListService(jdbcTemplate, new QProperties(), stockQuoteService, watchListService);
+        stockQuoteListService = new StockQuoteListService();
 
         langfordDataService = new LangfordDataService(jdbcTemplate, stockQuoteListService, stockQuoteService);
     }
