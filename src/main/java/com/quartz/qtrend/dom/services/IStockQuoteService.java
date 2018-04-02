@@ -9,5 +9,5 @@ public interface IStockQuoteService {
 
     StockQuote getPreviousQuote(StockQuote pStockQuote) throws StockException;
 
-    StockQuote getLatestQuote(Ticker pTicker);
+    StockQuote getLatestQuote(Ticker pTicker) throws StockException;
 }

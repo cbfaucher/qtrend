@@ -6,7 +6,10 @@
  */
 package com.quartz.qtrend.dom.services;
 
-import com.quartz.qtrend.dom.*;
+import com.quartz.qtrend.dom.FullTickerName;
+import com.quartz.qtrend.dom.StockException;
+import com.quartz.qtrend.dom.StockQuote;
+import com.quartz.qtrend.dom.StockQuoteNavigator;
 import com.quartz.qtrend.dom.aroon.services.AroonService;
 import com.quartz.qtrend.dom.dao.StockQuoteDAO;
 import com.quartz.qtrend.dom.dao.StockQuoteLoadContext;
@@ -15,11 +18,8 @@ import com.quartz.qtrend.dom.langford.LangfordDataImpl;
 import com.quartz.qtrend.dom.langford.services.ILangfordDataService;
 import com.quartz.qutilities.logging.ILog;
 import com.quartz.qutilities.logging.LogManager;
-import com.quartz.qutilities.spring.transactions.QTransactionCallback;
-import com.quartz.qutilities.spring.transactions.QTransactionTemplate;
 import com.quartz.qutilities.util.DateUtilities;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +27,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.TransactionCallbackWithoutResult;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -57,7 +56,6 @@ public class StockQuoteService implements IStockQuoteService {
     @Autowired private ILangfordDataService langfordDataService;
     @Autowired private AroonService aroonService;
     @Autowired private JdbcTemplate jdbcTemplate;
-    @Autowired private QTransactionTemplate transactionTemplate;
 
     public int deleteTicker(Ticker pTicker) throws StockException {
         return jdbcTemplate.update("DELETE FROM stockquotes WHERE ticker=?;",
@@ -128,35 +126,33 @@ public class StockQuoteService implements IStockQuoteService {
     }
 
     @Override
+    @Transactional
     public void saveQuoteAndIndicators(final StockQuote pStockQuote) throws StockException {
-        transactionTemplate.execute((QTransactionCallback<Integer>) status -> {
-            final boolean isInsert = stockQuoteDao.saveQuoteOnly(pStockQuote);
 
-            //  langford
-            if (pStockQuote.hasLangfordData()) {
-                langfordDataService.saveLangfordDataOnly(pStockQuote, isInsert);
-            } else {
-                //  failure on insert if langford not calculated
-                if (isInsert) throw new StockException("Inserting new Quote without Langford data present!");
-            }
+        final boolean isInsert = stockQuoteDao.saveQuoteOnly(pStockQuote);
 
-            //  aroon short & long terms
-            if (pStockQuote.hasAroonShortTerm()) {
-                aroonService.save(pStockQuote.getAroonShortTerm());
-            } else {
-                //  failure on insert if no aroon short term
-                if (isInsert) throw new StockException("Inserting a new Quote without Aroon short term.");
-            }
+        //  langford
+        if (pStockQuote.hasLangfordData()) {
+            langfordDataService.saveLangfordDataOnly(pStockQuote, isInsert);
+        } else {
+            //  failure on insert if langford not calculated
+            if (isInsert) throw new StockException("Inserting new Quote without Langford data present!");
+        }
 
-            if (pStockQuote.hasAroonLongTerm()) {
-                aroonService.save(pStockQuote.getAroonLongTerm());
-            } else {
-                //  failure on insert if no aroon long term
-                if (isInsert) throw new StockException("Inserting a new Quote without Aroon long term.");
-            }
+        //  aroon short & long terms
+        if (pStockQuote.hasAroonShortTerm()) {
+            aroonService.save(pStockQuote.getAroonShortTerm());
+        } else {
+            //  failure on insert if no aroon short term
+            if (isInsert) throw new StockException("Inserting a new Quote without Aroon short term.");
+        }
 
-            return 1;
-        });
+        if (pStockQuote.hasAroonLongTerm()) {
+            aroonService.save(pStockQuote.getAroonLongTerm());
+        } else {
+            //  failure on insert if no aroon long term
+            if (isInsert) throw new StockException("Inserting a new Quote without Aroon long term.");
+        }
     }
 
     private StockQuote getPreviousQuote(StockQuote pStockQuote, StockQuoteNavigator pNavigator) throws StockException {
@@ -192,7 +188,8 @@ public class StockQuoteService implements IStockQuoteService {
     }
 
     @Override
-    public StockQuote getLatestQuote(final Ticker pTicker) {
+    @Transactional
+    public StockQuote getLatestQuote(final Ticker pTicker) throws StockException {
         //  todo: SQL
         final String SQL =
                 "SELECT stockquotes.*, langford.* " +
@@ -205,14 +202,13 @@ public class StockQuoteService implements IStockQuoteService {
 
         final StockQuoteLoadContext context = new StockQuoteLoadContext(true, false, false);
 
-        return transactionTemplate.execute((QTransactionCallback<StockQuote>) status -> {
-            final List<StockQuote> info = jdbcTemplate.query(SQL,
-                                                             new LoadFullQuoteRowMapper(context),
-                                                             pTicker.toString(), pTicker.toString());
-            if (info.isEmpty()) return null;
-            if (info.size() == 1) return info.get(0);
-            throw new StockException("Many records found for latest, for ticker " + pTicker);
-        });
+        final List<StockQuote> info = jdbcTemplate.query(SQL,
+                                                         new LoadFullQuoteRowMapper(context),
+                                                         pTicker.toString(), pTicker.toString());
+        if (info.isEmpty()) return null;
+        if (info.size() == 1) return info.get(0);
+
+        throw new StockException("Many records found for latest, for ticker " + pTicker);
     }
 
     public String getTickerName(Ticker pTicker) {
@@ -239,25 +235,22 @@ public class StockQuoteService implements IStockQuoteService {
         return tickerNames;
     }
 
+    @Transactional
     public void saveTickerNames(Map<Ticker, FullTickerName> pNames) {
         val currentNames = loadTickerNames();
 
         //  update names
         currentNames.putAll(pNames);
 
-        transactionTemplate.execute(new TransactionCallbackWithoutResult() {
-            protected void doInTransactionWithoutResult(TransactionStatus status) {
-                //  delete current names
-                jdbcTemplate.update("DELETE FROM Names;");
+        //  delete current names
+        jdbcTemplate.update("DELETE FROM Names;");
 
-                for (FullTickerName fullTickerName : currentNames.values()) {
-                    jdbcTemplate.update("INSERT INTO Names (stockexchange,ticker, name) VALUES (?, ?, ?);",
-                                        fullTickerName.exchange.toString(),
-                                        fullTickerName.ticker.toString(),
-                                        fullTickerName.name);
-                }
-            }
-        });
+        for (FullTickerName fullTickerName : currentNames.values()) {
+            jdbcTemplate.update("INSERT INTO Names (stockexchange,ticker, name) VALUES (?, ?, ?);",
+                                fullTickerName.exchange.toString(),
+                                fullTickerName.ticker.toString(),
+                                fullTickerName.name);
+        }
     }
 
     public void deleteQuote(Ticker pTicker, LocalDate pEndDate) {

@@ -24,7 +24,7 @@ public interface TestCaseUtils {
                                        int pPeriodSeq,
                                        Date pDate,
                                        float pClose,
-                                       Consumer<StockQuoteImpl.StockQuoteImplBuilder> filler) {
+                                       Consumer<StockQuoteImpl.StockQuoteImplBuilder> filler) throws StockException {
         val stockQuoteBuilder = StockQuoteImpl.builder()
                                        .stockExchange(new Ticker("TSE"))
                                        .ticker(new Ticker(pTicker))

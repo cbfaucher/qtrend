@@ -27,14 +27,12 @@ import com.quartz.qutilities.util.Output;
 import com.quartz.qutilities.util.QProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.joda.time.LocalDate;
 import org.joda.time.YearMonthDay;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-
 
 import javax.annotation.PostConstruct;
 import java.util.*;
@@ -46,7 +44,7 @@ import java.util.*;
  * @since Quartz...
  */
 @Component("QTrend.StockQuoteListService")
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@NoArgsConstructor  //cant used ctor autowired due to cycle dependency
 public class StockQuoteListService implements IStockQuoteListService {
     static private final ILog LOG = LogManager.getLogger(StockQuoteListService.class);
 
@@ -157,10 +155,10 @@ public class StockQuoteListService implements IStockQuoteListService {
 
 
     //  brand new way!
-    private final JdbcTemplate jdbcTemplate;
-    private final QProperties properties;
-    private final IStockQuoteService stockQuoteService;
-    @Getter private final IWatchListService watchListService;
+    @Autowired private JdbcTemplate jdbcTemplate;
+    @Autowired private QProperties properties;
+    @Autowired private IStockQuoteService stockQuoteService;
+    @Autowired @Getter private IWatchListService watchListService;
 
     @PostConstruct
     public void init() throws Exception {
@@ -245,7 +243,7 @@ public class StockQuoteListService implements IStockQuoteListService {
                                   new LoadFullQuoteRowMapper(context),
                                   pObsSignal.getSignal(),
                                   maxRsi,
-                                  new Integer(pPeriodsBack));
+                                  pPeriodsBack);
     }
 
     public List<StockQuote> findOssSignals(Signal pOssSignal, final int pPeriodsBack, Integer pMinimumRsi) {
@@ -264,7 +262,7 @@ public class StockQuoteListService implements IStockQuoteListService {
                                   new LoadFullQuoteRowMapper(context),
                                   pOssSignal.getSignal(),
                                   minRsi,
-                                  new Integer(pPeriodsBack));
+                                  pPeriodsBack);
     }
 
     public List<StockQuote> findObsSignals(Ticker pExchange, Float pMinimumPrice, Integer pMinimumVolume, Integer pMaximumRsi, LocalDate pFromDate, Signal pSignal) throws StockException {
@@ -532,8 +530,9 @@ public class StockQuoteListService implements IStockQuoteListService {
                                                                      new Price(0), 0));
     }
 
-    public List<StockQuote> loadQuotes(List<Ticker> pTickers) {
-        final List<StockQuote> tickerQuotes = new ArrayList<StockQuote>();
+    @Override
+    public List<StockQuote> loadQuotes(List<Ticker> pTickers) throws StockException {
+        val tickerQuotes = new ArrayList<StockQuote>();
         for (Ticker t : pTickers) {
             final StockQuote latestQuote = stockQuoteService.getLatestQuote(t);
             if (latestQuote != null) {
@@ -548,9 +547,7 @@ public class StockQuoteListService implements IStockQuoteListService {
 
     public void outputAlerts(final Collection<Alert> pAlerts, final Output pOutput, final RowFormat<List<StockQuote>, StockQuote> pFormat)
             throws FormatException, StockRuntimeException {
-        for (Iterator iterator = pAlerts.iterator(); iterator.hasNext(); ) {
-            Alert alert = (Alert) iterator.next();
-
+        for (Alert alert : pAlerts) {
             if (alert.getAlertAction() != null) {
                 final IAlertAction action = alert.getAlertAction();
                 action.execute(alert, this, pOutput, pFormat);

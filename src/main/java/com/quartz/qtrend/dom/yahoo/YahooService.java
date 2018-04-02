@@ -19,12 +19,14 @@ import com.quartz.qutilities.logging.ILog;
 import com.quartz.qutilities.logging.LogManager;
 import com.quartz.qutilities.util.Output;
 import com.quartz.qutilities.util.QProperties;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.val;
 import org.joda.time.LocalDate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
@@ -39,19 +41,15 @@ import java.util.TreeMap;
  * @author Christian
  * @since Quartz...
  */
-@NoArgsConstructor
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@Component
 public class YahooService implements ApplicationContextAware {
     static private final ILog LOG = LogManager.getLogger(YahooService.class);
 
-    //  TODO: use @RequiredArgsConstructor
-    @Setter
-    private StockQuoteListService stockQuotesService;
-    @Setter
-    private StockQuoteService stockQuoteService;
-    @Setter
-    private QProperties properties;
-    @Setter
-    private ApplicationContext applicationContext;
+    private final StockQuoteListService stockQuotesService;
+    private final StockQuoteService stockQuoteService;
+    private final QProperties properties;
+    @Setter private ApplicationContext applicationContext;
 
     @PostConstruct
     public void init() throws Exception {

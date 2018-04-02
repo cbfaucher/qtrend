@@ -61,7 +61,7 @@ public class LangfordDataImplTest implements TestCaseUtils
 
     @Before
     public void setup() {
-        stockQuoteListService = new StockQuoteListService(null, null, null, null);
+        stockQuoteListService = new StockQuoteListService();
 
         langfordDataService = new LangfordDataService(jdbcTemplate, stockQuoteListService, stockQuoteService);
     }

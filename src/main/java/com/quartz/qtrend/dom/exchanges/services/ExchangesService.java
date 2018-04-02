@@ -13,11 +13,12 @@ import com.quartz.qtrend.dom.helpers.Ticker;
 import com.quartz.qtrend.dom.services.StockQuoteVariationRowMapper;
 import com.quartz.qutilities.sql.YearMonthDayByTimeMillisRowMapper;
 import com.quartz.qutilities.util.DateUtilities;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.RequiredArgsConstructor;
 import org.joda.time.LocalDate;
 import org.joda.time.YearMonthDay;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -28,7 +29,8 @@ import java.util.List;
  * @author Christian
  * @since Quartz...
  */
-@NoArgsConstructor
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@Component
 public class ExchangesService {
     //  todo: SQL
     private static final String SQL_FIND_EXCHANGE_IMPORT_DATES = "SELECT stockexchange, min(date) AS mindate, max(date) AS maxdate, count(DISTINCT date) AS nbperiods FROM " +
@@ -41,8 +43,7 @@ public class ExchangesService {
     private static final String SQL_FIND_PRICE_DROPS_3DAYS = SQL_FIND_STOCKS_BY_VARIATION.replaceAll("XXX", "closevar3");
     private static final String SQL_FIND_PRICE_DROPS_1DAY = SQL_FIND_STOCKS_BY_VARIATION.replaceAll("XXX", "closevar1");
 
-    @Setter
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     /**
      * @return The lowest and highest quote dates, by exchange

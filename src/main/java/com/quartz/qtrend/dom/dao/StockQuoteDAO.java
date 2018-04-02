@@ -13,16 +13,13 @@ import com.quartz.qtrend.dom.services.LoadStockQuoteOnlyRowMapper;
 import com.quartz.qtrend.dom.services.ServicesHelper;
 import com.quartz.qutilities.logging.ILog;
 import com.quartz.qutilities.logging.LogManager;
-import com.quartz.qutilities.spring.transactions.QTransactionCallback;
-import com.quartz.qutilities.spring.transactions.QTransactionTemplate;
 import com.quartz.qutilities.util.DateUtilities;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.RequiredArgsConstructor;
 import lombok.val;
-import org.springframework.dao.DataAccessException;
-import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.transaction.TransactionStatus;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import java.sql.ResultSet;
@@ -35,7 +32,8 @@ import java.util.Optional;
  * @author Christian
  * @since Quartz...
  */
-@NoArgsConstructor
+@Component
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class StockQuoteDAO implements IStockQuoteDAO {
     static private final ILog LOG = LogManager.getLogger(StockQuoteDAO.class);
 
@@ -53,15 +51,11 @@ public class StockQuoteDAO implements IStockQuoteDAO {
             "SELECT (MAX(PERIODSEQUENCE) + 1) AS NEXTSEQUENCE FROM STOCKQUOTES WHERE TICKER=?;";
 
     //  brand new way!
-    @Setter
-    private JdbcTemplate jdbcTemplate = null;
-    @Setter
-    private QTransactionTemplate transactionTemplate = null;
+    private final JdbcTemplate jdbcTemplate;
 
     @PostConstruct
     public void init() throws Exception {
         if (jdbcTemplate == null) throw new IllegalStateException("JDBC Template not set.");
-        if (transactionTemplate == null) throw new IllegalStateException("Transactio Template not set.");
     }
 
     public StockQuote loadStockQuoteOnly(ResultSet pResultSet, StockQuoteLoadContext pContext) {
@@ -72,40 +66,37 @@ public class StockQuoteDAO implements IStockQuoteDAO {
         }
     }
 
-    public StockQuote insert(final StockQuote pStockQuote) {
+    @Transactional
+    public StockQuote insert(final StockQuote pStockQuote) throws StockException {
         LOG.info("Inserting new StockQuote("
                  + pStockQuote.getTicker() + "/" + pStockQuote.getDate()
                  + ")...");
 
-        return transactionTemplate.execute(new QTransactionCallback<StockQuote>() {
-            public StockQuote doInTransaction(TransactionStatus status) throws Exception {
-                val pk = jdbcTemplate.queryForObject(SQL_SELECT_NEXT_ID, Long.class);
-                pStockQuote.setId(pk);
+        val pk = jdbcTemplate.queryForObject(SQL_SELECT_NEXT_ID, Long.class);
+        pStockQuote.setId(pk);
 
-                val nextPeriodSequence = getNextPeriodSequence(pStockQuote);
-                pStockQuote.setPeriodSequence(nextPeriodSequence);
+        val nextPeriodSequence = getNextPeriodSequence(pStockQuote);
+        pStockQuote.setPeriodSequence(nextPeriodSequence);
 
-                if (jdbcTemplate.update(
-                        SQL_INSERT_STOCK,
-                        pk,
-                        pStockQuote.getStockExchange().toString(),
-                        pStockQuote.getTicker().toString(),
-                        pStockQuote.getPeriodSequence(),
-                        DateUtilities.toJavaSqlDate(pStockQuote.getDate()),
-                        pStockQuote.getTime(),
-                        ServicesHelper.createSqlParameterValue(pStockQuote.getOpen()),
-                        ServicesHelper.createSqlParameterValue(pStockQuote.getHigh()),
-                        ServicesHelper.createSqlParameterValue(pStockQuote.getLow()),
-                        ServicesHelper.createSqlParameterValue(pStockQuote.getClose()),
-                        pStockQuote.getPriceDifference(),
-                        pStockQuote.getVolume(),
-                        pStockQuote.getAverageVolume()) != 1) {
-                    throw new StockException("Could not insert ticker: " + pStockQuote.getTicker());
-                }
+        if (jdbcTemplate.update(
+                SQL_INSERT_STOCK,
+                pk,
+                pStockQuote.getStockExchange().toString(),
+                pStockQuote.getTicker().toString(),
+                pStockQuote.getPeriodSequence(),
+                DateUtilities.toJavaSqlDate(pStockQuote.getDate()),
+                pStockQuote.getTime(),
+                ServicesHelper.createSqlParameterValue(pStockQuote.getOpen()),
+                ServicesHelper.createSqlParameterValue(pStockQuote.getHigh()),
+                ServicesHelper.createSqlParameterValue(pStockQuote.getLow()),
+                ServicesHelper.createSqlParameterValue(pStockQuote.getClose()),
+                pStockQuote.getPriceDifference(),
+                pStockQuote.getVolume(),
+                pStockQuote.getAverageVolume()) != 1) {
+            throw new StockException("Could not insert ticker: " + pStockQuote.getTicker());
+        }
 
-                return pStockQuote;
-            }
-        });
+        return pStockQuote;
     }
 
     private Integer getNextPeriodSequence(StockQuote pStockQuote) {

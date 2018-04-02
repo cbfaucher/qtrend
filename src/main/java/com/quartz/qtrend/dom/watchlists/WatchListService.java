@@ -7,14 +7,14 @@
 package com.quartz.qtrend.dom.watchlists;
 
 import com.quartz.qtrend.dom.helpers.Ticker;
-import com.quartz.qutilities.spring.transactions.QTransactionCallback;
-import com.quartz.qutilities.spring.transactions.QTransactionTemplate;
 import com.quartz.qutilities.spring.transactions.QTransactionTemplateException;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,7 +24,8 @@ import java.util.List;
  * @author Christian
  * @since Quartz...
  */
-@NoArgsConstructor
+@Component("QTrend.WatchListsService")
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class WatchListService implements IWatchListService {
 
     //  todo: SQL
@@ -40,28 +41,26 @@ public class WatchListService implements IWatchListService {
     private static final String SQL_DELETE_WATCHLIST_BY_ID = "delete from WatchLists where id=?;";
     private static final String SQL_SELECT_SINGLE_WATCHLIST_DESCRIPTION = "select description from watchlists where name=?;";
 
-    @Setter private JdbcTemplate jdbcTemplate = null;
-    @Setter private QTransactionTemplate transactionTemplate = null;
+    private final JdbcTemplate jdbcTemplate;
 
     public List<String> getWatchListNames() {
         return jdbcTemplate.query("select distinct name from watchlists order by name;",
                                   new StringRowMapper("name"));
     }
 
+    @Transactional
     public WatchList create(final String pName) throws DuplicateWatchlistNameException {
         try {
-            return transactionTemplate.execute((QTransactionCallback<WatchList>) status -> {
-                //  check if it exists
-                if (exists(pName)) throw new DuplicateWatchlistNameException(pName);
+            //  check if it exists
+            if (exists(pName)) throw new DuplicateWatchlistNameException(pName);
 
-                //  get next pk
-                final long pk = jdbcTemplate.queryForObject(SQL_NEXT_WATCHLIST_PK, Long.class);
+            //  get next pk
+            final long pk = jdbcTemplate.queryForObject(SQL_NEXT_WATCHLIST_PK, Long.class);
 
-                //  save
-                jdbcTemplate.update(SQL_INSERT_WATCHLIST, pk, pName, null);
+            //  save
+            jdbcTemplate.update(SQL_INSERT_WATCHLIST, pk, pName, null);
 
-                return new WatchListImpl(pk, pName);
-            });
+            return new WatchListImpl(pk, pName);
         } catch (QTransactionTemplateException e) {
             if (e.getCause() instanceof DuplicateWatchlistNameException)
                 throw (DuplicateWatchlistNameException) e.getCause();
@@ -69,31 +68,30 @@ public class WatchListService implements IWatchListService {
         }
     }
 
+    @Transactional
     public WatchList load(final String pName) throws WatchListDoesNotExistException {
         if (pName == null) throw new IllegalArgumentException("Name not specified.");
 
         try {
-            return transactionTemplate.execute((QTransactionCallback<WatchList>) status -> {
-                //  first load watch list itself
-                final WatchListImpl watchList = jdbcTemplate.queryForObject(
-                        SQL_SELECT_WATCHLIST_BY_NAME,
-                        (rs, rowNum) -> new WatchListImpl(
-                                rs.getLong("id"),
-                                StringUtils.trim(rs.getString("name")),
-                                StringUtils.trim(rs.getString("description"))),
-                        pName);
+            //  first load watch list itself
+            final WatchListImpl watchList = jdbcTemplate.queryForObject(
+                    SQL_SELECT_WATCHLIST_BY_NAME,
+                    (rs, rowNum) -> new WatchListImpl(
+                            rs.getLong("id"),
+                            StringUtils.trim(rs.getString("name")),
+                            StringUtils.trim(rs.getString("description"))),
+                    pName);
 
-                //  then load tickers...
-                jdbcTemplate.query(SQL_SELECT_WATCHLIST_TICKERS,
-                                   (rs, rowNum) -> {
-                                       final Ticker ticker = new Ticker(rs.getString("ticker").trim());
-                                       watchList.add(ticker);
-                                       return ticker;
-                                   },
-                                   watchList.getId());
+            //  then load tickers...
+            jdbcTemplate.query(SQL_SELECT_WATCHLIST_TICKERS,
+                               (rs, rowNum) -> {
+                                   final Ticker ticker = new Ticker(rs.getString("ticker").trim());
+                                   watchList.add(ticker);
+                                   return ticker;
+                               },
+                               watchList.getId());
 
-                return watchList;
-            });
+            return watchList;
         } catch (QTransactionTemplateException e) {
             if (e.getCause() instanceof WatchListDoesNotExistException)
                 throw (WatchListDoesNotExistException) e.getCause();
@@ -109,20 +107,17 @@ public class WatchListService implements IWatchListService {
         return (jdbcTemplate.queryForObject(SQL_COUNT_WATCHLIST_NAME, Integer.class, pWatchListName) > 0);
     }
 
+    @Transactional
     public void save(final WatchList pWatchList) {
-        transactionTemplate.execute((QTransactionCallback<Object>) status -> {
-            jdbcTemplate.update(SQL_UPDATE_WATCHLIST, pWatchList.getName(), pWatchList.getDescription(), pWatchList.getId());
+        jdbcTemplate.update(SQL_UPDATE_WATCHLIST, pWatchList.getName(), pWatchList.getDescription(), pWatchList.getId());
 
-            //  delete actual tickers
-            jdbcTemplate.update(SQL_DELETE_WATCHLIST_TICKERS, pWatchList.getId());
+        //  delete actual tickers
+        jdbcTemplate.update(SQL_DELETE_WATCHLIST_TICKERS, pWatchList.getId());
 
-            //  then save tickers...
-            for (Ticker t : pWatchList.getTickers()) {
-                jdbcTemplate.update(SQL_INSERT_WATCHLIST_TICKERS, pWatchList.getId(), t.toString());
-            }
-
-            return null;
-        });
+        //  then save tickers...
+        for (Ticker t : pWatchList.getTickers()) {
+            jdbcTemplate.update(SQL_INSERT_WATCHLIST_TICKERS, pWatchList.getId(), t.toString());
+        }
     }
 
     public void delete(WatchList pWatchList) {
