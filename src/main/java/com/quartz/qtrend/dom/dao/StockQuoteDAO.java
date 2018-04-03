@@ -134,6 +134,7 @@ public class StockQuoteDAO implements IStockQuoteDAO {
     /**
      * Saves the quote only
      */
+    @Override
     public boolean saveQuoteOnly(StockQuote pStockQuote) throws StockException {
         if (pStockQuote.getId() < 0) {
             insert(pStockQuote);

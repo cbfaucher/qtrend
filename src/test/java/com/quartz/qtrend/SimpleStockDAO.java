@@ -12,6 +12,7 @@ import com.quartz.qtrend.dom.StockQuote;
 import com.quartz.qtrend.dom.StockQuoteList;
 import com.quartz.qtrend.dom.dao.IStockQuoteDAO;
 import com.quartz.qtrend.dom.helpers.Ticker;
+import com.quartz.qtrend.util.SimpleStockQuoteNavigator;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -30,6 +31,8 @@ import java.util.List;
 public class SimpleStockDAO implements IStockQuoteDAO
 {
     final public List<StockQuote> stocks = new ArrayList<>();
+    final public SimpleStockQuoteNavigator navigator = new SimpleStockQuoteNavigator(stocks);
+
     public static final int UNSAVED_PK = -1;
 
     public StockQuote getStockByPeriodSequence(int pPeriod)
@@ -69,6 +72,11 @@ public class SimpleStockDAO implements IStockQuoteDAO
     public List<BasicStockInfo> findTickersWithDuplicateDates() throws StockException
     {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public boolean saveQuoteOnly(StockQuote pStockQuote) throws StockException {
+        throw new UnsupportedOperationException();
     }
 
     @EqualsAndHashCode

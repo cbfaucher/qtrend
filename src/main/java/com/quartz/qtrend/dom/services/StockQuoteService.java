@@ -11,7 +11,7 @@ import com.quartz.qtrend.dom.StockException;
 import com.quartz.qtrend.dom.StockQuote;
 import com.quartz.qtrend.dom.StockQuoteNavigator;
 import com.quartz.qtrend.dom.aroon.services.AroonService;
-import com.quartz.qtrend.dom.dao.StockQuoteDAO;
+import com.quartz.qtrend.dom.dao.IStockQuoteDAO;
 import com.quartz.qtrend.dom.dao.StockQuoteLoadContext;
 import com.quartz.qtrend.dom.helpers.Ticker;
 import com.quartz.qtrend.dom.langford.LangfordDataImpl;
@@ -20,6 +20,7 @@ import com.quartz.qutilities.logging.ILog;
 import com.quartz.qutilities.logging.LogManager;
 import com.quartz.qutilities.util.DateUtilities;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.val;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,10 +53,15 @@ public class StockQuoteService implements IStockQuoteService {
             "FROM STOCKQUOTES JOIN Langford ON StockQuotes.ID=Langford.REFID " +
             "WHERE TICKER=? AND PERIODSEQUENCE=?;";
 
-    @Autowired private StockQuoteDAO stockQuoteDao;
+    @Autowired private IStockQuoteDAO stockQuoteDao;
     @Autowired private ILangfordDataService langfordDataService;
     @Autowired private AroonService aroonService;
     @Autowired private JdbcTemplate jdbcTemplate;
+
+    //  unit test
+    StockQuoteService(@NonNull final IStockQuoteDAO dao) {
+        this.stockQuoteDao = dao;
+    }
 
     public int deleteTicker(Ticker pTicker) throws StockException {
         return jdbcTemplate.update("DELETE FROM stockquotes WHERE ticker=?;",
