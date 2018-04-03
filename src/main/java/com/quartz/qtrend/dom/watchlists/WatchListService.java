@@ -9,6 +9,7 @@ package com.quartz.qtrend.dom.watchlists;
 import com.quartz.qtrend.dom.helpers.Ticker;
 import com.quartz.qutilities.spring.transactions.QTransactionTemplateException;
 import lombok.RequiredArgsConstructor;
+import lombok.val;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -30,8 +31,8 @@ public class WatchListService implements IWatchListService {
 
     //  todo: SQL
     private static final String SQL_NEXT_WATCHLIST_PK = "select nextval('watchlistseq');";
-    static private final String SQL_COUNT_WATCHLIST_NAME = "select count(name) as COUNT from watchlists where name=?;";
-    static private final String SQL_INSERT_WATCHLIST = "insert into watchlists(id, name, description) values (?, ?, ?);";
+    private static final String SQL_COUNT_WATCHLIST_NAME = "select count(name) as COUNT from watchlists where name=?;";
+    private static final String SQL_INSERT_WATCHLIST = "insert into watchlists(id, name, description) values (?, ?, ?);";
     private static final String SQL_UPDATE_WATCHLIST = "update watchlists set name=?, description=? where id=?;";
     private static final String SQL_SELECT_WATCHLIST_BY_NAME = "select * from watchlists where name=?";
     private static final String SQL_SELECT_WATCHLIST_TICKERS = "select * from watchlisttickers where refid=? order by ticker;";
@@ -55,11 +56,12 @@ public class WatchListService implements IWatchListService {
             if (exists(pName)) throw new DuplicateWatchlistNameException(pName);
 
             //  get next pk
-            final long pk = jdbcTemplate.queryForObject(SQL_NEXT_WATCHLIST_PK, Long.class);
+            val pk = jdbcTemplate.queryForObject(SQL_NEXT_WATCHLIST_PK, Long.class);
 
             //  save
             jdbcTemplate.update(SQL_INSERT_WATCHLIST, pk, pName, null);
 
+            //noinspection ConstantConditions
             return new WatchListImpl(pk, pName);
         } catch (QTransactionTemplateException e) {
             if (e.getCause() instanceof DuplicateWatchlistNameException)

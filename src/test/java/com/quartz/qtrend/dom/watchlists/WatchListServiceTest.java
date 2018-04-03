@@ -6,16 +6,16 @@
  */
 package com.quartz.qtrend.dom.watchlists;
 
-import com.quartz.qtrend.TrendTestCase;
-import com.quartz.qtrend.Bootstrap;
 import com.quartz.qtrend.dom.helpers.Ticker;
-import com.quartz.qutilities.logging.LogManager;
-import junit.framework.Test;
-import junit.framework.TestSuite;
-import org.junit.Assert;
+import lombok.val;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.Collection;
+import java.util.stream.Collectors;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 /**
@@ -24,71 +24,48 @@ import static org.junit.Assert.assertNotNull;
  * @author lmcchbf
  * @since 30-May-2007
  */
-public class WatchListServiceTest extends TrendTestCase
+@SpringBootTest(classes = WatchListServiceTestApplication.class)
+@RunWith(SpringJUnit4ClassRunner.class)
+public class WatchListServiceTest
 {
-    static public final Test suite()
-    {
-        return new TestSuite(WatchListServiceTest.class);
-    }	
-
+    @Autowired
     private WatchListService service;
 
-    public WatchListServiceTest(String name)
+    @org.junit.Test
+    public void createLoad() throws Exception
     {
-        super(name, true);
-    }
+        val ticker = "TEST";
 
-    protected void setUp() throws Exception
-    {
-        LogManager.setLevel("org.springframework", "DEBUG");
+        service.delete(ticker);
 
-        super.setUp();
-
-        service = (WatchListService) Bootstrap.getApplicationcontext().getBean("QTrend.WatchListsService");
-    }
-
-    public void test_createLoad() throws Exception
-    {
-        service.delete(this.getName());
-
-        try
-        {
-            Assert.assertEquals(false, service.exists(this.getName()));
-
-            final WatchList watchList = service.create(this.getName());
+        try {
+            val watchList = service.create(ticker);
 
             assertNotNull(watchList);
 
-            Assert.assertEquals(true, service.exists(this.getName()));
-            Assert.assertEquals(true, service.exists(watchList.getName()));
+            assertEquals(true, service.exists(ticker));
+            assertEquals(true, service.exists(watchList.getName()));
 
             //  now load
-            final WatchList loaded = service.load(this.getName());
+            val loaded = service.load(ticker);
             assertNotNull(loaded);
 
-            Assert.assertEquals(getName(), loaded.getName());
-            Assert.assertEquals(null, loaded.getDescription());
-            Assert.assertEquals(0, loaded.getTickers().size());
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace(System.err);
-
-            throw e;
-        }
-        finally
-        {
-            service.delete(this.getName());
-
-            Assert.assertEquals(false, service.exists(this.getName()));
+            assertEquals(ticker, loaded.getName());
+            assertEquals(null, loaded.getDescription());
+            assertEquals(0, loaded.getTickers().size());
+        } finally {
+            service.delete(ticker);
         }
     }
 
+    @org.junit.Test
     public void test_saveWithTicker() throws Exception
     {
-    	service.delete(this.getName());
+        val ticker = "TEST";
 
-        final WatchList wl = service.create(this.getName());
+    	service.delete(ticker);
+
+        final WatchList wl = service.create(ticker);
 
         wl.add(new Ticker("TBC.TO"));
         wl.add(new Ticker("YRI.TO"));
@@ -96,12 +73,9 @@ public class WatchListServiceTest extends TrendTestCase
 
         service.save(wl);
 
-        final WatchList copy = service.load(this.getName());
-        final Collection<Ticker> expectedTickers = wl.getTickers();
-        final Collection<Ticker> actualTickers = copy.getTickers();
-        Assert.assertEquals(expectedTickers, actualTickers);
+        final WatchList copy = service.load(ticker);
+        val expectedTickers = wl.getTickers().stream().sorted().collect(Collectors.toList());
+        val actualTickers = copy.getTickers().stream().sorted().collect(Collectors.toList());
+        assertEquals(expectedTickers, actualTickers);
     }
-
-    ///////////////////////////////////////
-    ////    INNER CLASSES
 }
