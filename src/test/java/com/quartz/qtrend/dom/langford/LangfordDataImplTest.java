@@ -41,8 +41,7 @@ import static org.junit.Assert.assertNull;
  * @since 5-May-2006
  */
 @RunWith(MockitoJUnitRunner.class)
-public class LangfordDataImplTest implements TestCaseUtils
-{
+public class LangfordDataImplTest implements TestCaseUtils {
     @Mock
     private JdbcTemplate jdbcTemplate;
 
@@ -67,20 +66,13 @@ public class LangfordDataImplTest implements TestCaseUtils
     }
 
     @org.junit.Test
-    public void test_calculateEMA() throws Exception
-    {
-        val s1 = createStock(simpleDao, "ALE", 1, new Date(2006, 10, 1), 10,
-                             b -> b.stockQuoteNavigator(navigator));
-        val s2 = createStock(simpleDao, "ALE", 2, new Date(2006, 10, 1), 12,
-                             b -> b.stockQuoteNavigator(navigator));
-        val s3 = createStock(simpleDao, "ALE", 3, new Date(2006, 10, 1), 11,
-                             b -> b.stockQuoteNavigator(navigator));
-        val s4 = createStock(simpleDao, "ALE", 4, new Date(2006, 10, 1), 9,
-                             b -> b.stockQuoteNavigator(navigator));
-        val s5 = createStock(simpleDao, "ALE", 5, new Date(2006, 10, 1), 6,
-                             b -> b.stockQuoteNavigator(navigator));
-        val s6 = createStock(simpleDao, "ALE", 6, new Date(2006, 10, 1), 6,
-                             b -> b.stockQuoteNavigator(navigator));
+    public void test_calculateEMA() throws Exception {
+        val s1 = createStock(simpleDao, "ALE", 1, new Date(2006, 10, 1), 10, null);
+        val s2 = createStock(simpleDao, "ALE", 2, new Date(2006, 10, 1), 12, null);
+        val s3 = createStock(simpleDao, "ALE", 3, new Date(2006, 10, 1), 11, null);
+        val s4 = createStock(simpleDao, "ALE", 4, new Date(2006, 10, 1), 9, null);
+        val s5 = createStock(simpleDao, "ALE", 5, new Date(2006, 10, 1), 6, null);
+        val s6 = createStock(simpleDao, "ALE", 6, new Date(2006, 10, 1), 6, null);
 
         simpleDao.stocks.add(s1);
         simpleDao.stocks.add(s2);
@@ -97,33 +89,26 @@ public class LangfordDataImplTest implements TestCaseUtils
         assertEMA(s6, 7.860082f);
     }
 
-    private void assertEMA(final StockQuoteImpl pStock, final float pExpectedEma) throws StockException
-    {
+    private void assertEMA(final StockQuoteImpl pStock, final float pExpectedEma) throws StockException {
 
         final StockQuote previous = stockQuoteService.getPreviousQuote(pStock);
 
         final LangfordDataImpl langfordData = (LangfordDataImpl) pStock.getLangfordData();
         final float ema = langfordDataService.calculateEMA(
-                                        langfordData,
-                                        previous,
-                                        LangfordDataService.STEMA_RETRIEVER, new QTrendConfiguration.EMAConfiguration(5));
+                langfordData,
+                previous,
+                LangfordDataService.STEMA_RETRIEVER, new QTrendConfiguration.EMAConfiguration(5));
         assertEquals(pExpectedEma, ema, 0.02);
         langfordData.setShortTermEma(new EMA(ema));
     }
 
     @org.junit.Test
-    public void test_calculateMacd() throws Exception
-    {
-        val stock1 = createStock(simpleDao, "ALE", 1, new Date(2006, 10, 1), 46.25f,
-                                                  b -> b.stockQuoteNavigator(navigator));
-        val stock2 = createStock(simpleDao, "ALE", 2, new Date(2006, 10, 2), 46.25f,
-                                                  b -> b.stockQuoteNavigator(navigator));
-        val stock3 = createStock(simpleDao, "ALE", 3, new Date(2006, 10, 3), 47.06f,
-                                                  b -> b.stockQuoteNavigator(navigator));
-        val stock4 = createStock(simpleDao, "ALE", 4, new Date(2006, 10, 4), 48.25f,
-                                                  b -> b.stockQuoteNavigator(navigator));
-        val stock5 = createStock(simpleDao, "ALE", 5, new Date(2006, 10, 5), 48.50f,
-                                                  b -> b.stockQuoteNavigator(navigator));
+    public void test_calculateMacd() throws Exception {
+        val stock1 = createStock(simpleDao, "ALE", 1, new Date(2006, 10, 1), 46.25f, null);
+        val stock2 = createStock(simpleDao, "ALE", 2, new Date(2006, 10, 2), 46.25f, null);
+        val stock3 = createStock(simpleDao, "ALE", 3, new Date(2006, 10, 3), 47.06f, null);
+        val stock4 = createStock(simpleDao, "ALE", 4, new Date(2006, 10, 4), 48.25f, null);
+        val stock5 = createStock(simpleDao, "ALE", 5, new Date(2006, 10, 5), 48.50f, null);
 
         simpleDao.stocks.add(stock1);
         simpleDao.stocks.add(stock2);
@@ -152,20 +137,19 @@ public class LangfordDataImplTest implements TestCaseUtils
     }
 
     @org.junit.Test
-    public void test_calculateVariation() throws Exception
-    {
+    public void test_calculateVariation() throws Exception {
         val stock1 = createStock(simpleDao, "ALE", 1, new Date(2006, 10, 1), 46.25f,
-                                                  b -> b.stockQuoteNavigator(navigator));
+                                 null);
         val stock2 = createStock(simpleDao, "ALE", 2, new Date(2006, 10, 2), 46.25f,
-                                                  b -> b.stockQuoteNavigator(navigator));
+                                 null);
         val stock3 = createStock(simpleDao, "ALE", 3, new Date(2006, 10, 2), 46.25f,
-                                                  b -> b.stockQuoteNavigator(navigator));
+                                 null);
         val stock4 = createStock(simpleDao, "ALE", 4, new Date(2006, 10, 3), 47.06f,
-                                                  b -> b.stockQuoteNavigator(navigator));
+                                 null);
         val stock5 = createStock(simpleDao, "ALE", 5, new Date(2006, 10, 4), 45.06f,
-                                                  b -> b.stockQuoteNavigator(navigator));
+                                 null);
         val stock6 = createStock(simpleDao, "ALE", 6, new Date(2006, 10, 4), 44.06f,
-                                                  b -> b.stockQuoteNavigator(navigator));
+                                 null);
 
         simpleDao.save(stock1);
         simpleDao.save(stock2);
@@ -224,55 +208,53 @@ public class LangfordDataImplTest implements TestCaseUtils
     }
 
     @org.junit.Test
-    public void test_calculateRsi_moreThan14stocks() throws Exception
-    {
+    public void test_calculateRsi_moreThan14stocks() throws Exception {
         createStock(simpleDao, "ALE", 1, new Date(2006, 10, 1), 98.03f,
-                                         b -> b.stockQuoteNavigator(navigator));
+                    null);
         createStock(simpleDao, "ALE", 2, new Date(2006, 10, 1), 98.51f,
-                                         b -> b.stockQuoteNavigator(navigator));
+                    null);
         createStock(simpleDao, "ALE", 3, new Date(2006, 10, 1), 98.58f,
-                                         b -> b.stockQuoteNavigator(navigator));
+                    null);
         createStock(simpleDao, "ALE", 4, new Date(2006, 10, 1), 98.56f,
-                                         b -> b.stockQuoteNavigator(navigator));
+                    null);
         createStock(simpleDao, "ALE", 5, new Date(2006, 10, 1), 98.93f,
-                                         b -> b.stockQuoteNavigator(navigator));
+                    null);
 
         createStock(simpleDao, "ALE", 6, new Date(2006, 10, 1), 98.11f,
-                                         b -> b.stockQuoteNavigator(navigator));
+                    null);
         createStock(simpleDao, "ALE", 7, new Date(2006, 10, 1), 97.81f,
-                                         b -> b.stockQuoteNavigator(navigator));
+                    null);
         createStock(simpleDao, "ALE", 8, new Date(2006, 10, 1), 97.62f,
-                                         b -> b.stockQuoteNavigator(navigator));
+                    null);
         createStock(simpleDao, "ALE", 9, new Date(2006, 10, 1), 98.80f,
-                                         b -> b.stockQuoteNavigator(navigator));
+                    null);
         createStock(simpleDao, "ALE", 10, new Date(2006, 10, 1), 98.72f,
-                                         b -> b.stockQuoteNavigator(navigator));
+                    null);
 
         createStock(simpleDao, "ALE", 11, new Date(2006, 10, 1), 97.97f,
-                                         b -> b.stockQuoteNavigator(navigator));
+                    null);
         createStock(simpleDao, "ALE", 12, new Date(2006, 10, 1), 97.54f,
-                                         b -> b.stockQuoteNavigator(navigator));
+                    null);
         createStock(simpleDao, "ALE", 13, new Date(2006, 10, 1), 96.60f,
-                                         b -> b.stockQuoteNavigator(navigator));
+                    null);
         createStock(simpleDao, "ALE", 14, new Date(2006, 10, 1), 97.38f,
-                                         b -> b.stockQuoteNavigator(navigator));
+                    null);
         createStock(simpleDao, "ALE", 15, new Date(2006, 10, 1), 96.54f,
-                                         b -> b.stockQuoteNavigator(navigator));
+                    null);
 
         createStock(simpleDao, "ALE", 16, new Date(2006, 10, 1), 96.49f,
-                                         b -> b.stockQuoteNavigator(navigator));
+                    null);
         createStock(simpleDao, "ALE", 17, new Date(2006, 10, 1), 97.47f,
-                                         b -> b.stockQuoteNavigator(navigator));
+                    null);
         createStock(simpleDao, "ALE", 18, new Date(2006, 10, 1), 97.68f,
-                                         b -> b.stockQuoteNavigator(navigator));
+                    null);
         createStock(simpleDao, "ALE", 19, new Date(2006, 10, 1), 97.90f,
-                                         b -> b.stockQuoteNavigator(navigator));
+                    null);
         createStock(simpleDao, "ALE", 20, new Date(2006, 10, 1), 98.08f,
-                                         b -> b.stockQuoteNavigator(navigator));
+                    null);
 
         //  prerequisite
-        for (Iterator iterator = simpleDao.stocks.iterator(); iterator.hasNext();)
-        {
+        for (Iterator iterator = simpleDao.stocks.iterator(); iterator.hasNext(); ) {
             StockQuoteImpl stockQuote = (StockQuoteImpl) iterator.next();
             stockQuoteService.calculatePriceDifference(stockQuote);
         }
@@ -286,27 +268,20 @@ public class LangfordDataImplTest implements TestCaseUtils
     }
 
     @org.junit.Test
-    public void test_calculateRsi_lessThan14stocks() throws Exception
-    {
-        createStock(simpleDao, "ALE", 1, new Date(2006, 10, 1), 98.03f,
-                                         b -> b.stockQuoteNavigator(navigator));
-        createStock(simpleDao, "ALE", 2, new Date(2006, 10, 1), 98.51f,
-                                         b -> b.stockQuoteNavigator(navigator));
-        createStock(simpleDao, "ALE", 3, new Date(2006, 10, 1), 98.58f,
-                                         b -> b.stockQuoteNavigator(navigator));
-        createStock(simpleDao, "ALE", 4, new Date(2006, 10, 1), 98.56f,
-                                         b -> b.stockQuoteNavigator(navigator));
-        createStock(simpleDao, "ALE", 5, new Date(2006, 10, 1), 98.93f,
-                                         b -> b.stockQuoteNavigator(navigator));
+    public void test_calculateRsi_lessThan14stocks() throws Exception {
+        createStock(simpleDao, "ALE", 1, new Date(2006, 10, 1), 98.03f, null);
+        createStock(simpleDao, "ALE", 2, new Date(2006, 10, 1), 98.51f, null);
+        createStock(simpleDao, "ALE", 3, new Date(2006, 10, 1), 98.58f, null);
+        createStock(simpleDao, "ALE", 4, new Date(2006, 10, 1), 98.56f, null);
+        createStock(simpleDao, "ALE", 5, new Date(2006, 10, 1), 98.93f, null);
 
         createStock(simpleDao, "ALE", 6, new Date(2006, 10, 1), 98.11f,
-                                         b -> b.stockQuoteNavigator(navigator));
+                    null);
         createStock(simpleDao, "ALE", 7, new Date(2006, 10, 1), 97.81f,
-                                         b -> b.stockQuoteNavigator(navigator));
+                    null);
 
         //  prerequisite
-        for (Iterator iterator = simpleDao.stocks.iterator(); iterator.hasNext();)
-        {
+        for (Iterator iterator = simpleDao.stocks.iterator(); iterator.hasNext(); ) {
             StockQuoteImpl stockQuote = (StockQuoteImpl) iterator.next();
             stockQuoteService.calculatePriceDifference(stockQuote);
         }

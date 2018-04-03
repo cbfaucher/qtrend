@@ -26,7 +26,7 @@ public class SimpleStockQuoteNavigator implements StockQuoteNavigator
 
     public StockQuote getPreviousQuote(StockQuote pThisStock) throws StockException
     {
-        final int index = pThisStock.getPeriodSequence() - 1;
+        final int index = quotes.indexOf(pThisStock);
         return (index > 0 ? quotes.get(index - 1) : null);
     }
 

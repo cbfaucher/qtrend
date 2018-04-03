@@ -6,10 +6,8 @@
  */
 package com.quartz.qtrend.rules.imports;
 
-import com.quartz.qtrend.dom.helpers.Ticker;
-import com.quartz.qutilities.unittests.QTestCase;
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import lombok.val;
+import org.junit.Ignore;
 
 /**
  * Unit Test cases for {@link PriceHighEnoughRule}
@@ -17,36 +15,13 @@ import junit.framework.TestSuite;
  * @author lmcchbf
  * @since 18-Aug-2006
  */
-public class PriceHighEnoughRuleTest extends QTestCase
+public class PriceHighEnoughRuleTest
 {
-    ///////////////////////////////////////
-    ////    STATIC ATTRIBUTES
-
-    ///////////////////////////////////////
-    ////    STATIC METHODS
-	
-    static public final Test suite()
-    {
-        return new TestSuite(PriceHighEnoughRuleTest.class);
-    }	
-
-    ///////////////////////////////////////
-    ////    INSTANCE ATTRIBUTES
-
-    ///////////////////////////////////////
-    ////    CONSTRUCTORS
-
-    public PriceHighEnoughRuleTest(String name)
-    {
-        super(name);
-    }
-
-    ///////////////////////////////////////
-    ////    INSTANCE METHODS
-
+    @org.junit.Test
+    @Ignore("IMplement this!")
     public void test_accept() throws Exception
     {
-    	final PriceHighEnoughRule rule = new PriceHighEnoughRule();
+    	val rule = new PriceHighEnoughRule();
 
         rule.setMinimumPrice(2.00f);
 

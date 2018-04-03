@@ -6,14 +6,9 @@
  */
 package com.quartz.qtrend.dom.dao;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
-import com.quartz.qtrend.dom.StockQuote;
-import com.quartz.qtrend.TrendTestCase;
-
-import java.sql.Date;
-import java.util.List;
-import java.util.ArrayList;
+import com.quartz.qtrend.TestCaseUtils;
+import org.junit.Ignore;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Unit Test cases for {@link StockQuoteDAO}
@@ -21,44 +16,37 @@ import java.util.ArrayList;
  * @author lmcchbf
  * @since 20-Apr-2007
  */
-public class StockQuoteDAOTest extends TrendTestCase
+public class StockQuoteDAOTest implements TestCaseUtils
 {
     private static final String TEST_TICKER = "TEST";
 
+    @Autowired
+    private StockQuoteDAO dao;
+
     @org.junit.Test
-    public void testUseless() {
-
-    }
-
-/*  TODO: move this to a valid unit test class
-    public void test_getNPreviousStock() throws Exception
+    @Ignore("Clean up this test")
+    public void getNPreviousStock() throws Exception
     {
-        final StockQuoteDAO dao = new StockQuoteDAO();
+/*
+        final StockQuote s1 = createStock(dao, TEST_TICKER, 50, new Date(2006, 10, 1), 35.55f, null);
+        final StockQuote s2 = createStock(dao, TEST_TICKER, 51, new Date(2006, 10, 2), 36.66f, null);
+        final StockQuote s3 = createStock(dao, TEST_TICKER, 52, new Date(2006, 10, 3), 37.77f, null);
+        final StockQuote s4 = createStock(dao, TEST_TICKER, 53, new Date(2006, 10, 3), 38.88f, null);
+        final StockQuote s5 = createStock(dao, TEST_TICKER, 54, new Date(2006, 10, 3), 38.88f, null);
 
-        final StockQuote s1 = createStock(dao, TEST_TICKER, 50, new Date(2006, 10, 1), 35.55f);
-        final StockQuote s2 = createStock(dao, TEST_TICKER, 51, new Date(2006, 10, 2), 36.66f);
-        final StockQuote s3 = createStock(dao, TEST_TICKER, 52, new Date(2006, 10, 3), 37.77f);
-        final StockQuote s4 = createStock(dao, TEST_TICKER, 53, new Date(2006, 10, 3), 38.88f);
-        final StockQuote s5 = createStock(dao, TEST_TICKER, 54, new Date(2006, 10, 3), 38.88f);
+        dao.saveQuoteOnly(s1);
+        dao.saveQuoteOnly(s2);
+        dao.saveQuoteOnly(s3);
+        dao.saveQuoteOnly(s4);
+        dao.saveQuoteOnly(s5);
 
-        s1.saveQuoteOnly();
-        s2.saveQuoteOnly();
-        s3.saveQuoteOnly();
-        s4.saveQuoteOnly();
-        s5.saveQuoteOnly();
 
-        final List<StockQuote> expected1 = new ArrayList();
-        expected1.add(s2);
-        expected1.add(s3);
-        expected1.add(s4);
+        val expected1 = Arrays.asList(s2, s3, s4);
 
-        assertEquals(expected1 , dao.getPreviousQStocks(s4, 3, true));
+        assertEquals(expected1 , service.getPreviousQuotesIncludingMe(s4, 3, true));
 
         expected1.add(0, s1);
         assertEquals(expected1 , dao.getPreviousStocks(s5, 4, false));
-    }
 */
-
-    ///////////////////////////////////////
-    ////    INNER CLASSES
+    }
 }
