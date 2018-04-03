@@ -7,22 +7,8 @@
 package com.quartz.qtrend.dom.dao;
 
 import com.quartz.qtrend.TestCaseUtils;
-import com.quartz.qtrend.dom.services.StockQuoteListService;
-import junit.framework.Test;
-import junit.framework.TestSuite;
-import com.quartz.qtrend.dom.StockQuote;
-import com.quartz.qtrend.TrendTestCase;
-import lombok.val;
-import org.junit.After;
 import org.junit.Ignore;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.sql.Date;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ArrayList;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * Unit Test cases for {@link StockQuoteDAO}

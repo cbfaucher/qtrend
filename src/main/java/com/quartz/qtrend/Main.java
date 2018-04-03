@@ -31,7 +31,6 @@ public class Main
     {
         LogManager.getLogger(Main.class);
 
-//        Bootstrap.init(QTrendMode.USER_INTERFACE);
         val context = SpringApplication.run(QTrendApplication.class, pArgs);
         BeanFactorySingleton.setBeanFactory(context);
 
